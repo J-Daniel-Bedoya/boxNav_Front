@@ -1,0 +1,48 @@
+.panel {
+  width: 100%;
+  height: 100vh;
+
+  &__header {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &--logo {
+      width: 7rem;
+      height: 7rem;
+      background-image: url("https://res.cloudinary.com/dpwje5siq/image/upload/v1714617180/log-lis_rrscm1.ico");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+    &--menu {
+      border: none;
+      background-color: transparent;
+      margin-right: 1rem;
+      & i {
+        font-size: 2rem;
+        color: #000;
+      }
+    }
+  }
+
+  &__closed {
+    position: fixed;
+    right: 2rem;
+    bottom: 2rem;
+    z-index: 5;
+    & button {
+      width: 3rem;
+      height: 3rem;
+      border: none;
+      border-radius: 100%;
+      background-color: rgb(241, 104, 26);
+      & i {
+        font-size: 1.5rem;
+        color: #fff;
+      }
+    }
+  }
+}

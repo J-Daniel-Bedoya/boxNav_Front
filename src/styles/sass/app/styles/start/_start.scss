@@ -1,0 +1,29 @@
+.start {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+
+  &__btn {
+    display: flex;
+    justify-content: end;
+    &--login {
+      width: 3rem;
+      height: 3rem;
+      border-radius: 50%;
+      border: none;
+      background-color: #d5f4ff;
+
+      & i {
+        font-size: 1.5rem;
+        color: #eb4707;
+      }
+    }
+  }
+  &__space {
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+  }
+}
