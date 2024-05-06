@@ -1,11 +1,17 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import { createTownThunk } from "../../store/slices/town.slice";
 
 const NewTown = () => {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm();
 
+  const dispatch = useDispatch();
   const submit = (data) => {
-    const i = data;
+    console.log(data);
+
+    dispatch(createTownThunk(data));
+    reset();
   };
 
   return (
@@ -17,16 +23,16 @@ const NewTown = () => {
         </div>
         <div className="town__form--input">
           <input
-            type="text"
+            type="number"
             placeholder="Número de cajas"
-            {...register("boxes")}
+            {...register("boxNumber")}
           />
         </div>
         <div className="town__form--input">
           <input
-            type="text"
+            type="number"
             placeholder="Número de usuarios"
-            {...register("users")}
+            {...register("userNumber")}
           />
         </div>
 
