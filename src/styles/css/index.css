@@ -240,7 +240,8 @@
 .user,
 .box,
 .port,
-.town {
+.town,
+.sector {
   width: 100%;
   height: 50vh;
   margin-top: 3rem;
@@ -254,7 +255,8 @@
 .user__form,
 .box__form,
 .port__form,
-.town__form {
+.town__form,
+.sector__form {
   width: 100%;
   height: 100%;
   padding: 2.5rem;
@@ -270,7 +272,9 @@
 .port__form--input input,
 .port__form--input select,
 .town__form--input input,
-.town__form--input select {
+.town__form--input select,
+.sector__form--input input,
+.sector__form--input select {
   width: 100%;
   height: 3rem;
   font-size: 20px;

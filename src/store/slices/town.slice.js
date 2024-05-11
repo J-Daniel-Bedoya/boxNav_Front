@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const api = "nav-boxes-lis.up.railway.app/app/v1";
+const api = "https://nav-boxes-lis.up.railway.app/app/v1";
 
 export const townSlice = createSlice({
   name: "town",

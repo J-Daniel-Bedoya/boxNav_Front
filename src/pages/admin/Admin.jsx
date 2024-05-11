@@ -4,6 +4,7 @@ import NewUser from "../../components/adminC/NewUser";
 import NewTown from "../../components/adminC/NewTown";
 import NewBox from "../../components/adminC/NewBox";
 import NewPort from "../../components/adminC/NewPort";
+import NewSector from "../../components/adminC/NewSector";
 
 const Admin = () => {
   const navigate = useNavigate();
@@ -37,6 +38,7 @@ const Admin = () => {
           <nav className="menu__list">
             <ul>
               <li onClick={() => select("town")}>Pueblo</li>
+              <li onClick={() => select("sector")}>Sector</li>
               <li onClick={() => select("box")}>Caja</li>
               <li onClick={() => select("user")}>Usuario</li>
               <li onClick={() => select("port")}>Puerto malo</li>
@@ -52,6 +54,7 @@ const Admin = () => {
       </div>
       <div className="panel__content">
         {isSelect === "town" && <NewTown />}
+        {isSelect === "sector" && <NewSector />}
         {isSelect === "box" && <NewBox />}
         {isSelect === "user" && <NewUser />}
         {isSelect === "port" && <NewPort />}

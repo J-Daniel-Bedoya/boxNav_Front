@@ -1,28 +1,28 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { createTownThunk } from "../../store/slices/town.slice";
+import { createSectorThunk } from "../../store/slices/sector.slice";
 
-const NewTown = () => {
+const NewSector = () => {
   const { register, handleSubmit, reset } = useForm();
 
   const dispatch = useDispatch();
   const submit = (data) => {
     console.log(data);
 
-    dispatch(createTownThunk(data));
+    dispatch(createSectorThunk(data));
     reset();
   };
 
   return (
-    <div className="town">
-      <h1>Registrar un Pueblo</h1>
-      <form onSubmit={handleSubmit(submit)} className="town__form">
-        <div className="town__form--input">
+    <div className="sector">
+      <h1>Agregar un nuevo sector</h1>
+      <form onSubmit={handleSubmit(submit)} className="sector__form">
+        <div className="sector__form--input">
           <input type="text" placeholder="Nombre" {...register("name")} />
         </div>
 
-        <div className="town__form--input">
+        <div className="sector__form--input">
           <input type="submit" value="Agregar" id="formButton" />
         </div>
       </form>
@@ -30,4 +30,4 @@ const NewTown = () => {
   );
 };
 
-export default NewTown;
+export default NewSector;

@@ -1,18 +1,19 @@
 import axios from "axios";
-import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { loginThunk } from "../../store/slices/login.slice";
 
 const Login = () => {
   const { register, handleSubmit } = useForm();
+  const api = "https://nav-boxes-lis.up.railway.app/app/v1";
   const navigate = useNavigate();
 
-  const dispatch = useDispatch();
-
   const submit = (data) => {
-    dispatch(loginThunk(data));
+    axios.post(`${api}/auth/login`, data).then((res) => {
+      localStorage.setItem("login", res.data.admin.password);
+      localStorage.setItem("token", res.data.token);
+    });
+    // console.log(da);
+    navigate("/admin");
   };
 
   return (
