@@ -1,13 +1,18 @@
+import axios from "axios";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { loginThunk } from "../../store/slices/login.slice";
 
 const Login = () => {
   const { register, handleSubmit } = useForm();
   const navigate = useNavigate();
 
+  const dispatch = useDispatch();
+
   const submit = (data) => {
-    localStorage.setItem("login", data.password);
-    navigate("/admin");
+    dispatch(loginThunk(data));
   };
 
   return (
