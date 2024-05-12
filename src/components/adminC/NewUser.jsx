@@ -1,8 +1,10 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 const NewUser = () => {
   const { register, handleSubmit } = useForm();
+  const navigate = useNavigate();
 
   const submit = (data) => {
     const i = data;
@@ -57,6 +59,10 @@ const NewUser = () => {
           <input type="submit" value="Registrar" id="formButton" />
         </div>
       </form>
+
+      <div>
+        <button onClick={() => navigate("/admin")}>Exit</button>
+      </div>
     </div>
   );
 };

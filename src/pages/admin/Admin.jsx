@@ -19,45 +19,40 @@ const Admin = () => {
 
   return (
     <div className="panel">
-      <div className="panel__header">
-        <div className="panel__header--logo"></div>
-        <div>
+      <div className="panel_header">
+        <div className="panel_header--logo"></div>
+        <div className="panel_content">
           <button
-            className="panel__header--menu"
-            onClick={() => setIsOpen(!isOpen)}
+            className="panel_content--option"
+            onClick={() => navigate("/town")}
           >
-            <i className="fa-solid fa-bars"></i>
+            Agregar un pueblo
+          </button>
+          <button
+            className="panel_content--option"
+            onClick={() => navigate("/sector")}
+          >
+            Agregar un sector
+          </button>
+          <button
+            className="panel_content--option"
+            onClick={() => navigate("/box")}
+          >
+            Crear una caja
+          </button>
+          <button
+            className="panel_content--option"
+            onClick={() => navigate("/user")}
+          >
+            Crear un usuario
+          </button>
+          <button
+            className="panel_content--option"
+            onClick={() => navigate("/portBad")}
+          >
+            Añadir un puerto malo
           </button>
         </div>
-      </div>
-      {isOpen && (
-        <div className="menu">
-          <div className="menu__indi">
-            <div className="menu__indi--triangle"></div>
-          </div>
-          <nav className="menu__list">
-            <ul>
-              <li onClick={() => select("town")}>Pueblo</li>
-              <li onClick={() => select("sector")}>Sector</li>
-              <li onClick={() => select("box")}>Caja</li>
-              <li onClick={() => select("user")}>Usuario</li>
-              <li onClick={() => select("port")}>Puerto malo</li>
-            </ul>
-          </nav>
-        </div>
-      )}
-
-      <div className="panel__closed">
-        <button onClick={() => navigate("/")}>
-          <i className="fa-solid fa-right-from-bracket"></i>
-        </button>
-      </div>
-      <div className="panel__content">
-        {isSelect === "town" && <NewTown />}
-        {isSelect === "sector" && <NewSector />}
-        {isSelect === "box" && <NewBox />}
-        {isSelect === "user" && <NewUser />}
-        {isSelect === "port" && <NewPort />}
       </div>
     </div>
   );

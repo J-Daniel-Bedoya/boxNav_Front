@@ -2,9 +2,11 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { createSectorThunk } from "../../store/slices/sector.slice";
+import { useNavigate } from "react-router-dom";
 
 const NewSector = () => {
   const { register, handleSubmit, reset } = useForm();
+  const navigate = useNavigate();
 
   const dispatch = useDispatch();
   const submit = (data) => {
@@ -26,6 +28,9 @@ const NewSector = () => {
           <input type="submit" value="Agregar" id="formButton" />
         </div>
       </form>
+      <div>
+        <button onClick={() => navigate("/admin")}>Exit</button>
+      </div>
     </div>
   );
 };

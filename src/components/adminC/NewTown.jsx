@@ -2,14 +2,15 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { createTownThunk } from "../../store/slices/town.slice";
+import { useNavigate } from "react-router-dom";
 
 const NewTown = () => {
   const { register, handleSubmit, reset } = useForm();
 
   const dispatch = useDispatch();
-  const submit = (data) => {
-    console.log(data);
+  const navigate = useNavigate();
 
+  const submit = (data) => {
     dispatch(createTownThunk(data));
     reset();
   };
@@ -26,6 +27,9 @@ const NewTown = () => {
           <input type="submit" value="Agregar" id="formButton" />
         </div>
       </form>
+      <div>
+        <button onClick={() => navigate("/admin")}>Exit</button>
+      </div>
     </div>
   );
 };
