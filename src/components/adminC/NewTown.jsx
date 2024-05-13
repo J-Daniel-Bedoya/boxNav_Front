@@ -3,8 +3,12 @@ import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { createTownThunk } from "../../store/slices/town.slice";
 import { useNavigate } from "react-router-dom";
+import Header from "./Header";
+import AddTown from "./adminOptions/town/AddTown";
+import EditTown from "./adminOptions/town/EditTown";
+import RemoveTown from "./adminOptions/town/RemoveTown";
 
-const NewTown = () => {
+const NewTown = ({ option }) => {
   const { register, handleSubmit, reset } = useForm();
 
   const dispatch = useDispatch();
@@ -17,18 +21,12 @@ const NewTown = () => {
 
   return (
     <div className="town">
-      <h1>Registrar un Pueblo</h1>
-      <form onSubmit={handleSubmit(submit)} className="town__form">
-        <div className="town__form--input">
-          <input type="text" placeholder="Nombre" {...register("name")} />
-        </div>
-
-        <div className="town__form--input">
-          <input type="submit" value="Agregar" id="formButton" />
-        </div>
-      </form>
+      <Header />
+      {option === "add" && <AddTown />}
+      {option === "edit" && <EditTown />}
+      {option === "remove" && <RemoveTown />}
       <div>
-        <button onClick={() => navigate("/admin")}>Exit</button>
+        <button onClick={() => navigate(-1)}>Exit</button>
       </div>
     </div>
   );

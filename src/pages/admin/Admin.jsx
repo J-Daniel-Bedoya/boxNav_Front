@@ -1,58 +1,42 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import NewUser from "../../components/adminC/NewUser";
-import NewTown from "../../components/adminC/NewTown";
-import NewBox from "../../components/adminC/NewBox";
-import NewPort from "../../components/adminC/NewPort";
-import NewSector from "../../components/adminC/NewSector";
+import { useDispatch, useSelector } from "react-redux";
+import { setOptions } from "../../store/slices/adminOptions.slice";
+import Add from "../../components/adminC/adminFunctions/Add";
+import Edit from "../../components/adminC/adminFunctions/Edit";
+import Remove from "../../components/adminC/adminFunctions/Remove";
 
 const Admin = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const options = useSelector((state) => state.options);
 
-  const [isOpen, setIsOpen] = useState(false);
-  const [isSelect, setIsSelect] = useState("town");
+  const [isSelect, setIsSelect] = useState("add");
 
-  const select = (option) => {
-    setIsSelect(option);
-    setIsOpen(!isOpen);
+  const select = (info) => {
+    setIsSelect(info);
+    dispatch(setOptions(info));
   };
+
+  useEffect(() => {
+    setIsSelect(options);
+  }, []);
 
   return (
     <div className="panel">
-      <div className="panel_header">
-        <div className="panel_header--logo"></div>
-        <div className="panel_content">
-          <button
-            className="panel_content--option"
-            onClick={() => navigate("/town")}
-          >
-            Agregar un pueblo
-          </button>
-          <button
-            className="panel_content--option"
-            onClick={() => navigate("/sector")}
-          >
-            Agregar un sector
-          </button>
-          <button
-            className="panel_content--option"
-            onClick={() => navigate("/box")}
-          >
-            Crear una caja
-          </button>
-          <button
-            className="panel_content--option"
-            onClick={() => navigate("/user")}
-          >
-            Crear un usuario
-          </button>
-          <button
-            className="panel_content--option"
-            onClick={() => navigate("/portBad")}
-          >
-            Añadir un puerto malo
-          </button>
+      <div className="panel__header">
+        <div className="logo" id="logoAdmin"></div>
+        <div>
+          <button onClick={() => select("add")}>Agregar</button>
+          <button onClick={() => select("edit")}>Editar</button>
+          <button onClick={() => select("remove")}>Eliminar</button>
         </div>
+        {isSelect === "add" && <Add />}
+        {isSelect === "edit" && <Edit />}
+        {isSelect === "remove" && <Remove />}
+      </div>
+      <div>
+        <button onClick={() => navigate("/")}>Exit</button>
       </div>
     </div>
   );

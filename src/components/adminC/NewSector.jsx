@@ -3,8 +3,12 @@ import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { createSectorThunk } from "../../store/slices/sector.slice";
 import { useNavigate } from "react-router-dom";
+import Header from "./Header";
+import AddSector from "./adminOptions/sector/AddSector";
+import EditSector from "./adminOptions/sector/EditSector";
+import RemoveSector from "./adminOptions/sector/RemoveSector";
 
-const NewSector = () => {
+const NewSector = ({ option }) => {
   const { register, handleSubmit, reset } = useForm();
   const navigate = useNavigate();
 
@@ -18,18 +22,13 @@ const NewSector = () => {
 
   return (
     <div className="sector">
-      <h1>Agregar un nuevo sector</h1>
-      <form onSubmit={handleSubmit(submit)} className="sector__form">
-        <div className="sector__form--input">
-          <input type="text" placeholder="Nombre" {...register("name")} />
-        </div>
+      <Header />
+      {option === "add" && <AddSector />}
+      {option === "edit" && <EditSector />}
+      {option === "remove" && <RemoveSector />}
 
-        <div className="sector__form--input">
-          <input type="submit" value="Agregar" id="formButton" />
-        </div>
-      </form>
       <div>
-        <button onClick={() => navigate("/admin")}>Exit</button>
+        <button onClick={() => navigate(-1)}>Exit</button>
       </div>
     </div>
   );

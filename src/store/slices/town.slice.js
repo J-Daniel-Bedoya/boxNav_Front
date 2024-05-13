@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import getConfig from "../../utils/getConfig";
 
 const api = "https://nav-boxes-lis.up.railway.app/app/v1";
 
@@ -17,7 +18,7 @@ export const { setTown } = townSlice.actions;
 
 export const getTownThunk = () => async (dispatch) => {
   //   dispatch(setLoading(true));
-  return await axios.get(`${api}/town/`, getConfig()).then((res) => {
+  return await axios.get(`${api}/town`, getConfig()).then((res) => {
     dispatch(setTown(res.data));
   });
   // .finally(dispatch(setLoading(false)));
@@ -25,7 +26,7 @@ export const getTownThunk = () => async (dispatch) => {
 
 export const createTownThunk = (data) => async (dispatch) => {
   return await axios
-    .post(`${api}/town/`, data, getConfig())
+    .post(`${api}/town`, data, getConfig())
     .then((res) => dispatch(getTownThunk()));
 };
 
