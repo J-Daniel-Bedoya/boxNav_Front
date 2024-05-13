@@ -2,13 +2,16 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { createTownThunk } from "../../../../store/slices/town.slice";
+import { useNavigate } from "react-router-dom";
 
 const AddTown = () => {
   const { register, handleSubmit } = useForm();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const submit = (data) => {
     dispatch(createTownThunk(data));
+    navigate(-1);
   };
   return (
     <div>

@@ -17,23 +17,14 @@ export const sectorSlice = createSlice({
 export const { setSector } = sectorSlice.actions;
 
 export const getSectorsThunk = () => async (dispatch) => {
-  //   dispatch(setLoading(true));
-  return await axios.get(`${api}/sector/`, getConfig()).then((res) => {
+  return await axios.get(`${api}/sector`, getConfig()).then((res) => {
     dispatch(setSector(res.data));
   });
-  // .finally(dispatch(setLoading(false)));
-};
-export const getSectorThunk = (sectorId) => async (dispatch) => {
-  return await axios
-    .get(`${api}/sector/${sectorId}`, getConfig())
-    .then((res) => {
-      dispatch(setSector(res.data));
-    });
 };
 
 export const createSectorThunk = (data) => async (dispatch) => {
   return await axios
-    .post(`${api}/sector/`, data, getConfig())
+    .post(`${api}/sector`, data, getConfig())
     .then((res) => dispatch(getSectorsThunk()));
 };
 

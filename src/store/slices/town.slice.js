@@ -17,14 +17,7 @@ export const townSlice = createSlice({
 export const { setTown } = townSlice.actions;
 
 export const getTownsThunk = () => async (dispatch) => {
-  //   dispatch(setLoading(true));
   return await axios.get(`${api}/town`, getConfig()).then((res) => {
-    dispatch(setTown(res.data));
-  });
-  // .finally(dispatch(setLoading(false)));
-};
-export const getTownThunk = (townId) => async (dispatch) => {
-  return await axios.get(`${api}/town/${townId}`, getConfig()).then((res) => {
     dispatch(setTown(res.data));
   });
 };
