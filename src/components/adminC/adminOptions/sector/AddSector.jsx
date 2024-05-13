@@ -1,11 +1,14 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import { createSectorThunk } from "../../../../store/slices/sector.slice";
 
 const AddSector = () => {
   const { register, handleSubmit } = useForm();
+  const dispatch = useDispatch();
 
   const submit = (data) => {
-    const i = data;
+    dispatch(createSectorThunk(data));
   };
   return (
     <div>

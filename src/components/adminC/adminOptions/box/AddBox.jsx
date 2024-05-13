@@ -1,11 +1,15 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import { createBoxThunk } from "../../../../store/slices/box.slice";
 
 const AddBox = () => {
   const { register, handleSubmit } = useForm();
 
+  const dispatch = useDispatch();
+
   const submit = (data) => {
-    const i = data;
+    dispatch(createBoxThunk(data));
   };
   return (
     <div>

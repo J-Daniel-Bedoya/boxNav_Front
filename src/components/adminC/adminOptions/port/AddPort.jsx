@@ -1,11 +1,15 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import { createPortThunk } from "../../../../store/slices/port.slice";
 
 const AddPort = () => {
   const { register, handleSubmit } = useForm();
 
+  const dispatch = useDispatch();
+
   const submit = (data) => {
-    const i = data;
+    dispatch(createPortThunk(data));
   };
   return (
     <div>
