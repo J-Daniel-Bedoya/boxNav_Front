@@ -31,8 +31,6 @@ const AddBox = () => {
     dispatch(getSectorsThunk());
   }, []);
 
-  // console.log(sector);
-
   return (
     <div>
       <h1>Nueva Caja Nav</h1>
