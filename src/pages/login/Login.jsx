@@ -13,7 +13,7 @@ const Login = () => {
       localStorage.setItem("token", res.data.token);
     });
     // console.log(da);
-    navigate("/admin");
+    navigate("/start");
   };
 
   return (

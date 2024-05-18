@@ -9,6 +9,7 @@ import NewSector from "./components/adminC/NewSector";
 import NewUser from "./components/adminC/NewUser";
 import NewPort from "./components/adminC/NewPort";
 import { useSelector } from "react-redux";
+import TownInfo from "./pages/viewInfoTown/TownInfo";
 
 function App() {
   const option = useSelector((state) => state.options);
@@ -16,10 +17,12 @@ function App() {
     <div className="app">
       <HashRouter>
         <Routes>
-          <Route path="/" element={<Start />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/" element={<Login />} />
 
           <Route element={<ProtectedRoutes />}>
+            <Route path="/start" element={<Start />} />
+            <Route path="/start/town/:id" element={<TownInfo />} />
+
             <Route path="/admin" element={<Admin />} />
             <Route path="/admin/town" element={<NewTown option={option} />} />
             <Route

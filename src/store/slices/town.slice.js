@@ -2,9 +2,9 @@ import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import getConfig from "../../utils/getConfig";
 
-const api = "https://nav-boxes-lis.up.railway.app/app/v1";
+const api = "https://nav-boxes-lis.up.railway.app/api/v1";
 
-export const townSlice = createSlice({
+const townSlice = createSlice({
   name: "town",
   initialState: [],
   reducers: {
@@ -17,9 +17,20 @@ export const townSlice = createSlice({
 export const { setTown } = townSlice.actions;
 
 export const getTownsThunk = () => async (dispatch) => {
-  return await axios.get(`${api}/town`, getConfig()).then((res) => {
-    dispatch(setTown(res.data));
-  });
+  return await axios
+    .get(`${api}/town`, getConfig())
+    .then((res) => {
+      dispatch(setTown(res.data));
+    })
+    .catch((error) => console.log(error));
+};
+export const getTownThunk = (id) => async (dispatch) => {
+  return await axios
+    .get(`${api}/town/${id}`, getConfig())
+    .then((res) => {
+      dispatch(setTown(res.data));
+    })
+    .catch((error) => console.log(error));
 };
 
 export const createTownThunk = (data) => async (dispatch) => {
