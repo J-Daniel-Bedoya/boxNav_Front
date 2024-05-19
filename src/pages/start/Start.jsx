@@ -4,11 +4,11 @@ import Options from "../../components/startC/Options";
 import { useNavigate } from "react-router-dom";
 
 const Start = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-  const login = () => {
-    navigate("/login");
-  };
+  // const login = () => {
+  //   navigate("/login");
+  // };
 
   return (
     <div className="start">

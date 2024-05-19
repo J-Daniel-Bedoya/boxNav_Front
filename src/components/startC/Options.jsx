@@ -15,7 +15,7 @@ const Options = () => {
   const selectTown = (data) => {
     navigate(`/start/town/${data}`);
   };
-
+  console.log(town);
   return (
     <div className="options">
       {town.map((town) => (
@@ -24,7 +24,7 @@ const Options = () => {
           className="options__button"
           onClick={() => selectTown(town.id)}
         >
-          {town.name}
+          {town.townName}
         </button>
       ))}
     </div>

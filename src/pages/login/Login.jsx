@@ -4,11 +4,11 @@ import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const { register, handleSubmit } = useForm();
-  const api = "https://nav-boxes-lis.up.railway.app/app/v1";
+  const api = "https://nav-boxes-lis.up.railway.app/api/v1";
   const navigate = useNavigate();
 
-  const submit = (data) => {
-    axios.post(`${api}/auth/login`, data).then((res) => {
+  const submit = async (data) => {
+    await axios.post(`${api}/auth/login`, data).then((res) => {
       localStorage.setItem("login", res.data.admin.password);
       localStorage.setItem("token", res.data.token);
     });

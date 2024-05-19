@@ -21,6 +21,7 @@ export const getTownsThunk = () => async (dispatch) => {
     .get(`${api}/town`, getConfig())
     .then((res) => {
       dispatch(setTown(res.data));
+      console.log(res.data);
     })
     .catch((error) => console.log(error));
 };
