@@ -11,7 +11,6 @@ const TownInfo = () => {
 
   useEffect(() => {
     dispatch(getTownThunk(id));
-    // set
   }, []);
 
   console.log(town);
@@ -20,7 +19,7 @@ const TownInfo = () => {
     <div>
       {town?.map((box) => (
         <div key={box.id} box={box.id}>
-          <p>{box.name}</p>
+          <p>{box.boxNumber}</p>
         </div>
       ))}
     </div>

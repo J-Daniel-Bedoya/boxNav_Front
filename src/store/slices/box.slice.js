@@ -17,11 +17,9 @@ export const boxSlice = createSlice({
 export const { setBox } = boxSlice.actions;
 
 export const getBoxesThunk = () => async (dispatch) => {
-  //   dispatch(setLoading(true));
-  return await axios.get(`${api}/box/`, getConfig()).then((res) => {
+  return await axios.get(`${api}/box`, getConfig()).then((res) => {
     dispatch(setBox(res.data));
   });
-  // .finally(dispatch(setLoading(false)));
 };
 export const getBoxThunk = (boxId) => async (dispatch) => {
   return await axios.get(`${api}/box/${boxId}`, getConfig()).then((res) => {

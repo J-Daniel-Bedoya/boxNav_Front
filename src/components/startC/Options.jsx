@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getTownsThunk } from "../../store/slices/town.slice";
+import { getTownsThunk, getTownThunk } from "../../store/slices/town.slice";
 import { useNavigate } from "react-router-dom";
 
 const Options = () => {
@@ -15,7 +15,7 @@ const Options = () => {
   const selectTown = (data) => {
     navigate(`/start/town/${data}`);
   };
-  console.log(town);
+
   return (
     <div className="options">
       {town.map((town) => (
