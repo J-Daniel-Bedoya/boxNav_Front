@@ -1,0 +1,24 @@
+@media only screen and (min-width: 1024px) {
+  .townInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    &__header {
+      height: 5rem;
+      display: flex;
+      justify-content: center;
+      & nav {
+        width: 1024px;
+      }
+    }
+
+    h2 {
+      font-size: 2.5rem;
+    }
+
+    &__content {
+      width: 1024px;
+      //   padding: 2rem;
+    }
+  }
+}

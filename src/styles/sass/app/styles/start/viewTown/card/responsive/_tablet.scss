@@ -1,0 +1,9 @@
+@media only screen and (max-width: 768px) {
+  .cards__list {
+    & .box,
+    & .port,
+    & .portsUsed {
+      padding: 5px;
+    }
+  }
+}

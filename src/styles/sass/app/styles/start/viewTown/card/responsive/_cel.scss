@@ -1,0 +1,11 @@
+.cards__list {
+  & .box,
+  & .port,
+  & .portsUsed {
+    padding: 10px;
+    text-align: center;
+  }
+  & .sector {
+    text-align: left;
+  }
+}

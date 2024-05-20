@@ -4,7 +4,8 @@ import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const { register, handleSubmit } = useForm();
-  const api = "https://nav-boxes-lis.up.railway.app/api/v1";
+  // const api = "https://nav-boxes-lis.up.railway.app/api/v1";
+  const api = "http://localhost:8000/api/v1";
   const navigate = useNavigate();
 
   const submit = async (data) => {

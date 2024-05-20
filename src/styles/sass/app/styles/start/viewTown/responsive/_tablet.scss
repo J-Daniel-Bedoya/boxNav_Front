@@ -1,0 +1,16 @@
+@media only screen and (max-width: 768px) {
+  .townInfo {
+    &__header {
+      height: 3rem;
+      padding: 0.5rem;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+    }
+
+    &__content {
+      padding: 0.5rem;
+    }
+  }
+}
