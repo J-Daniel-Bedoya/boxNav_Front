@@ -4,7 +4,7 @@ import getConfig from "../../utils/getConfig";
 
 const CardBox = ({ box }) => {
   const [sector, setSector] = useState();
-  const api = "http://localhost:8000/api/v1";
+  const api = "https://nav-boxes-lis.up.railway.app/api/v1";
 
   useEffect(() => {
     axios.get(`${api}/sector/${box.sectorId}`, getConfig()).then((res) => {

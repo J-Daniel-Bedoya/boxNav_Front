@@ -2,8 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import getConfig from "../../utils/getConfig";
 
-// const api = "https://nav-boxes-lis.up.railway.app/api/v1";
-const api = "http://localhost:8000/api/v1";
+const api = "https://nav-boxes-lis.up.railway.app/api/v1";
+// const api = "http://localhost:8000/api/v1";
 
 export const portSlice = createSlice({
   name: "port",
