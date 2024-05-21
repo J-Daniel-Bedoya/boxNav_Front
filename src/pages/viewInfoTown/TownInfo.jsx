@@ -11,8 +11,15 @@ const TownInfo = () => {
   const [view, setView] = useState(false);
 
   const town = useSelector((state) => state.town.boxes);
-  const sortedTown = [...town].sort((a, b) => a.numberBox - b.numberBox);
 
+  const sortedTown = Array.isArray(town)
+    ? town.slice().sort((a, b) => {
+        if (a.numberBox !== undefined && b.numberBox !== undefined) {
+          return a.numberBox - b.numberBox;
+        }
+        return 0;
+      })
+    : [];
   useEffect(() => {
     dispatch(getTownThunk(id));
   }, [id, dispatch]);
