@@ -17,7 +17,7 @@ const CardBox = ({ box }) => {
       <td className="box">{box.numberBox}</td>
       <td className="port">{box.numberPorts}</td>
       <td className="portsUsed">{box.numberUsers}</td>
-      {/* <td className="sector">{sector?.sectorName}</td> */}
+      <td className="sector">{sector?.sectorName}</td>
     </tr>
   );
 };

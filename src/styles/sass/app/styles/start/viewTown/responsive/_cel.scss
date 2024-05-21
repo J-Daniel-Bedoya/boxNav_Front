@@ -4,7 +4,7 @@
 
   &__header {
     width: 100%;
-    height: 4rem;
+    height: auto;
     background: linear-gradient(to right, #fff, #1261e0);
 
     & nav {
@@ -54,7 +54,8 @@
         thead {
           background-color: #0059b3;
           color: white;
-
+          border-left: 2px solid #0059b3;
+          border-right: 2px solid #0059b3;
           th {
             background-color: #00449e;
             color: white;
@@ -64,12 +65,13 @@
         }
 
         tbody {
-          tr:nth-child(odd) {
-            background-color: #e7f1fd;
+          tr,
+          td {
+            outline: 1px solid #e3e3e3c8;
           }
-
-          tr:nth-child(even) {
-            background-color: #f8f8f8;
+          tr:hover {
+            background-color: #3262ff;
+            color: #fff;
           }
 
           td {
@@ -82,9 +84,3 @@
     }
   }
 }
-// .box,
-// .port {
-//   width: 2rem;
-//   background-color: #1261e0;
-// }
-// .po

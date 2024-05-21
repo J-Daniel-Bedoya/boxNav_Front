@@ -27,49 +27,77 @@
     & .logo {
       position: absolute;
       top: 1rem;
+      width: 10rem;
+      height: 10rem;
     }
 
-    & p {
-      background-color: #ff6a00;
-      width: 15rem;
-      height: 3rem;
-      font-size: 20px;
-
+    &--options {
+      margin-top: 3rem;
+      width: 100%;
+      height: auto;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
-      font-weight: bold;
-      color: #fff;
-      border-radius: 2rem;
+      gap: 1rem;
+
+      & button {
+        width: 18rem;
+        background-color: #ff6a00;
+        height: 3rem;
+        font-size: 20px;
+
+        font-weight: bold;
+        color: #fff;
+        border-radius: 2rem;
+        border: none;
+      }
     }
 
-    & button {
+    &--button {
       position: absolute;
       bottom: 1rem;
-      border: none;
-      background-color: transparent;
-      font-size: 20px;
-      font-weight: 500;
+      & button {
+        border: none;
+        background-color: transparent;
+        font-size: 20px;
+        font-weight: 500;
+      }
     }
   }
 }
 
-// .menu {
-//   //   display: none; /* Por defecto, oculta el icono de hamburguesa */
+.menu {
+  display: none;
 
-//   /* Regla de medios para dispositivos pequeños (360px) */
-//   @media only screen and (max-width: 360px) {
-//     display: block; /* Muestra el icono de hamburguesa */
-//   }
-// }
+  @media only screen and (max-width: 1024px) {
+    display: block;
+  }
+}
 
-// .navList {
-//   display: none; /* Por defecto, oculta la lista de navegación */
-//   .menu {
-//     display: none;
-//   }
-//   /* Regla de medios para dispositivos medianos y grandes (768px o más) */
-//   @media only screen and (min-width: 768px) {
-//     display: block; /* Muestra la lista de navegación */
-//   }
-// }
+.navList {
+  display: none;
+
+  @media only screen and (min-width: 1024px) {
+    display: block;
+
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+
+    & button {
+      border: none;
+      background-color: transparent;
+      font-size: 20px;
+      font-weight: bold;
+      color: #fff;
+      cursor: pointer;
+
+      &:hover {
+        color: #ffa37e;
+        transition: 0.4s;
+        // padding: 0.5rem 0.3rem;
+      }
+    }
+  }
+}
