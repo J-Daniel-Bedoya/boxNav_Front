@@ -114,7 +114,7 @@
   font-size: 2rem;
   color: #fff;
 }
-.townInfo h2 {
+.townInfo h3 {
   margin-top: 3rem;
   font-size: 2rem;
   font-weight: bold;
@@ -128,6 +128,7 @@
   align-items: center;
   gap: 1rem;
   padding: 1rem;
+  margin: 3rem 0 5rem 0;
 }
 .townInfo__content--tablet {
   width: 100%;
@@ -315,6 +316,38 @@
 @media only screen and (min-width: 1024px) {
   .cards__list .box, .cards__list .port, .cards__list .portsUsed {
     padding: 15px;
+  }
+}
+.total__table {
+  width: 100%;
+  border-collapse: separate; /* Cambiado a separate */
+  border-spacing: 0.5rem; /* Agregado para espaciar las columnas */
+  margin: 0 auto;
+}
+.total__table tbody tr {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.total__table tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+.total__table tbody tr:hover {
+  background-color: #d9e7ff;
+}
+.total__table tbody tr td {
+  text-align: left;
+  font-size: 1rem;
+  color: #333;
+  font-weight: 500;
+}
+
+@media only screen and (min-width: 768px) {
+  .total__table tbody tr {
+    flex-direction: row;
+    gap: 1rem;
   }
 }
 .login {

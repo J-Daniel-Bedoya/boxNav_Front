@@ -1,0 +1,31 @@
+.total__table {
+  width: 100%;
+  border-collapse: separate; /* Cambiado a separate */
+  border-spacing: 0.5rem; /* Agregado para espaciar las columnas */
+  margin: 0 auto;
+
+  tbody {
+    tr {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      &:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+
+      &:hover {
+        background-color: #d9e7ff;
+      }
+
+      td {
+        text-align: left;
+        font-size: 1rem;
+        color: #333;
+        font-weight: 500;
+      }
+    }
+  }
+}

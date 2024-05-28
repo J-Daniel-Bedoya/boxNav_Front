@@ -1,48 +1,36 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import MenuTown from "../../components/menuTownC/MenuTown";
-import NavList from "../../components/menuTownC/NavList";
 import BoxTable from "../../components/boxesC/BoxTable";
 import UserTable from "../../components/usersC/UserTable";
 import SectorTable from "../../components/sectorsC/SectorTable";
 import Total from "../../components/total/Total";
+import HeaderTown from "../../components/headerTown/HeaderTown";
+import BoxDetails from "./townDetails.jsx/BoxDetails";
+import { useSelector } from "react-redux";
+import UserDetails from "./townDetails.jsx/UserDetails";
+import SectorDetails from "./townDetails.jsx/SectorDetails";
 
 const TownInfo = () => {
   const { id } = useParams();
   const [isviewMenu, setIsViewMenu] = useState(false);
-  const [isviewOptions, setIsViewOptions] = useState("box");
 
+  const options = useSelector((state) => state.options);
+  const isDetail = useSelector((state) => state.isDetail);
+  console.log(options);
   return (
     <div className="townInfo">
-      <header className="townInfo__header">
-        <nav>
-          <div className="logo"></div>
-          {/* Mostrar el icono de hamburguesa solo en dispositivos pequeños */}
-          <div className="menu">
-            <div
-              onClick={() => setIsViewMenu(!isviewMenu)}
-              setIsViewOptions={setIsViewOptions}
-            >
-              <i className="fa-solid fa-bars"></i>
-            </div>
-          </div>
-          <NavList
-            setIsViewMenu={setIsViewMenu}
-            setIsViewOptions={setIsViewOptions}
-          />
-        </nav>
-      </header>
+      <HeaderTown isviewMenu={isviewMenu} setIsViewMenu={setIsViewMenu} />
       <Total />
       {isviewMenu && (
-        <MenuTown
-          isviewMenu={isviewMenu}
-          setIsViewMenu={setIsViewMenu}
-          setIsViewOptions={setIsViewOptions}
-        />
+        <MenuTown isviewMenu={isviewMenu} setIsViewMenu={setIsViewMenu} />
       )}
-      {isviewOptions === "box" && <BoxTable id={id} />}
-      {isviewOptions === "user" && <UserTable id={id} />}
-      {isviewOptions === "sector" && <SectorTable id={id} />}
+      {options === "box" && <BoxTable id={id} />}
+      {options === "user" && <UserTable id={id} />}
+      {options === "sector" && <SectorTable id={id} />}
+      {options === "boxDetail" && <BoxDetails id={isDetail} />}
+      {options === "userDetail" && <UserDetails id={isDetail} />}
+      {options === "sectorDetail" && <SectorDetails id={isDetail} />}
     </div>
   );
 };

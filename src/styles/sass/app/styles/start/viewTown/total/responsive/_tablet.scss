@@ -1,0 +1,10 @@
+@media only screen and (min-width: 768px) {
+  .total__table {
+    tbody {
+      tr {
+        flex-direction: row;
+        gap: 1rem;
+      }
+    }
+  }
+}

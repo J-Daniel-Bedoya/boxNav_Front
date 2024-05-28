@@ -1,11 +1,13 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { setOptions } from "../../store/slices/adminOptions.slice";
 
-const NavList = ({ setIsViewMenu, setIsViewOptions }) => {
+const NavList = ({ setIsViewMenu }) => {
   const select = (data) => {
-    setIsViewOptions(data);
+    dispatch(setOptions(data));
     setIsViewMenu(false);
   };
-
+  const dispatch = useDispatch();
   return (
     <div className="navList">
       <button onClick={() => select("box")}>Cajas</button>

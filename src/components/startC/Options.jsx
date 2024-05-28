@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getTownsThunk, getTownThunk } from "../../store/slices/town.slice";
+import { getTownsThunk } from "../../store/slices/town.slice";
 import { useNavigate } from "react-router-dom";
 
 const Options = () => {
