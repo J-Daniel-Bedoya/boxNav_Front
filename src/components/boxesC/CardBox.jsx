@@ -4,6 +4,7 @@ import getConfig from "../../utils/getConfig";
 import { useDispatch } from "react-redux";
 import { setOptions } from "../../store/slices/adminOptions.slice";
 import { setIsDetail } from "../../store/slices/isDetail.slice";
+import { getSectorThunk } from "../../store/slices/sector.slice";
 
 const CardBox = ({ box }) => {
   const [sector, setSector] = useState();
@@ -14,7 +15,8 @@ const CardBox = ({ box }) => {
     axios.get(`${api}/sector/${box.sectorId}`, getConfig()).then((res) => {
       setSector(res.data);
     });
-  }, [box.sectorId]);
+    dispatch(getSectorThunk(box.sectorId));
+  }, [box.sectorId, getSectorThunk]);
 
   const boxDetail = (id) => {
     dispatch(setOptions("boxDetail"));

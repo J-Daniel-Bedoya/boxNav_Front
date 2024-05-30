@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 export const optionsSlice = createSlice({
   name: "options",
-  initialState: "add",
+  initialState: "box",
   reducers: {
     setOptions: (state, actions) => {
       return actions.payload;

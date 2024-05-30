@@ -17,7 +17,7 @@ const TownInfo = () => {
 
   const options = useSelector((state) => state.options);
   const isDetail = useSelector((state) => state.isDetail);
-  console.log(options);
+
   return (
     <div className="townInfo">
       <HeaderTown isviewMenu={isviewMenu} setIsViewMenu={setIsViewMenu} />

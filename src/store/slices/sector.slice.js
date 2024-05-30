@@ -22,12 +22,11 @@ export const getSectorsThunk = () => async (dispatch) => {
     dispatch(setSector(res.data));
   });
 };
-// export const getSectorThunk = (id) => async (dispatch) => {
-//   return await axios.get(`${api}/sector/${id}`, getConfig()).then((res) => {
-//     dispatch(setSector(res.data));
-//     console.log(res);
-//   });
-// };
+export const getSectorThunk = (id) => async (dispatch) => {
+  return await axios.get(`${api}/sector/${id}`, getConfig()).then((res) => {
+    dispatch(setSector(res.data));
+  });
+};
 
 export const createSectorThunk = (data) => async (dispatch) => {
   return await axios

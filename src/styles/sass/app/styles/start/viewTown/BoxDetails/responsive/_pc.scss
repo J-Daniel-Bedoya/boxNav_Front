@@ -1,0 +1,50 @@
+@media only screen and (min-width: 1024px) {
+  .boxDetails {
+    display: flex;
+    justify-content: center;
+
+    .card {
+      width: 500px;
+      position: relative;
+      margin-top: 3rem;
+      padding: 3rem;
+    }
+
+    &__sector {
+      gap: 1rem;
+      margin-bottom: 3rem;
+      & b {
+      }
+      & p {
+        font-size: 1.4rem;
+      }
+    }
+
+    &__users {
+      & b {
+        font-size: 1.5rem;
+      }
+      &--name {
+        margin-top: 1.5rem;
+        & p {
+        }
+      }
+    }
+    &__options {
+      &--button {
+        & button {
+        }
+      }
+    }
+    &__return {
+      & button {
+        & i {
+        }
+      }
+      &:hover {
+        & i {
+        }
+      }
+    }
+  }
+}

@@ -18,11 +18,9 @@ export const portSlice = createSlice({
 export const { setPort } = portSlice.actions;
 
 export const getPortsThunk = () => async (dispatch) => {
-  //   dispatch(setLoading(true));
   return await axios.get(`${api}/port/`, getConfig()).then((res) => {
     dispatch(setPort(res.data));
   });
-  // .finally(dispatch(setLoading(false)));
 };
 export const getPortThunk = (portId) => async (dispatch) => {
   return await axios.get(`${api}/port/${portId}`, getConfig()).then((res) => {
