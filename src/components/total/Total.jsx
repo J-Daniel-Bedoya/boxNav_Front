@@ -25,7 +25,7 @@ const Total = () => {
                 <b>{town.numberUsers}</b>
               </td>
             </td>
-            {services.map((service) => (
+            {services?.map((service) => (
               <td key={service.id}>
                 <td>{service.serviceName}:</td>
                 <td>

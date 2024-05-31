@@ -18,11 +18,9 @@ export const serviceSlice = createSlice({
 export const { setService } = serviceSlice.actions;
 
 export const getServicesThunk = () => async (dispatch) => {
-  //   dispatch(setLoading(true));
-  return await axios.get(`${api}/service/`, getConfig()).then((res) => {
+  return await axios.get(`${api}/service`, getConfig()).then((res) => {
     dispatch(setService(res.data));
   });
-  // .finally(dispatch(setLoading(false)));
 };
 export const getServiceThunk = (serviceId) => async (dispatch) => {
   return await axios

@@ -26,11 +26,11 @@
       }
     }
   }
-  h3 {
-    margin-top: 3rem;
+
+  h2 {
+    margin: 1.5rem 0 3rem 0;
     font-size: 2rem;
     font-weight: bold;
-    margin-bottom: 1rem;
     text-align: center;
   }
 
@@ -47,38 +47,65 @@
       width: 100%;
       height: auto;
 
-      table {
+      .table-card {
+        width: 100%;
+        max-width: 1000px;
+        border-radius: 20px;
+        box-shadow: 0 4px 8px #a0a0a03b;
+        overflow: hidden;
+        background-color: #fff;
+        // padding: 1rem;
+        margin-top: 20px;
+        outline: 1px solid #86868659;
+      }
+
+      & table {
         width: 100%;
         border-collapse: collapse;
-        margin-top: 20px;
+        border-spacing: 0;
+        border-radius: 20px;
 
-        thead {
-          background-color: #0059b3;
-          color: white;
-          border-left: 2px solid #0059b3;
-          border-right: 2px solid #0059b3;
-          th {
-            background-color: #00449e;
-            color: white;
-            padding: 15px;
-            font-size: 16px;
+        & thead {
+          color: #333;
+          border-radius: 20px;
+          & tr {
+            background-color: #1771f9;
+            height: 4rem;
+            margin-bottom: 3rem;
+            color: #fff;
+            & th {
+              padding: 10px;
+              font-size: 20px;
+              font-weight: bold;
+              text-align: center; /* Centrar el contenido */
+            }
           }
         }
 
-        tbody {
-          tr,
-          td {
-            outline: 1px solid #e3e3e3c8;
-          }
-          tr:hover {
-            background-color: #3262ff;
-            color: #fff;
-          }
+        & tbody {
+          & tr {
+            &:hover {
+              background-color: #e3f2fd;
+            }
+            & .sector {
+              text-align: center;
+            }
+            & td {
+              padding: 10px 15px;
+              text-align: center; /* Centrar el contenido */
+              // border-bottom: 1px solid #e0e0e0;
+              cursor: pointer;
 
-          td {
-            padding: 10px;
-            text-align: center;
-            cursor: pointer;
+              // &:first-child {
+              //   border-top-left-radius: 20rem;
+              //   border-bottom-left-radius: 20rem;
+              // }
+
+              // &:last-child {
+              //   border-top-right-radius: 20rem;
+              //   border-bottom-right-radius: 20rem;
+              // }
+            }
           }
         }
       }

@@ -23,21 +23,23 @@ const BoxTable = ({ id }) => {
     <div className="townInfo__content">
       <h2>Cajas</h2>
       <div className="townInfo__content--tablet">
-        <table>
-          <thead>
-            <tr>
-              <th>Caja</th>
-              <th>Puertos</th>
-              <th>Usuarios</th>
-              <th>Sector</th>
-            </tr>
-          </thead>
-          <tbody>
-            {sortedTown?.map((box) => (
-              <CardBox key={box.id} box={box} />
-            ))}
-          </tbody>
-        </table>
+        <div className="table-card">
+          <table>
+            <thead>
+              <tr>
+                <th>Caja</th>
+                <th>Puertos</th>
+                <th>Usuarios</th>
+                <th>Sector</th>
+              </tr>
+            </thead>
+            <tbody>
+              {sortedTown?.map((box) => (
+                <CardBox key={box.id} box={box} />
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

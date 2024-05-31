@@ -12,25 +12,31 @@ const BoxDetails = ({ id }) => {
   useEffect(() => {
     dispatch(getBoxThunk(id));
     dispatch(getSectorThunk(box.sectorId));
-  }, [getBoxThunk, getSectorThunk, box.sectorId]);
+  }, [dispatch, id, box.sectorId]);
 
   return (
     <div className="boxDetails">
       <div className="card">
+        <div className="boxDetails__return">
+          <button onClick={() => dispatch(setOptions("box"))}>
+            <i className="fa-solid fa-xmark"></i>
+          </button>
+        </div>
         <div className="boxDetails__sector">
-          <b className="boxDetails__title">
-            <i className="fa-solid fa-box"></i> Caja {box.numberBox}
-          </b>
-          <p>
-            <i className="fa-solid fa-location-dot"></i> {sector.sectorName}
-          </p>
+          <div className="boxDetails__sector--title">
+            <i className="fa-solid fa-box"></i> <b>Caja {box.numberBox}</b>
+          </div>
+          <div className="boxDetails__sector--address">
+            <i className="fa-solid fa-location-dot"></i>
+            <p>{sector.sectorName}</p>
+          </div>
         </div>
         <div className="boxDetails__users">
           <b>Conectados</b>
           <div className="boxDetails__users--name">
             {box.users?.map((user) => (
               <div key={user.id}>
-                <p>{user.portNumber}</p>
+                <b>{user.portNumber}</b>
                 <p>{user.userName}</p>
               </div>
             ))}
@@ -43,11 +49,6 @@ const BoxDetails = ({ id }) => {
           <div className="boxDetails__options--button">
             <button>Editar</button>
           </div>
-        </div>
-        <div className="boxDetails__return">
-          <button onClick={() => dispatch(setOptions("box"))}>
-            <i className="fa-solid fa-xmark"></i>
-          </button>
         </div>
       </div>
     </div>

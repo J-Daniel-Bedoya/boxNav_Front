@@ -15,21 +15,23 @@ const UserTable = ({ id }) => {
     <div className="townInfo__content">
       <h2>Usuarios</h2>
       <div className="townInfo__content--tablet">
-        <table>
-          <thead>
-            <tr>
-              <th>Nombre</th>
-              <th>Caja</th>
-              <th>Puerto</th>
-              <th>Sector</th>
-            </tr>
-          </thead>
-          <tbody>
-            {town?.map((user) => (
-              <CardUser key={user.id} user={user} />
-            ))}
-          </tbody>
-        </table>
+        <div className="table-card">
+          <table>
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Caja</th>
+                <th>Puerto</th>
+                <th>Sector</th>
+              </tr>
+            </thead>
+            <tbody>
+              {town?.map((user) => (
+                <CardUser key={user.id} user={user} />
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

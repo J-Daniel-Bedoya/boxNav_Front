@@ -17,20 +17,22 @@ const SectorTable = ({ id }) => {
     <div className="townInfo__content">
       <h2>Sectores</h2>
       <div className="townInfo__content--tablet">
-        <table>
-          <thead>
-            <tr>
-              <th>Nombre</th>
-              <th>Cajas</th>
-              <th>Usuarios</th>
-            </tr>
-          </thead>
-          <tbody>
-            {town?.map((sector) => (
-              <CardSector key={sector.id} sector={sector} />
-            ))}
-          </tbody>
-        </table>
+        <div className="table-card">
+          <table>
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Cajas</th>
+                <th>Usuarios</th>
+              </tr>
+            </thead>
+            <tbody>
+              {town?.map((sector) => (
+                <CardSector key={sector.id} sector={sector} />
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

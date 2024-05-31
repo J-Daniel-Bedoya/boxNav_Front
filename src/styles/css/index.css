@@ -114,11 +114,10 @@
   font-size: 2rem;
   color: #fff;
 }
-.townInfo h3 {
-  margin-top: 3rem;
+.townInfo h2 {
+  margin: 1.5rem 0 3rem 0;
   font-size: 2rem;
   font-weight: bold;
-  margin-bottom: 1rem;
   text-align: center;
 }
 .townInfo__content {
@@ -134,34 +133,47 @@
   width: 100%;
   height: auto;
 }
+.townInfo__content--tablet .table-card {
+  width: 100%;
+  max-width: 1000px;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(160, 160, 160, 0.231372549);
+  overflow: hidden;
+  background-color: #fff;
+  margin-top: 20px;
+  outline: 1px solid rgba(134, 134, 134, 0.3490196078);
+}
 .townInfo__content--tablet table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 20px;
+  border-spacing: 0;
+  border-radius: 20px;
 }
 .townInfo__content--tablet table thead {
-  background-color: #0059b3;
-  color: white;
-  border-left: 2px solid #0059b3;
-  border-right: 2px solid #0059b3;
+  color: #333;
+  border-radius: 20px;
 }
-.townInfo__content--tablet table thead th {
-  background-color: #00449e;
-  color: white;
-  padding: 15px;
-  font-size: 16px;
-}
-.townInfo__content--tablet table tbody tr,
-.townInfo__content--tablet table tbody td {
-  outline: 1px solid rgba(227, 227, 227, 0.7843137255);
-}
-.townInfo__content--tablet table tbody tr:hover {
-  background-color: #3262ff;
+.townInfo__content--tablet table thead tr {
+  background-color: #1771f9;
+  height: 4rem;
+  margin-bottom: 3rem;
   color: #fff;
 }
-.townInfo__content--tablet table tbody td {
+.townInfo__content--tablet table thead tr th {
   padding: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center; /* Centrar el contenido */
+}
+.townInfo__content--tablet table tbody tr:hover {
+  background-color: #e3f2fd;
+}
+.townInfo__content--tablet table tbody tr .sector {
   text-align: center;
+}
+.townInfo__content--tablet table tbody tr td {
+  padding: 10px 15px;
+  text-align: center; /* Centrar el contenido */
   cursor: pointer;
 }
 
@@ -328,19 +340,39 @@
 .boxDetails .card {
   border: 1px solid rgba(148, 150, 151, 0.5333333333);
   border-radius: 20px;
-  padding: 1rem;
+  padding: 2rem;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
 }
 .boxDetails__sector {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  align-items: center;
   margin-bottom: 3rem;
 }
-.boxDetails__sector b {
+.boxDetails__sector--title {
   font-size: 2rem;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
 }
-.boxDetails__sector p {
-  font-size: 1.4rem;
+.boxDetails__sector--title i {
+  color: #1771f9;
+}
+.boxDetails__sector--address {
+  font-size: 1.2rem;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+.boxDetails__sector--address i {
+  font-size: 1.5rem;
+  color: #1771f9;
 }
 .boxDetails__users {
   display: flex;
@@ -354,7 +386,6 @@
 }
 .boxDetails__users--name {
   width: 100%;
-  font-size: 1.2rem;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -362,30 +393,48 @@
 .boxDetails__users--name div {
   width: 100%;
   padding: 0.5rem 1rem;
-  background-color: rgba(248, 105, 22, 0.1176470588);
+  background-color: #e3f2fd;
   border-radius: 10px;
   display: flex;
+  align-items: center;
   gap: 1rem;
+  transition: background-color 0.3s;
+}
+.boxDetails__users--name div b {
+  font-size: 1.2rem;
+  color: #1771f9;
+}
+.boxDetails__users--name div p {
+  margin: 0;
+  font-size: 1rem;
+}
+.boxDetails__users--name div:hover {
+  background-color: #bbdefb;
+  cursor: pointer;
 }
 .boxDetails__options {
   display: flex;
-  justify-content: end;
   gap: 1rem;
+  justify-content: center;
   margin-bottom: 2rem;
 }
 .boxDetails__options--button button {
-  padding: 15px 25px;
+  padding: 10px 20px;
   font-size: 1rem;
   font-weight: bold;
-  border-radius: 25rem;
+  border-radius: 20px;
   border: none;
-  background-color: rgba(22, 116, 248, 0.7803921569);
+  background-color: #1771f9;
   color: #fff;
+  transition: background-color 0.3s;
+}
+.boxDetails__options--button button:hover {
+  background-color: #0d47a1;
 }
 .boxDetails__return {
   position: absolute;
-  top: 2.1rem;
-  right: 2.5rem;
+  top: 1rem;
+  right: 1rem;
 }
 .boxDetails__return button {
   border: none;
@@ -393,12 +442,11 @@
 }
 .boxDetails__return button i {
   font-size: 1.7rem;
+  color: #000;
 }
 .boxDetails__return:hover {
-  width: 2rem;
-  height: 2rem;
   background-color: rgba(226, 226, 226, 0.7803921569);
-  border-radius: 20rem;
+  border-radius: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -437,12 +485,6 @@
     display: flex;
     justify-content: center;
   }
-  .boxDetails .card {
-    width: 500px;
-    position: relative;
-    margin-top: 3rem;
-    padding: 3rem;
-  }
   .boxDetails__sector {
     gap: 1rem;
     margin-bottom: 3rem;
@@ -455,6 +497,161 @@
   }
   .boxDetails__users--name {
     margin-top: 1.5rem;
+  }
+}
+.card {
+  width: 100%;
+  padding: 1rem;
+  margin-top: 3rem;
+}
+
+.userDetails {
+  background-color: #fff;
+  padding: 1.5rem;
+  border-radius: 20px;
+  border: 1px solid rgba(148, 150, 151, 0.5333333333);
+  position: relative;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1019607843);
+}
+.userDetails__sector {
+  text-align: center;
+  margin-top: 1rem;
+}
+.userDetails__sector--title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+.userDetails__info {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  justify-items: center;
+  align-items: center;
+  margin-top: 3rem;
+}
+.userDetails__info--text {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+}
+.userDetails__info--state {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+}
+.userDetails__options {
+  margin-top: 3rem;
+}
+.userDetails__options--button {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+.userDetails__options--button button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 20px;
+  border: none;
+  background-color: rgba(22, 116, 248, 0.7803921569);
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.userDetails__options--button button:hover {
+  background-color: #145bb5;
+}
+.userDetails__return {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+.userDetails__return button {
+  border: none;
+  background-color: transparent;
+  font-size: 1.5rem;
+}
+.userDetails__return button:hover {
+  color: #f00;
+}
+
+@media only screen and (min-width: 768px) {
+  .card {
+    width: 500px;
+    padding: 1rem;
+  }
+  .userDetails {
+    background-color: #fff;
+    padding: 1.5rem;
+    border-radius: 20px;
+    border: 1px solid rgba(148, 150, 151, 0.5333333333);
+    position: relative;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  .userDetails__sector {
+    text-align: center;
+    margin-top: 1rem;
+  }
+  .userDetails__sector--title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+  .userDetails__info {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    justify-items: center;
+    align-items: center;
+    margin-top: 3rem;
+  }
+  .userDetails__info--text {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+  }
+  .userDetails__info--state {
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+  }
+  .userDetails__options {
+    margin-top: 3rem;
+  }
+  .userDetails__options--button {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+  }
+  .userDetails__options--button button {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 20px;
+    border: none;
+    background-color: rgba(22, 116, 248, 0.7803921569);
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  .userDetails__options--button button:hover {
+    background-color: #145bb5;
+  }
+  .userDetails__return {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+  }
+  .userDetails__return button {
+    border: none;
+    background-color: transparent;
+    font-size: 1.5rem;
+  }
+  .userDetails__return button:hover {
+    color: #f00;
   }
 }
 .total__table {
