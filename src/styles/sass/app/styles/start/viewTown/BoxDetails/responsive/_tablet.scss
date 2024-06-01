@@ -1,14 +1,14 @@
 @media only screen and (min-width: 768px) {
+  .card-boxDetail {
+    width: 500px;
+    position: relative;
+    margin-top: 3rem;
+    padding: 3rem;
+  }
+
   .boxDetails {
     display: flex;
     justify-content: center;
-
-    .card {
-      width: 500px;
-      position: relative;
-      margin-top: 3rem;
-      padding: 3rem;
-    }
 
     &__sector {
       gap: 1rem;

@@ -121,6 +121,7 @@
   text-align: center;
 }
 .townInfo__content {
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -161,9 +162,12 @@
 }
 .townInfo__content--tablet table thead tr th {
   padding: 10px;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: bold;
   text-align: center; /* Centrar el contenido */
+}
+.townInfo__content--tablet table tbody tr {
+  font-size: 15px;
 }
 .townInfo__content--tablet table tbody tr:hover {
   background-color: #e3f2fd;
@@ -174,21 +178,10 @@
 .townInfo__content--tablet table tbody tr td {
   padding: 10px 15px;
   text-align: center; /* Centrar el contenido */
+  border-bottom: 0.1px solid rgba(224, 224, 224, 0.5490196078);
   cursor: pointer;
 }
 
-@media only screen and (min-width: 768px) {
-  .townInfo__header {
-    height: auto;
-    padding: 0.5rem;
-  }
-  .townInfo h2 {
-    font-size: 1.5rem;
-  }
-  .townInfo__content {
-    padding: 0.5rem;
-  }
-}
 @media only screen and (min-width: 1024px) {
   .townInfo {
     display: flex;
@@ -200,13 +193,14 @@
     display: flex;
     justify-content: center;
   }
-  .townInfo__header nav {
+  .townInfo__header--nav {
     width: 1024px;
   }
   .townInfo h2 {
     font-size: 2.5rem;
   }
   .townInfo__content {
+    width: 100%;
     width: 1024px;
   }
 }
@@ -330,14 +324,7 @@
     padding: 15px;
   }
 }
-.boxDetails {
-  width: 100%;
-  height: auto;
-  padding: 1rem;
-  position: relative;
-  margin-bottom: 5rem;
-}
-.boxDetails .card {
+.card-boxDetail {
   border: 1px solid rgba(148, 150, 151, 0.5333333333);
   border-radius: 20px;
   padding: 2rem;
@@ -347,6 +334,14 @@
   flex-direction: column;
   align-items: center;
   position: relative;
+}
+
+.boxDetails {
+  width: 100%;
+  height: auto;
+  padding: 1rem;
+  position: relative;
+  margin-bottom: 5rem;
 }
 .boxDetails__sector {
   display: flex;
@@ -419,6 +414,7 @@
   margin-bottom: 2rem;
 }
 .boxDetails__options--button button {
+  width: 7rem;
   padding: 10px 20px;
   font-size: 1rem;
   font-weight: bold;
@@ -439,32 +435,23 @@
 .boxDetails__return button {
   border: none;
   background-color: transparent;
+  font-size: 1.5rem;
 }
-.boxDetails__return button i {
-  font-size: 1.7rem;
-  color: #000;
-}
-.boxDetails__return:hover {
-  background-color: rgba(226, 226, 226, 0.7803921569);
-  border-radius: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.boxDetails__return:hover i {
-  color: #fff;
+.boxDetails__return button:hover {
+  color: #f00;
+  cursor: pointer;
 }
 
 @media only screen and (min-width: 768px) {
-  .boxDetails {
-    display: flex;
-    justify-content: center;
-  }
-  .boxDetails .card {
+  .card-boxDetail {
     width: 500px;
     position: relative;
     margin-top: 3rem;
     padding: 3rem;
+  }
+  .boxDetails {
+    display: flex;
+    justify-content: center;
   }
   .boxDetails__sector {
     gap: 1rem;
@@ -499,23 +486,30 @@
     margin-top: 1.5rem;
   }
 }
-.card {
-  width: 100%;
+.card-userDetail {
   padding: 1rem;
-  margin-top: 3rem;
+  margin: 3rem 0;
+  display: flex;
+  justify-content: center;
 }
 
 .userDetails {
+  width: 100%;
+  max-width: 600px;
   background-color: #fff;
   padding: 1.5rem;
   border-radius: 20px;
   border: 1px solid rgba(148, 150, 151, 0.5333333333);
   position: relative;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1019607843);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .userDetails__sector {
   text-align: center;
   margin-top: 1rem;
+  width: 100%;
 }
 .userDetails__sector--title {
   font-size: 1.5rem;
@@ -523,10 +517,11 @@
   margin-bottom: 1rem;
 }
 .userDetails__info {
+  width: 100%;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, auto);
   gap: 1rem;
-  justify-items: center;
+  justify-content: center;
   align-items: center;
   margin-top: 3rem;
 }
@@ -537,11 +532,18 @@
   font-size: 1rem;
 }
 .userDetails__info--state {
-  width: 1rem;
-  height: 1rem;
-  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+}
+.userDetails__info--state .state-indicator {
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 100%;
 }
 .userDetails__options {
+  width: 100%;
   margin-top: 3rem;
 }
 .userDetails__options--button {
@@ -550,17 +552,18 @@
   justify-content: center;
 }
 .userDetails__options--button button {
+  width: 7rem;
   padding: 0.5rem 1rem;
   font-size: 1rem;
   font-weight: bold;
-  border-radius: 20px;
+  border-radius: 20rem;
   border: none;
   background-color: rgba(22, 116, 248, 0.7803921569);
   color: #fff;
-  cursor: pointer;
   transition: background-color 0.3s;
 }
 .userDetails__options--button button:hover {
+  cursor: pointer;
   background-color: #145bb5;
 }
 .userDetails__return {
@@ -575,109 +578,87 @@
 }
 .userDetails__return button:hover {
   color: #f00;
+  cursor: pointer;
 }
 
 @media only screen and (min-width: 768px) {
-  .card {
-    width: 500px;
-    padding: 1rem;
-  }
   .userDetails {
-    background-color: #fff;
-    padding: 1.5rem;
-    border-radius: 20px;
-    border: 1px solid rgba(148, 150, 151, 0.5333333333);
-    position: relative;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1019607843);
-  }
-  .userDetails__sector {
-    text-align: center;
-    margin-top: 1rem;
+    max-width: 500px;
   }
   .userDetails__sector--title {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-bottom: 1rem;
+    font-size: 2rem;
   }
   .userDetails__info {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-    justify-items: center;
-    align-items: center;
-    margin-top: 3rem;
+    gap: 1.5rem 5rem;
   }
   .userDetails__info--text {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 1rem;
+    font-size: 1.2rem;
   }
   .userDetails__info--state {
-    width: 1rem;
-    height: 1rem;
-    border-radius: 50%;
+    font-size: 1.2rem;
   }
-  .userDetails__options {
-    margin-top: 3rem;
+  .userDetails__info--state .state-indicator {
+    width: 0.8rem;
+    height: 0.8rem;
   }
   .userDetails__options--button {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
+    gap: 2rem;
   }
   .userDetails__options--button button {
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    font-weight: bold;
-    border-radius: 20px;
-    border: none;
-    background-color: rgba(22, 116, 248, 0.7803921569);
-    color: #fff;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  .userDetails__options--button button:hover {
-    background-color: #145bb5;
-  }
-  .userDetails__return {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
+    width: 7rem;
+    font-size: 1.2rem;
   }
   .userDetails__return button {
-    border: none;
-    background-color: transparent;
-    font-size: 1.5rem;
-  }
-  .userDetails__return button:hover {
-    color: #f00;
+    font-size: 1.7rem;
   }
 }
-.total__table {
+/* Total.css */
+.card-total {
   width: 100%;
-  border-collapse: separate; /* Cambiado a separate */
-  border-spacing: 0.5rem; /* Agregado para espaciar las columnas */
-  margin: 0 auto;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+  font-family: "Arial", sans-serif;
 }
-.total__table tbody tr {
-  width: 100%;
+.card-total__header {
+  text-align: center;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+.card-total__header h3 {
+  font-size: 1.5rem;
+  color: #333;
+}
+.card-total__content {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  gap: 15px;
+}
+.card-total__content--info-item {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #f2f2f2;
 }
-.total__table tbody tr:nth-child(even) {
-  background-color: #f2f2f2;
+.card-total__content--info-item:last-child {
+  border-bottom: none;
 }
-.total__table tbody tr:hover {
-  background-color: #d9e7ff;
-}
-.total__table tbody tr td {
-  text-align: left;
+.card-total__content--info-item.info-label {
   font-size: 1rem;
+  color: #666;
+}
+.card-total__content--info-item .info-value {
+  font-size: 1rem;
+  font-weight: bold;
   color: #333;
-  font-weight: 500;
+}
+.card-total__content--info-item:hover {
+  background-color: #f9f9f9;
 }
 
 @media only screen and (min-width: 768px) {

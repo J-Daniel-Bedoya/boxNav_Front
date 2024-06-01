@@ -12,30 +12,26 @@ const Total = () => {
   }, [dispatch]);
 
   return (
-    <div className="total">
-      <div className="total__header">
-        <h3>Inforación</h3>
+    <div className="card-total">
+      <div className="card-total__header">
+        <h3>Información</h3>
       </div>
-      <table className="total__table">
-        <tbody>
-          <tr>
-            <td>
-              <td>Clientes:</td>
-              <td>
-                <b>{town.numberUsers}</b>
-              </td>
-            </td>
-            {services?.map((service) => (
-              <td key={service.id}>
-                <td>{service.serviceName}:</td>
-                <td>
-                  <b>{service?.numberUsers}</b>
-                </td>
-              </td>
-            ))}
-          </tr>
-        </tbody>
-      </table>
+      <div className="card-total__content">
+        <div className="card-total__content--info-item">
+          <span className="info-label">Clientes:</span>
+          <span className="info-value">
+            <b>{town.numberUsers}</b>
+          </span>
+        </div>
+        {services?.map((service) => (
+          <div className="card-total__content--info-item" key={service.id}>
+            <span className="info-label">{service.serviceName}:</span>
+            <span className="info-value">
+              <b>{service.numberUsers}</b>
+            </span>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

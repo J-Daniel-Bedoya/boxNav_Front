@@ -35,6 +35,7 @@
   }
 
   &__content {
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -75,7 +76,7 @@
             color: #fff;
             & th {
               padding: 10px;
-              font-size: 20px;
+              font-size: 18px;
               font-weight: bold;
               text-align: center; /* Centrar el contenido */
             }
@@ -84,6 +85,7 @@
 
         & tbody {
           & tr {
+            font-size: 15px;
             &:hover {
               background-color: #e3f2fd;
             }
@@ -93,7 +95,7 @@
             & td {
               padding: 10px 15px;
               text-align: center; /* Centrar el contenido */
-              // border-bottom: 1px solid #e0e0e0;
+              border-bottom: 0.1px solid #e0e0e08c;
               cursor: pointer;
 
               // &:first-child {

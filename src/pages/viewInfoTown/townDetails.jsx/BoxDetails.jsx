@@ -16,7 +16,7 @@ const BoxDetails = ({ id }) => {
 
   return (
     <div className="boxDetails">
-      <div className="card">
+      <div className="card-boxDetail">
         <div className="boxDetails__return">
           <button onClick={() => dispatch(setOptions("box"))}>
             <i className="fa-solid fa-xmark"></i>

@@ -5,7 +5,7 @@ const HeaderTown = ({ isviewMenu, setIsViewMenu, setIsViewOptions }) => {
   return (
     <div>
       <header className="townInfo__header">
-        <nav>
+        <nav className="townInfo__header--nav">
           <div className="logo"></div>
 
           <div className="menu">

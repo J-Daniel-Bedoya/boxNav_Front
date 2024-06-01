@@ -1,21 +1,21 @@
+.card-boxDetail {
+  border: 1px solid #94969788;
+  border-radius: 20px;
+  padding: 2rem;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
 .boxDetails {
   width: 100%;
   height: auto;
   padding: 1rem;
   position: relative;
   margin-bottom: 5rem;
-
-  .card {
-    border: 1px solid #94969788;
-    border-radius: 20px;
-    padding: 2rem;
-    background-color: #fff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-  }
 
   &__sector {
     display: flex;
@@ -99,6 +99,7 @@
 
     &--button {
       & button {
+        width: 7rem;
         padding: 10px 20px;
         font-size: 1rem;
         font-weight: bold;
@@ -120,25 +121,14 @@
     top: 1rem;
     right: 1rem;
 
-    & button {
+    button {
       border: none;
       background-color: transparent;
+      font-size: 1.5rem;
 
-      & i {
-        font-size: 1.7rem;
-        color: #000;
-      }
-    }
-
-    &:hover {
-      background-color: #e2e2e2c7;
-      border-radius: 20px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      & i {
-        color: #fff;
+      &:hover {
+        color: #f00;
+        cursor: pointer;
       }
     }
   }
