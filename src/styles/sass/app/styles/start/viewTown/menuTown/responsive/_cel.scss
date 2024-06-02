@@ -14,25 +14,21 @@
 
   &__content {
     width: 80%;
-    height: 60%;
+    max-width: 500px;
     background-color: #fff;
     border-radius: 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 1rem;
     position: relative;
+    padding: 2rem 0;
 
     & .logo {
-      position: absolute;
-      top: 1rem;
-      width: 10rem;
-      height: 10rem;
     }
 
     &--options {
-      margin-top: 3rem;
+      // margin-top: 3rem;
       width: 100%;
       height: auto;
       display: flex;
@@ -40,9 +36,11 @@
       justify-content: center;
       align-items: center;
       gap: 1rem;
+      padding: 1rem;
 
       & button {
-        width: 18rem;
+        width: 100%;
+        max-width: 18rem;
         background-color: #ff6a00;
         height: 3rem;
         font-size: 20px;
@@ -56,12 +54,17 @@
 
     &--button {
       position: absolute;
-      bottom: 1rem;
+      top: 1rem;
+      right: 1rem;
       & button {
         border: none;
         background-color: transparent;
-        font-size: 20px;
-        font-weight: 500;
+        font-size: 1.5rem;
+
+        &:hover {
+          color: #f00;
+          cursor: pointer;
+        }
       }
     }
   }

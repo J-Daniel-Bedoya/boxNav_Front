@@ -22,7 +22,7 @@ const UserTable = ({ id }) => {
                 <th>Nombre</th>
                 <th>Caja</th>
                 <th>Puerto</th>
-                <th>Sector</th>
+                <th className="sector">Sector</th>
               </tr>
             </thead>
             <tbody>

@@ -20,7 +20,9 @@ const MenuTown = ({ isviewMenu, setIsViewMenu }) => {
           <button onClick={() => select("sector")}>Sectores</button>
         </div>
         <div className="menuTown__content--button">
-          <button onClick={() => setIsViewMenu(!isviewMenu)}>Cancelar</button>
+          <button onClick={() => setIsViewMenu(!isviewMenu)}>
+            <i className="fas fa-times"></i>
+          </button>
         </div>
       </div>
     </div>

@@ -1,6 +1,13 @@
+.sector {
+  display: none;
+}
+
 .townInfo {
-  width: 100%;
+  width: 100vw;
   height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 
   &__header {
     width: 100%;
@@ -38,15 +45,12 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
     padding: 1rem;
     margin: 3rem 0 5rem 0;
 
     &--tablet {
-      width: 100%;
-      height: auto;
+      display: flex;
+      justify-content: center;
 
       .table-card {
         width: 100%;
@@ -97,16 +101,6 @@
               text-align: center; /* Centrar el contenido */
               border-bottom: 0.1px solid #e0e0e08c;
               cursor: pointer;
-
-              // &:first-child {
-              //   border-top-left-radius: 20rem;
-              //   border-bottom-left-radius: 20rem;
-              // }
-
-              // &:last-child {
-              //   border-top-right-radius: 20rem;
-              //   border-bottom-right-radius: 20rem;
-              // }
             }
           }
         }

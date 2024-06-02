@@ -30,7 +30,7 @@ const BoxTable = ({ id }) => {
                 <th>Caja</th>
                 <th>Puertos</th>
                 <th>Usuarios</th>
-                <th>Sector</th>
+                <th className="sector">Sector</th>
               </tr>
             </thead>
             <tbody>

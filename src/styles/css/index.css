@@ -91,9 +91,16 @@
   color: white;
 }
 
+.sector {
+  display: none;
+}
+
 .townInfo {
-  width: 100%;
+  width: 100vw;
   height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .townInfo__header {
   width: 100%;
@@ -124,15 +131,12 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
   padding: 1rem;
   margin: 3rem 0 5rem 0;
 }
 .townInfo__content--tablet {
-  width: 100%;
-  height: auto;
+  display: flex;
+  justify-content: center;
 }
 .townInfo__content--tablet .table-card {
   width: 100%;
@@ -183,10 +187,11 @@
 }
 
 @media only screen and (min-width: 1024px) {
+  .sector {
+    display: block;
+  }
   .townInfo {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    width: 100%;
   }
   .townInfo__header {
     height: 5rem;
@@ -198,10 +203,6 @@
   }
   .townInfo h2 {
     font-size: 2.5rem;
-  }
-  .townInfo__content {
-    width: 100%;
-    width: 1024px;
   }
 }
 .menuTown {
@@ -220,24 +221,17 @@
 }
 .menuTown__content {
   width: 80%;
-  height: 60%;
+  max-width: 500px;
   background-color: #fff;
   border-radius: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 1rem;
   position: relative;
-}
-.menuTown__content .logo {
-  position: absolute;
-  top: 1rem;
-  width: 10rem;
-  height: 10rem;
+  padding: 2rem 0;
 }
 .menuTown__content--options {
-  margin-top: 3rem;
   width: 100%;
   height: auto;
   display: flex;
@@ -245,9 +239,11 @@
   justify-content: center;
   align-items: center;
   gap: 1rem;
+  padding: 1rem;
 }
 .menuTown__content--options button {
-  width: 18rem;
+  width: 100%;
+  max-width: 18rem;
   background-color: #ff6a00;
   height: 3rem;
   font-size: 20px;
@@ -258,13 +254,17 @@
 }
 .menuTown__content--button {
   position: absolute;
-  bottom: 1rem;
+  top: 1rem;
+  right: 1rem;
 }
 .menuTown__content--button button {
   border: none;
   background-color: transparent;
-  font-size: 20px;
-  font-weight: 500;
+  font-size: 1.5rem;
+}
+.menuTown__content--button button:hover {
+  color: #f00;
+  cursor: pointer;
 }
 
 .menu {
