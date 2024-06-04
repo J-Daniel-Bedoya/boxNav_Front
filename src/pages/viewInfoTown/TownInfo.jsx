@@ -10,7 +10,7 @@ import BoxDetails from "./townDetails.jsx/BoxDetails";
 import { useSelector } from "react-redux";
 import UserDetails from "./townDetails.jsx/UserDetails";
 import SectorDetails from "./townDetails.jsx/SectorDetails";
-import Add from "../../components/pagination/Add";
+import Add from "../../components/crud/Add";
 import Pagination from "../../components/pagination/Pagination";
 
 const TownInfo = () => {
@@ -27,6 +27,7 @@ const TownInfo = () => {
       {isviewMenu && (
         <MenuTown isviewMenu={isviewMenu} setIsViewMenu={setIsViewMenu} />
       )}
+
       {options === "box" && <BoxTable id={id} />}
       {options === "user" && <UserTable id={id} />}
       {options === "sector" && <SectorTable id={id} />}

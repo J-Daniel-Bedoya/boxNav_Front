@@ -8,12 +8,19 @@
 
   &__add {
     & button {
-      width: 3rem;
-      height: 3rem;
-      border-radius: 100%;
+      width: auto;
+      font-size: 17px;
+      font-weight: bold;
+      padding: 1rem;
+      border-radius: 20rem;
       border: none;
-      background-color: #028106ad;
       color: #fff;
+      background-color: #026d05;
+      &:hover {
+        background-color: #06be0cad;
+        cursor: pointer;
+        transition: 0.3s;
+      }
     }
 
     &--box,

@@ -18,7 +18,11 @@ const Add = ({ id, dataUser }) => {
   return (
     <div className="pagination__add">
       <button onClick={() => setIsViewAdd(true)}>
-        <i className="fa-solid fa-plus"></i>
+        {/* <i className="fa-solid fa-plus"></i> */}
+        {options === "box" && "Crear una caja"}
+        {options === "boxDetail" && "Crear un nuevo usuario"}
+        {options === "sector" && "Crear un sector"}
+        {/* Crear */}
       </button>
       {isViewAdd && options === "box" && (
         <AddBox id={id} setIsViewAdd={setIsViewAdd} />
