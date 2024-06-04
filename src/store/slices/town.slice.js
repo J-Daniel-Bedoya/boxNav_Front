@@ -25,9 +25,9 @@ export const getTownsThunk = () => async (dispatch) => {
     })
     .catch((error) => console.log(error));
 };
-export const getTownThunk = (id) => async (dispatch) => {
+export const getTownThunk = (id, currentPage) => async (dispatch) => {
   return await axios
-    .get(`${api}/town/${id}?offset=0&limit=10`, getConfig())
+    .get(`${api}/town/${id}?offset=${currentPage}&limit=10`, getConfig())
     .then((res) => {
       dispatch(setTown(res.data));
     })

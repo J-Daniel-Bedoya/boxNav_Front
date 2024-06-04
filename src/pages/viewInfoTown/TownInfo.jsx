@@ -38,15 +38,15 @@ const TownInfo = () => {
       <section className="pagination">
         {options === "box" && (
           <>
-            <Pagination /> <Add id={id} />
+            <Pagination id={id} options={options} /> <Add id={id} />
           </>
         )}
         {options === "sector" && (
           <>
-            <Pagination /> <Add id={id} />
+            <Pagination id={id} options={options} /> <Add id={id} />
           </>
         )}
-        {options === "user" && <Pagination />}
+        {options === "user" && <Pagination id={id} options={options} />}
         {options === "boxDetail" && <Add id={id} dataUser={dataUser} />}
       </section>
     </div>

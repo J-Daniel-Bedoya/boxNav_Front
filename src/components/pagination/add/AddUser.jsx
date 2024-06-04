@@ -20,7 +20,7 @@ const AddUser = ({ id, setIsViewAdd, dataUser }) => {
       coordinates: data.coordinates,
     };
     dispatch(createUserThunk(create));
-    // console.log(create);
+    console.log(create);
     reset();
     setIsViewAdd(false);
   };
@@ -74,13 +74,13 @@ const AddUser = ({ id, setIsViewAdd, dataUser }) => {
           <div className="check-flex">
             <div className="add__form--checkbox">
               <label>
-                <input type="radio" value="1" {...register("service")} />
+                <input type="radio" value="2" {...register("service")} />
                 TV
               </label>
             </div>
             <div className="add__form--checkbox">
               <label>
-                <input type="radio" value="2" {...register("service")} />
+                <input type="radio" value="1" {...register("service")} />
                 Internet
               </label>
             </div>
