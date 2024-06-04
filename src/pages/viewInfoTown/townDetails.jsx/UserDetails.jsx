@@ -13,7 +13,6 @@ const UserDetails = ({ id }) => {
   const user = useSelector((state) => state.user);
   const sector = useSelector((state) => state.sector);
   const box = useSelector((state) => state.box);
-  const [service, setService] = useState();
   const api = "https://nav-boxes-lis.up.railway.app/api/v1";
 
   useEffect(() => {

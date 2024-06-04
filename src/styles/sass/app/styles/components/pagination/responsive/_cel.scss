@@ -1,0 +1,140 @@
+.pagination {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 3rem;
+
+  &__add {
+    & button {
+      width: 3rem;
+      height: 3rem;
+      border-radius: 100%;
+      border: none;
+      background-color: #028106ad;
+      color: #fff;
+    }
+
+    &--box,
+    &--sector,
+    &--user {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #02378145;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem;
+
+      & #user-form {
+        padding: 1rem 1.5rem;
+      }
+      & .add__form {
+        position: relative;
+        width: 100%;
+        max-width: 400px;
+        height: auto;
+        padding: 2rem 1.5rem;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px #0000001a;
+
+        &--input {
+          margin-bottom: 1rem;
+
+          & label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+          }
+        }
+
+        &--select,
+        &--text {
+          width: 100%;
+          padding: 0.5rem;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          font-size: 1rem;
+        }
+
+        & .check-flex {
+          display: flex;
+          gap: 2rem;
+        }
+        &--checkbox {
+          display: flex;
+          flex-direction: row; // checkboxes horizontalmente
+
+          & label {
+            display: flex;
+            align-items: center;
+            font-size: 1rem;
+          }
+
+          & input {
+            margin-right: 0.5rem;
+          }
+        }
+
+        &--submit {
+          width: 100%;
+          padding: 0.75rem;
+          background-color: #028106;
+          color: white;
+          border: none;
+          border-radius: 5px;
+          font-size: 1rem;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+
+          &:hover {
+            background-color: #026d05;
+          }
+        }
+
+        &--close {
+          position: absolute;
+          top: 1rem;
+          right: 1rem;
+          background-color: #ff5c5c;
+          color: white;
+          border: none;
+          border-radius: 50%;
+          width: 2rem;
+          height: 2rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+
+          &:hover {
+            background-color: #ff2c2c;
+          }
+        }
+      }
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    gap: 1rem;
+
+    & button {
+      width: 2rem;
+      height: 2rem;
+      border: none;
+      background-color: #e56c152f;
+      border-radius: 100%;
+    }
+
+    & .button-list {
+      background-color: transparent;
+    }
+  }
+}

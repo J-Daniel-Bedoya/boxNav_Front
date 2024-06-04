@@ -11,8 +11,6 @@ const SectorTable = ({ id }) => {
     dispatch(getTownThunk(id));
   }, [id, dispatch]);
 
-  console.log(town);
-
   return (
     <div className="townInfo__content">
       <h2>Sectores</h2>

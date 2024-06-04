@@ -10,11 +10,13 @@ import BoxDetails from "./townDetails.jsx/BoxDetails";
 import { useSelector } from "react-redux";
 import UserDetails from "./townDetails.jsx/UserDetails";
 import SectorDetails from "./townDetails.jsx/SectorDetails";
+import Add from "../../components/pagination/Add";
+import Pagination from "../../components/pagination/Pagination";
 
 const TownInfo = () => {
   const { id } = useParams();
   const [isviewMenu, setIsViewMenu] = useState(false);
-
+  const [dataUser, setDataUser] = useState({});
   const options = useSelector((state) => state.options);
   const isDetail = useSelector((state) => state.isDetail);
 
@@ -28,9 +30,25 @@ const TownInfo = () => {
       {options === "box" && <BoxTable id={id} />}
       {options === "user" && <UserTable id={id} />}
       {options === "sector" && <SectorTable id={id} />}
-      {options === "boxDetail" && <BoxDetails id={isDetail} />}
+      {options === "boxDetail" && (
+        <BoxDetails id={isDetail} setDataUser={setDataUser} />
+      )}
       {options === "userDetail" && <UserDetails id={isDetail} />}
       {options === "sectorDetail" && <SectorDetails id={isDetail} />}
+      <section className="pagination">
+        {options === "box" && (
+          <>
+            <Pagination /> <Add id={id} />
+          </>
+        )}
+        {options === "sector" && (
+          <>
+            <Pagination /> <Add id={id} />
+          </>
+        )}
+        {options === "user" && <Pagination />}
+        {options === "boxDetail" && <Add id={id} dataUser={dataUser} />}
+      </section>
     </div>
   );
 };

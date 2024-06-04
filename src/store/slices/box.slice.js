@@ -30,7 +30,7 @@ export const getBoxThunk = (boxId) => async (dispatch) => {
 
 export const createBoxThunk = (data) => async (dispatch) => {
   return await axios
-    .post(`${api}/box/`, data, getConfig())
+    .post(`${api}/box`, data, getConfig())
     .then((res) => dispatch(getBoxesThunk()));
 };
 

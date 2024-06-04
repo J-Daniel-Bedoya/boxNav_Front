@@ -3,8 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { setOptions } from "../../../store/slices/adminOptions.slice";
 import { getBoxThunk } from "../../../store/slices/box.slice";
 import { getSectorThunk } from "../../../store/slices/sector.slice";
+import { setIsDetail } from "../../../store/slices/isDetail.slice";
 
-const BoxDetails = ({ id }) => {
+const BoxDetails = ({ id, setDataUser }) => {
   const dispatch = useDispatch();
   const box = useSelector((state) => state.box);
   const sector = useSelector((state) => state.sector);
@@ -12,7 +13,13 @@ const BoxDetails = ({ id }) => {
   useEffect(() => {
     dispatch(getBoxThunk(id));
     dispatch(getSectorThunk(box.sectorId));
+    setDataUser({ sectorId: box.sectorId, boxId: box.id });
   }, [dispatch, id, box.sectorId]);
+
+  const userDetail = (id) => {
+    dispatch(setOptions("userDetail"));
+    dispatch(setIsDetail(id));
+  };
 
   return (
     <div className="boxDetails">
@@ -35,7 +42,7 @@ const BoxDetails = ({ id }) => {
           <b>Conectados</b>
           <div className="boxDetails__users--name">
             {box.users?.map((user) => (
-              <div key={user.id}>
+              <div key={user.id} onClick={() => userDetail(user.id)}>
                 <b>{user.portNumber}</b>
                 <p>{user.userName}</p>
               </div>

@@ -18,7 +18,7 @@ const Options = () => {
 
   return (
     <div className="options">
-      {town?.map((town) => (
+      {town.map((town) => (
         <button
           key={town.id}
           className="options__button"

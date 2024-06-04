@@ -8,6 +8,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  position: relative;
 
   &__header {
     width: 100%;
@@ -46,7 +47,7 @@
     display: flex;
     flex-direction: column;
     padding: 1rem;
-    margin: 3rem 0 5rem 0;
+    margin: 3rem 0 1rem 0;
 
     &--tablet {
       display: flex;
@@ -59,7 +60,6 @@
         box-shadow: 0 4px 8px #a0a0a03b;
         overflow: hidden;
         background-color: #fff;
-        // padding: 1rem;
         margin-top: 20px;
         outline: 1px solid #86868659;
       }
