@@ -21,7 +21,7 @@ const AddBox = ({ id, setIsViewAdd }) => {
   };
 
   return (
-    <div className="pagination__add--box" onClick={() => setIsViewAdd(false)}>
+    <div className="pagination__add--box">
       <form onSubmit={handleSubmit(submit)} className="add__form">
         <button
           type="button"
