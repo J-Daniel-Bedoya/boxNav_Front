@@ -15,14 +15,14 @@ const AddSector = ({ id, setIsViewAdd }) => {
     setIsViewAdd(false);
   };
 
-  const closeForm = () => {
-    setIsViewAdd(false);
-  };
-
   return (
     <div className="pagination__add--sector">
       <form onSubmit={handleSubmit(submit)} className="add__form">
-        <button type="button" className="add__form--close" onClick={closeForm}>
+        <button
+          type="button"
+          className="add__form--close"
+          onClick={() => setIsViewAdd(false)}
+        >
           <i className="fa-solid fa-xmark"></i>
         </button>
         <div className="add__form--input">

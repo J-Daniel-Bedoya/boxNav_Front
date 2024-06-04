@@ -19,14 +19,15 @@ const AddBox = ({ id, setIsViewAdd }) => {
     reset();
     setIsViewAdd(false);
   };
-  const closeForm = () => {
-    setIsViewAdd(false);
-  };
 
   return (
     <div className="pagination__add--box">
       <form onSubmit={handleSubmit(submit)} className="add__form">
-        <button type="button" className="add__form--close" onClick={closeForm}>
+        <button
+          type="button"
+          className="add__form--close"
+          onClick={() => setIsViewAdd(false)}
+        >
           <i className="fa-solid fa-xmark"></i>
         </button>
         <div className="add__form--input">
@@ -49,7 +50,7 @@ const AddBox = ({ id, setIsViewAdd }) => {
           <div className="add__form--checkbox">
             <label htmlFor="ports8">
               <input
-                type="checkbox"
+                type="radio"
                 id="ports8"
                 name="ports"
                 value="8"
@@ -61,7 +62,7 @@ const AddBox = ({ id, setIsViewAdd }) => {
           <div className="add__form--checkbox">
             <label htmlFor="ports16">
               <input
-                type="checkbox"
+                type="radio"
                 id="ports16"
                 name="ports"
                 value="16"

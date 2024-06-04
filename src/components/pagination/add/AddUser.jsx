@@ -20,12 +20,8 @@ const AddUser = ({ id, setIsViewAdd, dataUser }) => {
       coordinates: data.coordinates,
     };
     dispatch(createUserThunk(create));
-    console.log(create);
+    // console.log(create);
     reset();
-    setIsViewAdd(false);
-  };
-
-  const closeForm = () => {
     setIsViewAdd(false);
   };
 
@@ -36,7 +32,11 @@ const AddUser = ({ id, setIsViewAdd, dataUser }) => {
         className="add__form"
         id="user-form"
       >
-        <button type="button" className="add__form--close" onClick={closeForm}>
+        <button
+          type="button"
+          className="add__form--close"
+          onClick={() => setIsViewAdd(false)}
+        >
           <i className="fa-solid fa-xmark"></i>
         </button>
         <div className="add__form--input">
