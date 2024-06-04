@@ -193,6 +193,7 @@
 @media only screen and (min-width: 1024px) {
   .sector {
     display: block;
+    margin-top: 0.7rem;
   }
   .townInfo {
     width: 100%;

@@ -1,6 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
+import { createUserThunk } from "../../../store/slices/user.slice";
 
 const AddUser = ({ id, setIsViewAdd, dataUser }) => {
   const { register, handleSubmit, reset } = useForm();
@@ -9,16 +10,17 @@ const AddUser = ({ id, setIsViewAdd, dataUser }) => {
   const submit = (data) => {
     const create = {
       townId: parseInt(id),
-      sectorId: dataUser.sectorId,
+      sectorId: dataUser?.sectorId,
       boxId: dataUser.boxId,
       serviceId: parseInt(data.service),
       userName: `${data.firstName} ${data.lastName}`,
-      portNumber: data.port,
+      portNumber: parseInt(data.port),
       tel: data.tel,
       state: data.state === "true" ? true : false,
       coordinates: data.coordinates,
     };
-    dispatch(createBoxThunk(create));
+    dispatch(createUserThunk(create));
+    console.log(create);
     reset();
     setIsViewAdd(false);
   };

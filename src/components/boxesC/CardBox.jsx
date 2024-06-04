@@ -13,12 +13,14 @@ const CardBox = ({ box }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    dispatch(getSectorsThunk());
+  }, []);
+
+  useEffect(() => {
     axios.get(`${api}/sector/${box.sectorId}`, getConfig()).then((res) => {
       setSector(res.data);
     });
-    dispatch(getSectorsThunk());
-  }, [box.sectorId]);
-
+  }, [box]);
   const boxDetail = (id) => {
     dispatch(setOptions("boxDetail"));
     dispatch(setIsDetail(id));

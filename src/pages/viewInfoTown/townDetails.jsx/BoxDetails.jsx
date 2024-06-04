@@ -1,26 +1,35 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setOptions } from "../../../store/slices/adminOptions.slice";
 import { getBoxThunk } from "../../../store/slices/box.slice";
-import { getSectorThunk } from "../../../store/slices/sector.slice";
+import { getSectorsThunk } from "../../../store/slices/sector.slice";
 import { setIsDetail } from "../../../store/slices/isDetail.slice";
+import axios from "axios";
+import getConfig from "../../../utils/getConfig";
 
 const BoxDetails = ({ id, setDataUser }) => {
+  const api = "https://nav-boxes-lis.up.railway.app/api/v1";
   const dispatch = useDispatch();
   const box = useSelector((state) => state.box);
-  const sector = useSelector((state) => state.sector);
+  const [sector, setSector] = useState("");
 
   useEffect(() => {
     dispatch(getBoxThunk(id));
-    dispatch(getSectorThunk(box.sectorId));
+    dispatch(getSectorsThunk());
     setDataUser({ sectorId: box.sectorId, boxId: box.id });
-  }, [dispatch, id, box.sectorId]);
+  }, [id, box]);
+
+  useEffect(() => {
+    axios.get(`${api}/sector/${box.sectorId}`, getConfig()).then((res) => {
+      setSector(res.data);
+    });
+  }, [box]);
 
   const userDetail = (id) => {
     dispatch(setOptions("userDetail"));
     dispatch(setIsDetail(id));
   };
-
+  // console.log(sector);
   return (
     <div className="boxDetails">
       <div className="card-boxDetail">

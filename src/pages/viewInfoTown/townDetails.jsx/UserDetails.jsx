@@ -11,19 +11,23 @@ import { setOptions } from "../../../store/slices/adminOptions.slice";
 const UserDetails = ({ id }) => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
-  const sector = useSelector((state) => state.sector);
   const box = useSelector((state) => state.box);
   const api = "https://nav-boxes-lis.up.railway.app/api/v1";
+  const [service, setService] = useState("");
+  const [sector, setSector] = useState("");
 
   useEffect(() => {
     dispatch(getUserThunk(id));
     dispatch(getBoxThunk(user.boxId));
-    dispatch(getSectorThunk(user.sectorId));
-
+    axios.get(`${api}/sector/${user.sectorId}`, getConfig()).then((res) => {
+      setSector(res.data);
+    });
     axios.get(`${api}/service/${user.serviceId}`, getConfig()).then((res) => {
       setService(res.data.serviceName);
     });
-  }, [user, getServiceThunk]);
+  }, [user]);
+
+  // useEffect(() => {}, [user, box]);
 
   return (
     <div className="card-userDetail">
@@ -60,7 +64,14 @@ const UserDetails = ({ id }) => {
             <div className="userDetails__info--text">
               <i className="fa-solid fa-bell-concierge"></i>
               <p>Servicio:</p>
-              <i className="fas fa-wifi"></i>
+              {service === "Tv" && <i className="fa-solid fa-tv"></i>}
+              {service === "Internet" && <i className="fas fa-wifi"></i>}
+              {service === "Combo" && (
+                <>
+                  <i className="fa-solid fa-tv"></i>{" "}
+                  <i className="fas fa-wifi"></i>
+                </>
+              )}
             </div>
             <div className="userDetails__info--state">
               <i className="fa-solid fa-satellite-dish"></i>
