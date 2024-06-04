@@ -17,14 +17,14 @@ const Add = ({ id, dataUser }) => {
 
   return (
     <div className="pagination__add">
-      <button onClick={() => setIsViewAdd(!isViewAdd)}>
+      <button onClick={() => setIsViewAdd(true)}>
         <i className="fa-solid fa-plus"></i>
       </button>
       {isViewAdd && options === "box" && (
-        <AddBox id={id} setIsviewAdd={setIsViewAdd} />
+        <AddBox id={id} setIsViewAdd={setIsViewAdd} />
       )}
       {isViewAdd && options === "sector" && (
-        <AddSector id={id} setIsviewAdd={setIsViewAdd} />
+        <AddSector id={id} setIsViewAdd={setIsViewAdd} />
       )}
       {isViewAdd && options === "boxDetail" && (
         <AddUser id={id} setIsViewAdd={setIsViewAdd} dataUser={dataUser} />
