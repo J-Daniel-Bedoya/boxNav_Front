@@ -2,6 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useSelector, useDispatch } from "react-redux";
 import { createBoxThunk } from "../../../store/slices/box.slice";
+import Swal from "sweetalert2";
 
 const AddBox = ({ id, setIsViewAdd }) => {
   const { register, handleSubmit, reset } = useForm();
@@ -17,7 +18,19 @@ const AddBox = ({ id, setIsViewAdd }) => {
     };
     dispatch(createBoxThunk(create));
     reset();
-    setIsViewAdd(false);
+
+    Swal.fire({
+      title: "Caja creada con éxito",
+      text: "Haz añadido una nueva caja",
+      icon: "success",
+      confirmButtonText: "OK",
+      timer: 3000,
+      timerProgressBar: true,
+    }).then((result) => {
+      if (result.isConfirmed || result.dismiss === Swal.DismissReason.timer) {
+        setIsViewAdd(false);
+      }
+    });
   };
 
   return (

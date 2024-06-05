@@ -2,6 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { createUserThunk } from "../../../store/slices/user.slice";
+import Swal from "sweetalert2";
 
 const AddUser = ({ id, setIsViewAdd, dataUser }) => {
   const { register, handleSubmit, reset } = useForm();
@@ -22,7 +23,19 @@ const AddUser = ({ id, setIsViewAdd, dataUser }) => {
     dispatch(createUserThunk(create));
     console.log(create);
     reset();
-    setIsViewAdd(false);
+
+    Swal.fire({
+      title: "Usuario creado con éxito",
+      html: `El usuario <strong>${data.firstName} ${data.lastName}</strong> a sido añadido a la base de datos`,
+      icon: "success",
+      confirmButtonText: "OK",
+      timer: 5000,
+      timerProgressBar: true,
+    }).then((result) => {
+      if (result.isConfirmed || result.dismiss === Swal.DismissReason.timer) {
+        setIsViewAdd(false);
+      }
+    });
   };
 
   return (

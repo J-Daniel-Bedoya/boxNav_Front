@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUserThunk } from "../../../store/slices/user.slice";
-import { getSectorThunk } from "../../../store/slices/sector.slice";
-import { getServiceThunk } from "../../../store/slices/service.slice";
+import {
+  deleteUserThunk,
+  getUserThunk,
+} from "../../../store/slices/user.slice";
 import { getBoxThunk } from "../../../store/slices/box.slice";
 import axios from "axios";
 import getConfig from "../../../utils/getConfig";
 import { setOptions } from "../../../store/slices/adminOptions.slice";
+import Swal from "sweetalert2";
 
 const UserDetails = ({ id }) => {
   const dispatch = useDispatch();
@@ -26,6 +28,31 @@ const UserDetails = ({ id }) => {
       setService(res.data.serviceName);
     });
   }, [user]);
+
+  const trash = (id, name) => {
+    Swal.fire({
+      title: "Eliminar usuario",
+      html: `¿Estás seguro de que quieres eliminar al usuario <strong>${name}</strong>?`,
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonText: "Sí",
+      cancelButtonText: "No",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(deleteUserThunk(id)).then(() => {
+          dispatch(setOptions("user"));
+          Swal.fire({
+            title: "Usuario eliminado",
+            html: `El usuario <strong>${name}</strong> ha sido eliminado con éxito`,
+            icon: "success",
+            confirmButtonText: "OK",
+            timer: 4000,
+            timerProgressBar: true,
+          });
+        });
+      }
+    });
+  };
 
   // useEffect(() => {}, [user, box]);
 
@@ -86,7 +113,9 @@ const UserDetails = ({ id }) => {
         <div className="userDetails__options">
           <div className="userDetails__options--button">
             <button>Editar</button>
-            <button>Eliminar</button>
+            <button onClick={() => trash(user.id, user.userName)}>
+              Eliminar
+            </button>
           </div>
         </div>
       </div>

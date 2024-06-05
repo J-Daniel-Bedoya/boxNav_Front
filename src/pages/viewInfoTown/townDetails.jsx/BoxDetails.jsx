@@ -60,10 +60,7 @@ const BoxDetails = ({ id, setDataUser }) => {
         </div>
         <div className="boxDetails__options">
           <div className="boxDetails__options--button">
-            <button>Puerto</button>
-          </div>
-          <div className="boxDetails__options--button">
-            <button>Editar</button>
+            <button>Puerto Malo</button>
           </div>
         </div>
       </div>

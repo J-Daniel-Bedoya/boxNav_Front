@@ -1,9 +1,12 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { createSectorThunk } from "../../../store/slices/sector.slice";
+import Swal from "sweetalert2";
+import { useDispatch } from "react-redux";
 
 const AddSector = ({ id, setIsViewAdd }) => {
   const { register, handleSubmit, reset } = useForm();
+  const dispatch = useDispatch();
 
   const submit = (data) => {
     const create = {
@@ -12,7 +15,19 @@ const AddSector = ({ id, setIsViewAdd }) => {
     };
     dispatch(createSectorThunk(create));
     reset();
-    setIsViewAdd(false);
+
+    Swal.fire({
+      title: "Sector creado con éxito",
+      text: "Haz añadido un nuevo sector",
+      icon: "success",
+      confirmButtonText: "OK",
+      timer: 3000,
+      timerProgressBar: true,
+    }).then((result) => {
+      if (result.isConfirmed || result.dismiss === Swal.DismissReason.timer) {
+        setIsViewAdd(false);
+      }
+    });
   };
 
   return (
@@ -30,7 +45,7 @@ const AddSector = ({ id, setIsViewAdd }) => {
           <input
             type="text"
             name="sector"
-            {...register("numberPorts")}
+            {...register("name")}
             placeholder="El Parque"
             className="add__form--text"
           />

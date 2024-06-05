@@ -419,7 +419,7 @@
   margin-bottom: 2rem;
 }
 .boxDetails__options--button button {
-  width: 7rem;
+  width: auto;
   padding: 10px 20px;
   font-size: 1rem;
   font-weight: bold;
