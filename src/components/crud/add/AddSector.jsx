@@ -33,13 +33,6 @@ const AddSector = ({ id, setIsViewAdd }) => {
   return (
     <div className="pagination__add--sector">
       <form onSubmit={handleSubmit(submit)} className="add__form">
-        <button
-          type="button"
-          className="add__form--close"
-          onClick={() => setIsViewAdd(false)}
-        >
-          <i className="fa-solid fa-xmark"></i>
-        </button>
         <div className="add__form--input">
           <label htmlFor="sector">Digite el nombre del sector</label>
           <input
@@ -50,8 +43,15 @@ const AddSector = ({ id, setIsViewAdd }) => {
             className="add__form--text"
           />
         </div>
-        <div className="add__form--input">
-          <input type="submit" value="Crear" className="add__form--submit" />
+        <div className="add__form--buttons">
+          <button
+            type="button"
+            className="close"
+            onClick={() => setIsViewAdd(false)}
+          >
+            Cancelar
+          </button>
+          <input type="submit" value="Crear" className="submit" />
         </div>
       </form>
     </div>

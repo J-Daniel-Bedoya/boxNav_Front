@@ -6,7 +6,8 @@
   gap: 2rem;
   margin-bottom: 3rem;
 
-  &__add {
+  &__add,
+  &__edit {
     & button {
       width: auto;
       font-size: 17px;
@@ -25,7 +26,8 @@
 
     &--box,
     &--sector,
-    &--user {
+    &--user,
+    &--userEdit {
       position: fixed;
       top: 0;
       left: 0;
@@ -52,7 +54,6 @@
 
         &--input {
           margin-bottom: 1rem;
-
           & label {
             display: block;
             margin-bottom: 0.5rem;
@@ -88,40 +89,41 @@
           }
         }
 
-        &--submit {
-          width: 100%;
-          padding: 0.75rem;
-          background-color: #028106;
-          color: white;
-          border: none;
-          border-radius: 5px;
-          font-size: 1rem;
-          cursor: pointer;
-          transition: background-color 0.3s ease;
-
-          &:hover {
-            background-color: #026d05;
-          }
-        }
-
-        &--close {
-          position: absolute;
-          top: 1rem;
-          right: 1rem;
-          background-color: #ff5c5c;
-          color: white;
-          border: none;
-          border-radius: 50%;
-          width: 2rem;
-          height: 2rem;
+        &--buttons {
           display: flex;
-          align-items: center;
-          justify-content: center;
-          cursor: pointer;
-          transition: background-color 0.3s ease;
+          gap: 1rem;
 
-          &:hover {
-            background-color: #ff2c2c;
+          & .submit {
+            width: 100%;
+            padding: 0.75rem;
+            background-color: #0ac310;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+
+            &:hover {
+              background-color: #026d05;
+            }
+          }
+          & .close {
+            background-color: #0ac310;
+            border: none;
+            border-radius: 5px;
+            width: 100%;
+            height: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s ease;
+
+            &:hover {
+              cursor: pointer;
+              background-color: #026d05;
+            }
           }
         }
       }

@@ -11,7 +11,7 @@ const CardSector = ({ sector }) => {
   };
 
   return (
-    <tr className="cards__list" onClick={() => sectorDetail(sector.id)}>
+    <tr className="cards__list">
       <td className="user">{sector.sectorName}</td>
       <td className="box">{sector.numberBoxes}</td>
       <td className="port">{sector.numberUsers}</td>

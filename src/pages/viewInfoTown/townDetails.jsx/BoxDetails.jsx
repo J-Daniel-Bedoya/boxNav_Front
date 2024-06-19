@@ -29,7 +29,7 @@ const BoxDetails = ({ id, setDataUser }) => {
     dispatch(setOptions("userDetail"));
     dispatch(setIsDetail(id));
   };
-  // console.log(sector);
+
   return (
     <div className="boxDetails">
       <div className="card-boxDetail">
@@ -40,7 +40,7 @@ const BoxDetails = ({ id, setDataUser }) => {
         </div>
         <div className="boxDetails__sector">
           <div className="boxDetails__sector--title">
-            <i className="fa-solid fa-box"></i> <b>Caja {box.numberBox}</b>
+            <b>Caja {box.numberBox}</b>
           </div>
           <div className="boxDetails__sector--address">
             <i className="fa-solid fa-location-dot"></i>

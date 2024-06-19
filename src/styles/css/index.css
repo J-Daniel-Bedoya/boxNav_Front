@@ -732,7 +732,7 @@
   gap: 2rem;
   margin-bottom: 3rem;
 }
-.pagination__add button {
+.pagination__add button, .pagination__edit button {
   width: auto;
   font-size: 17px;
   font-weight: bold;
@@ -742,12 +742,12 @@
   color: #fff;
   background-color: #026d05;
 }
-.pagination__add button:hover {
+.pagination__add button:hover, .pagination__edit button:hover {
   background-color: rgba(6, 190, 12, 0.6784313725);
   cursor: pointer;
   transition: 0.3s;
 }
-.pagination__add--box, .pagination__add--sector, .pagination__add--user {
+.pagination__add--box, .pagination__add--sector, .pagination__add--user, .pagination__add--userEdit, .pagination__edit--box, .pagination__edit--sector, .pagination__edit--user, .pagination__edit--userEdit {
   position: fixed;
   top: 0;
   left: 0;
@@ -759,10 +759,10 @@
   align-items: center;
   padding: 1rem;
 }
-.pagination__add--box #user-form, .pagination__add--sector #user-form, .pagination__add--user #user-form {
+.pagination__add--box #user-form, .pagination__add--sector #user-form, .pagination__add--user #user-form, .pagination__add--userEdit #user-form, .pagination__edit--box #user-form, .pagination__edit--sector #user-form, .pagination__edit--user #user-form, .pagination__edit--userEdit #user-form {
   padding: 1rem 1.5rem;
 }
-.pagination__add--box .add__form, .pagination__add--sector .add__form, .pagination__add--user .add__form {
+.pagination__add--box .add__form, .pagination__add--sector .add__form, .pagination__add--user .add__form, .pagination__add--userEdit .add__form, .pagination__edit--box .add__form, .pagination__edit--sector .add__form, .pagination__edit--user .add__form, .pagination__edit--userEdit .add__form {
   position: relative;
   width: 100%;
   max-width: 400px;
@@ -772,69 +772,70 @@
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1019607843);
 }
-.pagination__add--box .add__form--input, .pagination__add--sector .add__form--input, .pagination__add--user .add__form--input {
+.pagination__add--box .add__form--input, .pagination__add--sector .add__form--input, .pagination__add--user .add__form--input, .pagination__add--userEdit .add__form--input, .pagination__edit--box .add__form--input, .pagination__edit--sector .add__form--input, .pagination__edit--user .add__form--input, .pagination__edit--userEdit .add__form--input {
   margin-bottom: 1rem;
 }
-.pagination__add--box .add__form--input label, .pagination__add--sector .add__form--input label, .pagination__add--user .add__form--input label {
+.pagination__add--box .add__form--input label, .pagination__add--sector .add__form--input label, .pagination__add--user .add__form--input label, .pagination__add--userEdit .add__form--input label, .pagination__edit--box .add__form--input label, .pagination__edit--sector .add__form--input label, .pagination__edit--user .add__form--input label, .pagination__edit--userEdit .add__form--input label {
   display: block;
   margin-bottom: 0.5rem;
   font-weight: bold;
 }
-.pagination__add--box .add__form--select, .pagination__add--box .add__form--text, .pagination__add--sector .add__form--select, .pagination__add--sector .add__form--text, .pagination__add--user .add__form--select, .pagination__add--user .add__form--text {
+.pagination__add--box .add__form--select, .pagination__add--box .add__form--text, .pagination__add--sector .add__form--select, .pagination__add--sector .add__form--text, .pagination__add--user .add__form--select, .pagination__add--user .add__form--text, .pagination__add--userEdit .add__form--select, .pagination__add--userEdit .add__form--text, .pagination__edit--box .add__form--select, .pagination__edit--box .add__form--text, .pagination__edit--sector .add__form--select, .pagination__edit--sector .add__form--text, .pagination__edit--user .add__form--select, .pagination__edit--user .add__form--text, .pagination__edit--userEdit .add__form--select, .pagination__edit--userEdit .add__form--text {
   width: 100%;
   padding: 0.5rem;
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 1rem;
 }
-.pagination__add--box .add__form .check-flex, .pagination__add--sector .add__form .check-flex, .pagination__add--user .add__form .check-flex {
+.pagination__add--box .add__form .check-flex, .pagination__add--sector .add__form .check-flex, .pagination__add--user .add__form .check-flex, .pagination__add--userEdit .add__form .check-flex, .pagination__edit--box .add__form .check-flex, .pagination__edit--sector .add__form .check-flex, .pagination__edit--user .add__form .check-flex, .pagination__edit--userEdit .add__form .check-flex {
   display: flex;
   gap: 2rem;
 }
-.pagination__add--box .add__form--checkbox, .pagination__add--sector .add__form--checkbox, .pagination__add--user .add__form--checkbox {
+.pagination__add--box .add__form--checkbox, .pagination__add--sector .add__form--checkbox, .pagination__add--user .add__form--checkbox, .pagination__add--userEdit .add__form--checkbox, .pagination__edit--box .add__form--checkbox, .pagination__edit--sector .add__form--checkbox, .pagination__edit--user .add__form--checkbox, .pagination__edit--userEdit .add__form--checkbox {
   display: flex;
   flex-direction: row;
 }
-.pagination__add--box .add__form--checkbox label, .pagination__add--sector .add__form--checkbox label, .pagination__add--user .add__form--checkbox label {
+.pagination__add--box .add__form--checkbox label, .pagination__add--sector .add__form--checkbox label, .pagination__add--user .add__form--checkbox label, .pagination__add--userEdit .add__form--checkbox label, .pagination__edit--box .add__form--checkbox label, .pagination__edit--sector .add__form--checkbox label, .pagination__edit--user .add__form--checkbox label, .pagination__edit--userEdit .add__form--checkbox label {
   display: flex;
   align-items: center;
   font-size: 1rem;
 }
-.pagination__add--box .add__form--checkbox input, .pagination__add--sector .add__form--checkbox input, .pagination__add--user .add__form--checkbox input {
+.pagination__add--box .add__form--checkbox input, .pagination__add--sector .add__form--checkbox input, .pagination__add--user .add__form--checkbox input, .pagination__add--userEdit .add__form--checkbox input, .pagination__edit--box .add__form--checkbox input, .pagination__edit--sector .add__form--checkbox input, .pagination__edit--user .add__form--checkbox input, .pagination__edit--userEdit .add__form--checkbox input {
   margin-right: 0.5rem;
 }
-.pagination__add--box .add__form--submit, .pagination__add--sector .add__form--submit, .pagination__add--user .add__form--submit {
+.pagination__add--box .add__form--buttons, .pagination__add--sector .add__form--buttons, .pagination__add--user .add__form--buttons, .pagination__add--userEdit .add__form--buttons, .pagination__edit--box .add__form--buttons, .pagination__edit--sector .add__form--buttons, .pagination__edit--user .add__form--buttons, .pagination__edit--userEdit .add__form--buttons {
+  display: flex;
+  gap: 1rem;
+}
+.pagination__add--box .add__form--buttons .submit, .pagination__add--sector .add__form--buttons .submit, .pagination__add--user .add__form--buttons .submit, .pagination__add--userEdit .add__form--buttons .submit, .pagination__edit--box .add__form--buttons .submit, .pagination__edit--sector .add__form--buttons .submit, .pagination__edit--user .add__form--buttons .submit, .pagination__edit--userEdit .add__form--buttons .submit {
   width: 100%;
   padding: 0.75rem;
-  background-color: #028106;
+  background-color: #0ac310;
   color: white;
   border: none;
   border-radius: 5px;
   font-size: 1rem;
+  font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
-.pagination__add--box .add__form--submit:hover, .pagination__add--sector .add__form--submit:hover, .pagination__add--user .add__form--submit:hover {
+.pagination__add--box .add__form--buttons .submit:hover, .pagination__add--sector .add__form--buttons .submit:hover, .pagination__add--user .add__form--buttons .submit:hover, .pagination__add--userEdit .add__form--buttons .submit:hover, .pagination__edit--box .add__form--buttons .submit:hover, .pagination__edit--sector .add__form--buttons .submit:hover, .pagination__edit--user .add__form--buttons .submit:hover, .pagination__edit--userEdit .add__form--buttons .submit:hover {
   background-color: #026d05;
 }
-.pagination__add--box .add__form--close, .pagination__add--sector .add__form--close, .pagination__add--user .add__form--close {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  background-color: #ff5c5c;
-  color: white;
+.pagination__add--box .add__form--buttons .close, .pagination__add--sector .add__form--buttons .close, .pagination__add--user .add__form--buttons .close, .pagination__add--userEdit .add__form--buttons .close, .pagination__edit--box .add__form--buttons .close, .pagination__edit--sector .add__form--buttons .close, .pagination__edit--user .add__form--buttons .close, .pagination__edit--userEdit .add__form--buttons .close {
+  background-color: #0ac310;
   border: none;
-  border-radius: 50%;
-  width: 2rem;
-  height: 2rem;
+  border-radius: 5px;
+  width: 100%;
+  height: auto;
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
   transition: background-color 0.3s ease;
 }
-.pagination__add--box .add__form--close:hover, .pagination__add--sector .add__form--close:hover, .pagination__add--user .add__form--close:hover {
-  background-color: #ff2c2c;
+.pagination__add--box .add__form--buttons .close:hover, .pagination__add--sector .add__form--buttons .close:hover, .pagination__add--user .add__form--buttons .close:hover, .pagination__add--userEdit .add__form--buttons .close:hover, .pagination__edit--box .add__form--buttons .close:hover, .pagination__edit--sector .add__form--buttons .close:hover, .pagination__edit--user .add__form--buttons .close:hover, .pagination__edit--userEdit .add__form--buttons .close:hover {
+  cursor: pointer;
+  background-color: #026d05;
 }
 .pagination__buttons {
   display: flex;

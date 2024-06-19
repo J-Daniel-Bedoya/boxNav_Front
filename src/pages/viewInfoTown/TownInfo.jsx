@@ -34,8 +34,7 @@ const TownInfo = () => {
       {options === "boxDetail" && (
         <BoxDetails id={isDetail} setDataUser={setDataUser} />
       )}
-      {options === "userDetail" && <UserDetails id={isDetail} />}
-      {options === "sectorDetail" && <SectorDetails id={isDetail} />}
+      {options === "userDetail" && <UserDetails isDetail={isDetail} id={id} />}
       <section className="pagination">
         {options === "box" && (
           <>

@@ -45,13 +45,6 @@ const AddUser = ({ id, setIsViewAdd, dataUser }) => {
         className="add__form"
         id="user-form"
       >
-        <button
-          type="button"
-          className="add__form--close"
-          onClick={() => setIsViewAdd(false)}
-        >
-          <i className="fa-solid fa-xmark"></i>
-        </button>
         <div className="add__form--input">
           <label htmlFor="firstName">Nombre</label>
           <input
@@ -146,17 +139,24 @@ const AddUser = ({ id, setIsViewAdd, dataUser }) => {
           </div>
         </div>
         <div className="add__form--input">
-          <label htmlFor="coordinates">Coordenadas</label>
+          <label htmlFor="coordinates">Dirección</label>
           <input
             type="text"
             name="coordinates"
             {...register("coordinates")}
-            placeholder="6.2070286 -75.7331088"
+            placeholder="Serca de la panadería"
             className="add__form--text"
           />
         </div>
-        <div className="add__form--input">
-          <input type="submit" value="Create" className="add__form--submit" />
+        <div className="add__form--buttons">
+          <button
+            type="button"
+            className="close"
+            onClick={() => setIsViewAdd(false)}
+          >
+            Cancelar
+          </button>
+          <input type="submit" value="Create" className="submit" />
         </div>
       </form>
     </div>

@@ -9,17 +9,19 @@ import axios from "axios";
 import getConfig from "../../../utils/getConfig";
 import { setOptions } from "../../../store/slices/adminOptions.slice";
 import Swal from "sweetalert2";
+import Edit from "../../../components/crud/Edit";
 
-const UserDetails = ({ id }) => {
+const UserDetails = ({ isDetail, id }) => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const box = useSelector((state) => state.box);
   const api = "https://nav-boxes-lis.up.railway.app/api/v1";
   const [service, setService] = useState("");
   const [sector, setSector] = useState("");
+  const [isViewEdit, setIsViewEdit] = useState(false);
 
   useEffect(() => {
-    dispatch(getUserThunk(id));
+    dispatch(getUserThunk(isDetail));
     dispatch(getBoxThunk(user.boxId));
     axios.get(`${api}/sector/${user.sectorId}`, getConfig()).then((res) => {
       setSector(res.data);
@@ -112,13 +114,18 @@ const UserDetails = ({ id }) => {
         </div>
         <div className="userDetails__options">
           <div className="userDetails__options--button">
-            <button>Editar</button>
+            <button onClick={() => setIsViewEdit(!isViewEdit)}>Editar</button>
             <button onClick={() => trash(user.id, user.userName)}>
               Eliminar
             </button>
           </div>
         </div>
       </div>
+      {isViewEdit && (
+        <div className="pagination">
+          <Edit setIsViewEdit={setIsViewEdit} userId={user.id} id={id} />
+        </div>
+      )}
     </div>
   );
 };
