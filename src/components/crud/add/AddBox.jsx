@@ -6,14 +6,14 @@ import Swal from "sweetalert2";
 
 const AddBox = ({ id, setIsViewAdd }) => {
   const { register, handleSubmit, reset } = useForm();
-  const sectors = useSelector((state) => state.sector);
+  const town = useSelector((state) => state.town);
   const dispatch = useDispatch();
 
   const submit = (data) => {
     const create = {
       townId: parseInt(id),
       sectorId: parseInt(data.sectorId),
-      numberPorts: parseInt(data.numberPorts[0]),
+      numberPorts: parseInt(data.numberPorts),
       coordinates: data.coordinates,
     };
     dispatch(createBoxThunk(create));
@@ -44,7 +44,7 @@ const AddBox = ({ id, setIsViewAdd }) => {
             className="add__form--select"
           >
             <option value="">Seleccionar</option>
-            {sectors?.map((sector) => (
+            {town.sectors?.map((sector) => (
               <option key={sector.id} value={sector.id}>
                 {sector.sectorName}
               </option>

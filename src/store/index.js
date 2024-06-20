@@ -8,6 +8,7 @@ import sectorSlice from "./slices/sector.slice";
 import optionsSlice from "./slices/adminOptions.slice";
 import serviceSlice from "./slices/service.slice";
 import isDetailSlice from "./slices/isDetail.slice";
+import serviceArraySlice from "./slices/serviceArray.slice";
 
 export default configureStore({
   reducer: {
@@ -20,5 +21,6 @@ export default configureStore({
     options: optionsSlice,
     service: serviceSlice,
     isDetail: isDetailSlice,
+    serviceArray: serviceArraySlice,
   },
 });

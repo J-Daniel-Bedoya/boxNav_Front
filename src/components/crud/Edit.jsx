@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import getConfig from "../../utils/getConfig";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const Edit = ({ setIsViewEdit, userId, id }) => {
   const dispatch = useDispatch();
   const { register, handleSubmit, reset, setValue } = useForm();
   const [serviceId, setServiceId] = useState(1);
   const [state, setState] = useState(false);
+  const town = useSelector((state) => state.town);
 
   useEffect(() => {
     axios
@@ -45,8 +46,6 @@ const Edit = ({ setIsViewEdit, userId, id }) => {
     dispatch(userId, edit);
   };
 
-  // console.log(id);
-
   return (
     <div className="pagination__add">
       <div className="pagination__add--user">
@@ -82,10 +81,10 @@ const Edit = ({ setIsViewEdit, userId, id }) => {
                 <label>
                   <input
                     type="radio"
-                    value="2"
+                    value={town.service[0].id}
                     {...register("serviceId")}
-                    checked={serviceId === 2}
-                    onChange={() => setServiceId(2)}
+                    checked={serviceId === town.service[0].id}
+                    onChange={() => setServiceId(town.service[0].id)}
                   />
                   TV
                 </label>
@@ -94,10 +93,10 @@ const Edit = ({ setIsViewEdit, userId, id }) => {
                 <label>
                   <input
                     type="radio"
-                    value="1"
+                    value={town.service[1].id}
                     {...register("serviceId")}
-                    checked={serviceId === 1}
-                    onChange={() => setServiceId(1)}
+                    checked={serviceId === town.service[1].id}
+                    onChange={() => setServiceId(town.service[1].id)}
                   />
                   Internet
                 </label>
@@ -106,10 +105,10 @@ const Edit = ({ setIsViewEdit, userId, id }) => {
                 <label>
                   <input
                     type="radio"
-                    value="3"
+                    value={town.service[2].id}
                     {...register("serviceId")}
-                    checked={serviceId === 3}
-                    onChange={() => setServiceId(3)}
+                    checked={serviceId === town.service[2].id}
+                    onChange={() => setServiceId(town.service[2].id)}
                   />
                   Combo
                 </label>

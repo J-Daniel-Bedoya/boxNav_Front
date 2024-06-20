@@ -4,6 +4,7 @@ import axios from "axios";
 import getConfig from "../../utils/getConfig";
 import { useDispatch } from "react-redux";
 import { getServiceThunk } from "../../store/slices/service.slice";
+import { setServiceArray } from "../../store/slices/serviceArray.slice";
 
 const Options = () => {
   const api = "https://nav-boxes-lis.up.railway.app/api/v1";
@@ -20,6 +21,7 @@ const Options = () => {
   const selectTown = (data) => {
     navigate(`/start/town/${data}`);
     dispatch(getServiceThunk());
+    dispatch(setServiceArray(town.service));
   };
   console.log(town);
 

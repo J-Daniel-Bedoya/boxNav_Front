@@ -9,7 +9,6 @@ import HeaderTown from "../../components/headerTown/HeaderTown";
 import BoxDetails from "./townDetails.jsx/BoxDetails";
 import { useSelector } from "react-redux";
 import UserDetails from "./townDetails.jsx/UserDetails";
-import SectorDetails from "./townDetails.jsx/SectorDetails";
 import Add from "../../components/crud/Add";
 import Pagination from "../../components/pagination/Pagination";
 
@@ -23,6 +22,7 @@ const TownInfo = () => {
   return (
     <div className="townInfo">
       <HeaderTown isviewMenu={isviewMenu} setIsViewMenu={setIsViewMenu} />
+
       <Total />
       {isviewMenu && (
         <MenuTown isviewMenu={isviewMenu} setIsViewMenu={setIsViewMenu} />

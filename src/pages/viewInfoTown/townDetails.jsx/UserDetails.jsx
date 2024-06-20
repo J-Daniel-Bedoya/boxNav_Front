@@ -93,9 +93,9 @@ const UserDetails = ({ isDetail, id }) => {
             <div className="userDetails__info--text">
               <i className="fa-solid fa-bell-concierge"></i>
               <p>Servicio:</p>
-              {service === "Tv" && <i className="fa-solid fa-tv"></i>}
-              {service === "Internet" && <i className="fas fa-wifi"></i>}
-              {service === "Combo" && (
+              {service === "TV" && <i className="fa-solid fa-tv"></i>}
+              {service === "INTERNET" && <i className="fas fa-wifi"></i>}
+              {service === "COMBO" && (
                 <>
                   <i className="fa-solid fa-tv"></i>{" "}
                   <i className="fas fa-wifi"></i>

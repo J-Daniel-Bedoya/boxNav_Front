@@ -1,13 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { createUserThunk } from "../../../store/slices/user.slice";
 import Swal from "sweetalert2";
+import { getTownsThunk } from "../../../store/slices/town.slice";
 
 const AddUser = ({ id, setIsViewAdd, dataUser }) => {
   const { register, handleSubmit, reset } = useForm();
   const dispatch = useDispatch();
+  const town = useSelector((state) => state.town);
 
+  // useEffect(() => {
+  //   dispatch(getTown)
+  // }, [])
   const submit = (data) => {
     const create = {
       townId: parseInt(id),
@@ -21,8 +26,10 @@ const AddUser = ({ id, setIsViewAdd, dataUser }) => {
       coordinates: data.coordinates,
     };
     dispatch(createUserThunk(create));
-    console.log(create);
+
     reset();
+
+    console.log(town);
 
     Swal.fire({
       title: "Usuario creado con éxito",
@@ -37,6 +44,8 @@ const AddUser = ({ id, setIsViewAdd, dataUser }) => {
       }
     });
   };
+
+  console.log(town);
 
   return (
     <div className="pagination__add--user">
@@ -80,19 +89,31 @@ const AddUser = ({ id, setIsViewAdd, dataUser }) => {
           <div className="check-flex">
             <div className="add__form--checkbox">
               <label>
-                <input type="radio" value="2" {...register("service")} />
+                <input
+                  type="radio"
+                  value={town.service[0].id}
+                  {...register("service")}
+                />
                 TV
               </label>
             </div>
             <div className="add__form--checkbox">
               <label>
-                <input type="radio" value="1" {...register("service")} />
+                <input
+                  type="radio"
+                  value={town.service[1].id}
+                  {...register("service")}
+                />
                 Internet
               </label>
             </div>
             <div className="add__form--checkbox">
               <label>
-                <input type="radio" value="3" {...register("service")} />
+                <input
+                  type="radio"
+                  value={town.service[2].id}
+                  {...register("service")}
+                />
                 Combo
               </label>
             </div>

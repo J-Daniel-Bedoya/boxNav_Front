@@ -4,7 +4,6 @@ import { getServicesThunk } from "../../store/slices/service.slice";
 
 const Total = () => {
   const town = useSelector((state) => state.town);
-  const services = useSelector((state) => state.service);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -14,7 +13,9 @@ const Total = () => {
   return (
     <div className="card-total">
       <div className="card-total__header">
-        <h3>Información</h3>
+        <h3>
+          Información <b style={{ color: "red" }}>{town.townName}</b>
+        </h3>
       </div>
       <div className="card-total__content">
         <div className="card-total__content--info-item">
@@ -23,7 +24,7 @@ const Total = () => {
             <b>{town.numberUsers}</b>
           </span>
         </div>
-        {services?.map((service) => (
+        {town.service?.map((service) => (
           <div className="card-total__content--info-item" key={service.id}>
             <span className="info-label">{service.serviceName}:</span>
             <span className="info-value">
