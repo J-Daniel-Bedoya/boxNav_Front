@@ -1,3 +1,5 @@
+@use "../../../variables/var";
+
 .options {
   width: 100%;
   height: auto;
@@ -14,5 +16,6 @@
     border: none;
     background-color: #196ee4;
     color: #ffff;
+    font-family: var.$roboto;
   }
 }

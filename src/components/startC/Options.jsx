@@ -21,6 +21,7 @@ const Options = () => {
   const selectTown = (data) => {
     navigate(`/start/town/${data}`);
     dispatch(getServiceThunk());
+
     dispatch(setServiceArray(town.service));
   };
   console.log(town);
