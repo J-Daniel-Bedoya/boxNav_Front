@@ -5,13 +5,28 @@ import Swal from "sweetalert2";
 import { useDispatch } from "react-redux";
 
 const AddSector = ({ id, setIsViewAdd }) => {
-  const { register, handleSubmit, reset } = useForm();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
   const dispatch = useDispatch();
 
+  const toCamelCase = (str) => {
+    return str
+      .toLowerCase()
+      .split(" ")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
+  };
+
   const submit = (data) => {
+    const camelCaseName = toCamelCase(data.name);
+
     const create = {
       townId: parseInt(id),
-      sectorName: data.name,
+      sectorName: camelCaseName,
     };
     dispatch(createSectorThunk(create));
     reset();
@@ -38,10 +53,13 @@ const AddSector = ({ id, setIsViewAdd }) => {
           <input
             type="text"
             name="sector"
-            {...register("name")}
+            {...register("name", {
+              required: "El nombre del sector es requerido",
+            })}
             placeholder="El Parque"
             className="add__form--text"
           />
+          {errors.name && <span>{errors.name.message}</span>}
         </div>
         <div className="add__form--buttons">
           <button

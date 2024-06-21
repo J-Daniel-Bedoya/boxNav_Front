@@ -780,6 +780,11 @@
   margin-bottom: 0.5rem;
   font-weight: bold;
 }
+.pagination__add--box .add__form--input span, .pagination__add--sector .add__form--input span, .pagination__add--user .add__form--input span, .pagination__add--userEdit .add__form--input span, .pagination__edit--box .add__form--input span, .pagination__edit--sector .add__form--input span, .pagination__edit--user .add__form--input span, .pagination__edit--userEdit .add__form--input span {
+  color: red;
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+}
 .pagination__add--box .add__form--select, .pagination__add--box .add__form--text, .pagination__add--sector .add__form--select, .pagination__add--sector .add__form--text, .pagination__add--user .add__form--select, .pagination__add--user .add__form--text, .pagination__add--userEdit .add__form--select, .pagination__add--userEdit .add__form--text, .pagination__edit--box .add__form--select, .pagination__edit--box .add__form--text, .pagination__edit--sector .add__form--select, .pagination__edit--sector .add__form--text, .pagination__edit--user .add__form--select, .pagination__edit--user .add__form--text, .pagination__edit--userEdit .add__form--select, .pagination__edit--userEdit .add__form--text {
   width: 100%;
   padding: 0.5rem;

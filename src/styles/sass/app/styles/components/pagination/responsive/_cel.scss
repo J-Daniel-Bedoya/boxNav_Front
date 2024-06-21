@@ -59,6 +59,11 @@
             margin-bottom: 0.5rem;
             font-weight: bold;
           }
+          & span {
+            color: red;
+            font-size: 0.8rem;
+            margin-top: 0.25rem;
+          }
         }
 
         &--select,

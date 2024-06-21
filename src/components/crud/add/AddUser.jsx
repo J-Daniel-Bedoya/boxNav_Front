@@ -3,37 +3,56 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { createUserThunk } from "../../../store/slices/user.slice";
 import Swal from "sweetalert2";
-import { getTownsThunk } from "../../../store/slices/town.slice";
+import { getBoxThunk } from "../../../store/slices/box.slice";
 
 const AddUser = ({ id, setIsViewAdd, dataUser }) => {
-  const { register, handleSubmit, reset } = useForm();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
   const dispatch = useDispatch();
   const town = useSelector((state) => state.town);
+  const box = useSelector((state) => state.box);
 
-  // useEffect(() => {
-  //   dispatch(getTown)
-  // }, [])
+  useEffect(() => {
+    dispatch(getBoxThunk(id));
+  }, [id, dispatch]);
+
+  const occupiedPorts = box.users.map((user) => user.portNumber);
+  const maxPorts = box.numberPorts; // Número máximo de puertos (8 o 16)
+
+  const toCamelCase = (str) => {
+    return str
+      .toLowerCase()
+      .split(" ")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
+  };
+
   const submit = (data) => {
+    const camelCaseFirstName = toCamelCase(data.firstName);
+    const camelCaseLastName = toCamelCase(data.lastName);
+
     const create = {
       townId: parseInt(id),
       sectorId: dataUser?.sectorId,
       boxId: dataUser.boxId,
       serviceId: parseInt(data.service),
-      userName: `${data.firstName} ${data.lastName}`,
+      userName: `${camelCaseFirstName} ${camelCaseLastName}`,
       portNumber: parseInt(data.port),
       tel: data.tel,
       state: data.state === "true" ? true : false,
       coordinates: data.coordinates,
     };
+
     dispatch(createUserThunk(create));
-
     reset();
-
-    console.log(town);
 
     Swal.fire({
       title: "Usuario creado con éxito",
-      html: `El usuario <strong>${data.firstName} ${data.lastName}</strong> a sido añadido a la base de datos`,
+      html: `El usuario <strong>${camelCaseFirstName} ${camelCaseLastName}</strong> ha sido añadido a la base de datos`,
       icon: "success",
       confirmButtonText: "OK",
       timer: 5000,
@@ -44,8 +63,6 @@ const AddUser = ({ id, setIsViewAdd, dataUser }) => {
       }
     });
   };
-
-  console.log(town);
 
   return (
     <div className="pagination__add--user">
@@ -59,76 +76,80 @@ const AddUser = ({ id, setIsViewAdd, dataUser }) => {
           <input
             type="text"
             name="firstName"
-            {...register("firstName")}
-            placeholder="Carlos"
+            {...register("firstName", { required: "El nombre es requerido" })}
+            placeholder="Nombre"
             className="add__form--text"
           />
+          {errors.firstName && <span>{errors.firstName.message}</span>}
         </div>
         <div className="add__form--input">
           <label htmlFor="lastName">Apellido</label>
           <input
             type="text"
             name="lastName"
-            {...register("lastName")}
-            placeholder="Gonzales"
+            {...register("lastName", { required: "El apellido es requerido" })}
+            placeholder="Apellido"
             className="add__form--text"
           />
+          {errors.lastName && <span>{errors.lastName.message}</span>}
         </div>
         <div className="add__form--input">
           <label htmlFor="port">Puerto</label>
           <input
             type="number"
             name="port"
-            {...register("port")}
-            placeholder="1"
+            {...register("port", {
+              required: "El puerto es requerido",
+              min: { value: 1, message: "El puerto debe ser mayor a 0" },
+              max: {
+                value: maxPorts,
+                message: `El puerto no puede exceder de ${maxPorts}`,
+              },
+              validate: (value) =>
+                !occupiedPorts.includes(parseInt(value)) ||
+                "Este puerto ya está ocupado",
+            })}
+            placeholder="0"
             className="add__form--text"
           />
+          {errors.port && <span>{errors.port.message}</span>}
         </div>
         <div className="add__form--input">
           <label>Tipo de Servicio</label>
           <div className="check-flex">
-            <div className="add__form--checkbox">
-              <label>
-                <input
-                  type="radio"
-                  value={town.service[0].id}
-                  {...register("service")}
-                />
-                TV
-              </label>
-            </div>
-            <div className="add__form--checkbox">
-              <label>
-                <input
-                  type="radio"
-                  value={town.service[1].id}
-                  {...register("service")}
-                />
-                Internet
-              </label>
-            </div>
-            <div className="add__form--checkbox">
-              <label>
-                <input
-                  type="radio"
-                  value={town.service[2].id}
-                  {...register("service")}
-                />
-                Combo
-              </label>
-            </div>
+            {town.service.map((service) => (
+              <div className="add__form--checkbox" key={service.id}>
+                <label>
+                  <input
+                    type="radio"
+                    value={service.id}
+                    {...register("service", {
+                      required: "Seleccione un servicio",
+                    })}
+                  />
+                  {service.serviceName}
+                </label>
+              </div>
+            ))}
           </div>
+          {errors.service && <span>{errors.service.message}</span>}
         </div>
-
         <div className="add__form--input">
           <label htmlFor="tel">Celular</label>
           <input
             type="tel"
             name="tel"
-            {...register("tel")}
+            {...register("tel", {
+              required: "El número de celular es requerido",
+              pattern: {
+                value: /^[0-9]{10}$/,
+                message: "El número de celular debe contener 10 dígitos",
+              },
+            })}
             placeholder="(316)2021020"
             className="add__form--text"
           />
+          {errors.tel && <span>{errors.tel.message}</span>}
         </div>
         <div className="add__form--input">
           <label htmlFor="state">Estado</label>
@@ -139,7 +160,7 @@ const AddUser = ({ id, setIsViewAdd, dataUser }) => {
                   type="radio"
                   id="stateA"
                   name="state"
-                  {...register("state")}
+                  {...register("state", { required: "Seleccione el estado" })}
                   value="true"
                 />
                 Activo
@@ -151,23 +172,27 @@ const AddUser = ({ id, setIsViewAdd, dataUser }) => {
                   type="radio"
                   id="stateS"
                   name="state"
-                  {...register("state")}
+                  {...register("state", { required: "Seleccione el estado" })}
                   value="false"
                 />
                 Suspendido
               </label>
             </div>
           </div>
+          {errors.state && <span>{errors.state.message}</span>}
         </div>
         <div className="add__form--input">
           <label htmlFor="coordinates">Dirección</label>
           <input
             type="text"
             name="coordinates"
-            {...register("coordinates")}
+            {...register("coordinates", {
+              required: "La dirección es requerida",
+            })}
             placeholder="Serca de la panadería"
             className="add__form--text"
           />
+          {errors.coordinates && <span>{errors.coordinates.message}</span>}
         </div>
         <div className="add__form--buttons">
           <button
