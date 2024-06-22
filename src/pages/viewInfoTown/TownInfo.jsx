@@ -11,6 +11,8 @@ import { useSelector } from "react-redux";
 import UserDetails from "./townDetails.jsx/UserDetails";
 import Add from "../../components/crud/Add";
 import Pagination from "../../components/pagination/Pagination";
+import SearchBox from "../../components/search/SearchBox";
+import SearchUser from "../../components/search/SearchUser";
 
 const TownInfo = () => {
   const { id } = useParams();
@@ -28,8 +30,17 @@ const TownInfo = () => {
         <MenuTown isviewMenu={isviewMenu} setIsViewMenu={setIsViewMenu} />
       )}
 
-      {options === "box" && <BoxTable id={id} />}
-      {options === "user" && <UserTable id={id} />}
+      {options === "box" && (
+        <>
+          <SearchBox /> <BoxTable id={id} />
+        </>
+      )}
+      {options === "user" && (
+        <>
+          <SearchUser />
+          <UserTable id={id} />
+        </>
+      )}
       {options === "sector" && <SectorTable id={id} />}
       {options === "boxDetail" && (
         <BoxDetails id={isDetail} setDataUser={setDataUser} />

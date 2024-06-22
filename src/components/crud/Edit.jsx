@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import getConfig from "../../utils/getConfig";
 import { useDispatch, useSelector } from "react-redux";
+import { updateUserThunk } from "../../store/slices/user.slice"; // Importación correcta de updateUserThunk
 
 const Edit = ({ setIsViewEdit, userId, id }) => {
   const dispatch = useDispatch();
@@ -14,56 +15,65 @@ const Edit = ({ setIsViewEdit, userId, id }) => {
     setValue,
     formState: { errors },
   } = useForm();
-  const [serviceId, setServiceId] = useState(1);
-  const [state, setState] = useState(false);
+  const [serviceId, setServiceId] = useState(null);
+  const [state, setState] = useState(null);
+  const [sectorId, setSectorId] = useState(0);
+  const [boxId, setBoxId] = useState(0);
   const town = useSelector((state) => state.town);
   const box = useSelector((state) => state.box);
+  const [currentPort, setCurrentPort] = useState(null);
 
   useEffect(() => {
     axios
       .get(`${api}/user/${userId}`, getConfig())
       .then((res) => {
-        console.log(res.data);
         const userData = res.data;
-        const [firstName, lastName] = userData.userName.split(" ");
-        setValue("firstName", firstName);
-        setValue("lastName", lastName);
+        setValue("userName", userData.userName);
         setValue("portNumber", userData.portNumber);
+        setCurrentPort(userData.portNumber);
         setValue("tel", userData.tel);
         setValue("coordinates", userData.coordinates);
         setServiceId(userData.serviceId);
         setState(userData.state);
+        setSectorId(userData.sectorId);
+        setBoxId(userData.boxId);
       })
       .catch((error) => {
         console.error("Error al obtener los datos del usuario:", error);
       });
   }, [userId, reset, setValue]);
 
-  const occupiedPorts = box.users.map((user) => user.portNumber);
-
   const submit = async (data) => {
-    const camelCaseName = `${
-      data.firstName[0].toUpperCase() + data.firstName.slice(1).toLowerCase()
-    } ${data.lastName[0].toUpperCase() + data.lastName.slice(1).toLowerCase()}`;
+    const camelCaseName = data.userName
+      .split(" ")
+      .map((word) => word[0].toUpperCase() + word.slice(1).toLowerCase())
+      .join(" ");
 
     const edit = {
-      townId: id,
-      sectorId: data.sectorId,
-      boxId: data.boxId,
-      serviceId: parseInt(data.serviceId),
+      townId: parseInt(id),
+      sectorId: sectorId,
+      boxId: boxId,
+      serviceId: data.serviceId ? parseInt(data.serviceId) : serviceId,
       userName: camelCaseName,
       portNumber: parseInt(data.portNumber),
-      tel: data.tel,
-      state: data.state === "true" ? true : false,
+      tel: parseInt(data.tel),
+      state: data.state ? data.state === "true" : state,
       coordinates: data.coordinates,
     };
+
+    console.log(userId);
+
+    const occupiedPorts = box.users
+      .filter((user) => user.id !== userId) // Excluir al usuario actual
+      .map((user) => user.portNumber);
 
     if (edit.portNumber === 0 || occupiedPorts.includes(edit.portNumber)) {
       alert("El puerto no puede ser 0 o ya está ocupado.");
       return;
     }
 
-    dispatch(userId, edit);
+    dispatch(updateUserThunk(userId, edit));
+    setIsViewEdit(false);
   };
 
   return (
@@ -75,28 +85,15 @@ const Edit = ({ setIsViewEdit, userId, id }) => {
           id="user-form"
         >
           <div className="add__form--input">
-            <label htmlFor="firstName">Nombre</label>
+            <label htmlFor="userName">Nombre</label>
             <input
               type="text"
-              name="firstName"
-              {...register("firstName", { required: "El nombre es requerido" })}
-              placeholder="Nombre"
+              name="userName"
+              {...register("userName", { required: "El nombre es requerido" })}
+              placeholder="Nombre Completo"
               className="add__form--text"
             />
-            {errors.firstName && <span>{errors.firstName.message}</span>}
-          </div>
-          <div className="add__form--input">
-            <label htmlFor="lastName">Apellido</label>
-            <input
-              type="text"
-              name="lastName"
-              {...register("lastName", {
-                required: "El apellido es requerido",
-              })}
-              placeholder="Apellido"
-              className="add__form--text"
-            />
-            {errors.lastName && <span>{errors.lastName.message}</span>}
+            {errors.userName && <span>{errors.userName.message}</span>}
           </div>
           <div className="add__form--input">
             <label htmlFor="portNumber">Puerto</label>
@@ -106,7 +103,12 @@ const Edit = ({ setIsViewEdit, userId, id }) => {
               {...register("portNumber", {
                 required: "El puerto es requerido",
                 validate: (value) =>
-                  (value !== 0 && !occupiedPorts.includes(parseInt(value))) ||
+                  (value !== 0 &&
+                    (value === currentPort ||
+                      !box.users
+                        .filter((user) => user.id !== userId)
+                        .map((user) => user.portNumber)
+                        .includes(parseInt(value)))) ||
                   "Este puerto ya está ocupado",
               })}
               placeholder="1"
@@ -117,48 +119,20 @@ const Edit = ({ setIsViewEdit, userId, id }) => {
           <div className="add__form--input">
             <label>Tipo de Servicio</label>
             <div className="check-flex">
-              <div className="add__form--checkbox">
-                <label>
-                  <input
-                    type="radio"
-                    value={town.service[0].id}
-                    {...register("serviceId", {
-                      required: "Seleccione un servicio",
-                    })}
-                    checked={serviceId === town.service[0].id}
-                    onChange={() => setServiceId(town.service[0].id)}
-                  />
-                  TV
-                </label>
-              </div>
-              <div className="add__form--checkbox">
-                <label>
-                  <input
-                    type="radio"
-                    value={town.service[1].id}
-                    {...register("serviceId", {
-                      required: "Seleccione un servicio",
-                    })}
-                    checked={serviceId === town.service[1].id}
-                    onChange={() => setServiceId(town.service[1].id)}
-                  />
-                  Internet
-                </label>
-              </div>
-              <div className="add__form--checkbox">
-                <label>
-                  <input
-                    type="radio"
-                    value={town.service[2].id}
-                    {...register("serviceId", {
-                      required: "Seleccione un servicio",
-                    })}
-                    checked={serviceId === town.service[2].id}
-                    onChange={() => setServiceId(town.service[2].id)}
-                  />
-                  Combo
-                </label>
-              </div>
+              {town.service.map((service) => (
+                <div key={service.id} className="add__form--checkbox">
+                  <label>
+                    <input
+                      type="radio"
+                      value={service.id}
+                      {...register("serviceId")}
+                      checked={serviceId === service.id}
+                      onChange={() => setServiceId(service.id)}
+                    />
+                    {service.serviceName}
+                  </label>
+                </div>
+              ))}
             </div>
             {errors.serviceId && <span>{errors.serviceId.message}</span>}
           </div>
@@ -188,7 +162,7 @@ const Edit = ({ setIsViewEdit, userId, id }) => {
                     type="radio"
                     id="stateA"
                     name="state"
-                    {...register("state", { required: "Seleccione el estado" })}
+                    {...register("state")}
                     value="true"
                     checked={state === true}
                     onChange={() => setState(true)}
@@ -202,7 +176,7 @@ const Edit = ({ setIsViewEdit, userId, id }) => {
                     type="radio"
                     id="stateS"
                     name="state"
-                    {...register("state", { required: "Seleccione el estado" })}
+                    {...register("state")}
                     value="false"
                     checked={state === false}
                     onChange={() => setState(false)}

@@ -36,7 +36,7 @@ export const createUserThunk = (data) => async (dispatch) => {
 
 export const updateUserThunk = (userId, data) => async (dispatch) => {
   return await axios
-    .patch(`${api}/user/${userId}`, data, getConfig())
+    .put(`${api}/user/${userId}`, data, getConfig())
     .then(dispatch(getUsersThunk()));
 };
 

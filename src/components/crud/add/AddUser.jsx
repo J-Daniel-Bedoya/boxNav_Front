@@ -42,7 +42,7 @@ const AddUser = ({ id, setIsViewAdd, dataUser }) => {
       serviceId: parseInt(data.service),
       userName: `${camelCaseFirstName} ${camelCaseLastName}`,
       portNumber: parseInt(data.port),
-      tel: data.tel,
+      tel: parseInt(data.tel),
       state: data.state === "true" ? true : false,
       coordinates: data.coordinates,
     };
