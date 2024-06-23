@@ -1,15 +1,29 @@
 // UserDetails.js
 import React from "react";
-import { useUserDetails } from "../../../hooks/details/useUserDetails";
+import useUserDetails from "../../../hooks/details/useUserDetails";
 import Edit from "../../../components/crud/Edit";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setOptions } from "../../../store/slices/adminOptions.slice";
 
-const UserDetails = ({ isDetail, id }) => {
+/**
+ * Componente que muestra información detallada de un usuario
+ */
+const UserDetails = ({ id }) => {
   const dispatch = useDispatch();
-  const { user, box, service, sector, isViewEdit, setIsViewEdit, trash } =
-    useUserDetails(isDetail);
+  const isDetail = useSelector((state) => state.isDetail);
+  const {
+    user, // Información del usuario
+    box, // Información de la caja del usuario
+    service, // Servicio del usuario (Tv, Internet, Combo)
+    sector, // Sector del usuario
+    isViewEdit, // Estado de edición del usuario
+    setIsViewEdit, // Función para cambiar el estado de edición
+    trash, // Función para eliminar el usuario
+  } = useUserDetails(isDetail);
 
+  /**
+   * Renderiza la información del usuario si está disponible
+   */
   if (!user) {
     return <div>Loading...</div>;
   }
@@ -23,7 +37,7 @@ const UserDetails = ({ isDetail, id }) => {
           </button>
         </div>
         <div className="userDetails__sector">
-          <div className="userDetails__sector--title">{user.userName}</div>
+          <div className="userDetails__sector--title">{user?.userName}</div>
           <div></div>
           <div className="userDetails__info">
             <div className="userDetails__info--text">
