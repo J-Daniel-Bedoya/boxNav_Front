@@ -8,7 +8,11 @@ import { setOptions } from "../../../store/slices/adminOptions.slice";
 const UserDetails = ({ isDetail, id }) => {
   const dispatch = useDispatch();
   const { user, box, service, sector, isViewEdit, setIsViewEdit, trash } =
-    useUserDetails(isDetail, user.id);
+    useUserDetails(isDetail);
+
+  if (!user) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="card-userDetail">
@@ -45,9 +49,9 @@ const UserDetails = ({ isDetail, id }) => {
             <div className="userDetails__info--text">
               <i className="fa-solid fa-bell-concierge"></i>
               <p>Servicio:</p>
-              {service === "TV" && <i className="fa-solid fa-tv"></i>}
-              {service === "INTERNET" && <i className="fas fa-wifi"></i>}
-              {service === "COMBO" && (
+              {service === "Tv" && <i className="fa-solid fa-tv"></i>}
+              {service === "Internet" && <i className="fas fa-wifi"></i>}
+              {service === "Combo" && (
                 <>
                   <i className="fa-solid fa-tv"></i>{" "}
                   <i className="fas fa-wifi"></i>

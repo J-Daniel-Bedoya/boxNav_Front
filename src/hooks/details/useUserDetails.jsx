@@ -10,7 +10,7 @@ import Swal from "sweetalert2";
 
 const api = "https://nav-boxes-lis.up.railway.app/api/v1";
 
-export const useUserDetails = (isDetail, userId) => {
+export const useUserDetails = (isDetail) => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const box = useSelector((state) => state.box);
@@ -19,15 +19,32 @@ export const useUserDetails = (isDetail, userId) => {
   const [isViewEdit, setIsViewEdit] = useState(false);
 
   useEffect(() => {
-    dispatch(getUserThunk(isDetail));
-    dispatch(getBoxThunk(user.boxId));
-    axios.get(`${api}/sector/${user.sectorId}`, getConfig()).then((res) => {
-      setSector(res.data);
-    });
-    axios.get(`${api}/service/${user.serviceId}`, getConfig()).then((res) => {
-      setService(res.data.serviceName);
-    });
-  }, [user, dispatch, isDetail]);
+    if (isDetail) {
+      dispatch(getUserThunk(isDetail));
+    }
+  }, [isDetail, dispatch]);
+
+  useEffect(() => {
+    if (user && user.boxId) {
+      dispatch(getBoxThunk(user.boxId));
+    }
+  }, [user, dispatch]);
+
+  useEffect(() => {
+    if (user && user.sectorId) {
+      axios.get(`${api}/sector/${user.sectorId}`, getConfig()).then((res) => {
+        setSector(res.data);
+      });
+    }
+  }, [user, api]);
+
+  useEffect(() => {
+    if (user && user.serviceId) {
+      axios.get(`${api}/service/${user.serviceId}`, getConfig()).then((res) => {
+        setService(res.data.serviceName);
+      });
+    }
+  }, [user, api]);
 
   const trash = (id, name) => {
     Swal.fire({

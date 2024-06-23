@@ -13,7 +13,7 @@ const EditForm = ({ setIsViewEdit, userId, id }) => {
     setValue,
     formState: { errors },
   } = useForm();
-  const town = useSelector((state) => state.town);
+  const town = useSelector((state) => state.town.towns);
   const box = useSelector((state) => state.box);
 
   const { serviceId, state, currentPort, setServiceId, setState, submit } =
@@ -60,7 +60,7 @@ const EditForm = ({ setIsViewEdit, userId, id }) => {
       <RadioGroup
         label="Tipo de Servicio"
         name="serviceId"
-        options={town.service.map((service) => ({
+        options={town.service?.map((service) => ({
           value: service.id,
           label: service.serviceName,
         }))}

@@ -39,7 +39,7 @@ const useAddUser = (id, dataUser, reset, setIsViewAdd) => {
       state: data.state === "true" ? true : false,
       coordinates: data.coordinates,
     };
-
+    // console.log(create);
     dispatch(createUserThunk(create));
     reset();
 

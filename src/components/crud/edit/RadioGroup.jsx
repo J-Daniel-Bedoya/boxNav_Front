@@ -12,7 +12,7 @@ const RadioGroup = ({
   <div className="add__form--input">
     <label>{label}</label>
     <div className="check-flex">
-      {options.map((option) => (
+      {options?.map((option) => (
         <div key={option.value} className="add__form--checkbox">
           <label>
             <input
