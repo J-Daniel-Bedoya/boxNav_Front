@@ -1,10 +1,10 @@
 // useBoxDetails.js
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getBoxThunk } from "../../store/slices/box.slice";
-import { getSectorsThunk } from "../../store/slices/sector.slice";
+import { getBoxThunk } from "../../../store/slices/box.slice";
+import { getSectorsThunk } from "../../../store/slices/sector.slice";
 import axios from "axios";
-import getConfig from "../../utils/getConfig";
+import getConfig from "../../../utils/getConfig";
 
 const api = "https://nav-boxes-lis.up.railway.app/api/v1";
 
