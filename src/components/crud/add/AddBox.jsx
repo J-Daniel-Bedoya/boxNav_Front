@@ -1,58 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
-import { useSelector, useDispatch } from "react-redux";
-import { createBoxThunk, getBoxesThunk } from "../../../store/slices/box.slice";
-import Swal from "sweetalert2";
+import useAddBox from "../../hooks/useAddBox"; // Importa el custom hook
 
-const AddBox = ({ id, setIsViewAdd }) => {
+const AddBox = ({ id, setIsViewAdd, currentPage, itemsPerPage }) => {
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
   } = useForm();
-  const dispatch = useDispatch();
-  const town = useSelector((state) => state.town);
 
-  useEffect(() => {
-    dispatch(getBoxesThunk(id));
-  }, [id, dispatch]);
-
-  // Obtener el siguiente número de caja disponible
-  const getNextBoxNumber = () => {
-    if (town.boxes?.length > 0) {
-      const lastBoxNumber = Math.max(...town.boxes.map((box) => box.numberBox));
-      return lastBoxNumber + 1;
-    }
-    return 1;
-  };
-  const nextBoxNumber = getNextBoxNumber();
-
-  const submit = (data) => {
-    const create = {
-      townId: parseInt(id),
-      sectorId: parseInt(data.sectorId),
-      numberBox: nextBoxNumber,
-      numberPorts: parseInt(data.numberPorts),
-      coordinates: data.coordinates,
-    };
-
-    dispatch(createBoxThunk(create));
-    reset();
-
-    Swal.fire({
-      title: "Caja creada con éxito",
-      text: `Haz añadido una nueva caja con el número ${nextBoxNumber}`,
-      icon: "success",
-      confirmButtonText: "OK",
-      timer: 3000,
-      timerProgressBar: true,
-    }).then((result) => {
-      if (result.isConfirmed || result.dismiss === Swal.DismissReason.timer) {
-        setIsViewAdd(false);
-      }
-    });
-  };
+  const { town, submit } = useAddBox(
+    id,
+    currentPage,
+    itemsPerPage,
+    reset,
+    setIsViewAdd
+  );
 
   return (
     <div className="pagination__add--box">
@@ -67,7 +31,7 @@ const AddBox = ({ id, setIsViewAdd }) => {
             className="add__form--select"
           >
             <option value="">Seleccionar</option>
-            {town.sectors?.map((sector) => (
+            {town?.sectors?.map((sector) => (
               <option key={sector.id} value={sector.id}>
                 {sector.sectorName}
               </option>
@@ -76,7 +40,7 @@ const AddBox = ({ id, setIsViewAdd }) => {
           {errors.sectorId && (
             <span className="error-message">{errors.sectorId.message}</span>
           )}
-          {!town.sectors?.length && (
+          {!town?.sectors?.length && (
             <span className="error-message">Debe crear un nuevo sector</span>
           )}
         </div>
@@ -119,12 +83,11 @@ const AddBox = ({ id, setIsViewAdd }) => {
           <input
             type="text"
             id="coordinates"
-            placeholder="6.2070286, -75.7331088"
+            placeholder="6,2077917 -75,7328986"
             {...register("coordinates", {
               required: "Las coordenadas son requeridas",
               pattern: {
-                value:
-                  /^[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?),\s*[-+]?((1[0-7]\d)|(\d{1,2}))(\.\d+)?$/,
+                value: /^[-+]?[\d.,\s-]+$/,
                 message: "Formato de coordenadas inválido",
               },
             })}

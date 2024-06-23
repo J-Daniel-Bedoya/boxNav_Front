@@ -1,7 +1,6 @@
-import axios from "axios";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import useLogin from "../../hooks/login/useLogin";
 
 const Login = () => {
   const {
@@ -12,31 +11,10 @@ const Login = () => {
     clearErrors,
   } = useForm();
   const [showPassword, setShowPassword] = useState(false);
-  const api = "https://nav-boxes-lis.up.railway.app/api/v1";
-  const navigate = useNavigate();
+  const { login, loading } = useLogin();
 
-  const submit = async (data) => {
-    try {
-      const res = await axios.post(`${api}/auth/login`, data);
-      localStorage.setItem("login", res.data.admin.password);
-      localStorage.setItem("token", res.data.token);
-      navigate("/start");
-    } catch (error) {
-      if (
-        error.response &&
-        (error.response.status === 401 || error.response.status === 404)
-      ) {
-        setError("apiError", {
-          type: "manual",
-          message: "Credenciales incorrectas",
-        });
-      } else {
-        setError("apiError", {
-          type: "manual",
-          message: "Credenciales incorrectas",
-        });
-      }
-    }
+  const submit = (data) => {
+    login(data, setError);
   };
 
   return (
@@ -90,7 +68,12 @@ const Login = () => {
           <span className="error-message">{errors.apiError.message}</span>
         )}
 
-        <input type="submit" value="Ingresar" className="login__form--button" />
+        <input
+          type="submit"
+          value={loading ? "Ingresando..." : "Ingresar"}
+          className="login__form--button"
+          disabled={loading}
+        />
       </form>
     </div>
   );

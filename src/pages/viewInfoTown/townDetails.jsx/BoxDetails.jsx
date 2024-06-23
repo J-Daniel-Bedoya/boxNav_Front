@@ -1,29 +1,19 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+// BoxDetails.js
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { setOptions } from "../../../store/slices/adminOptions.slice";
-import { getBoxThunk } from "../../../store/slices/box.slice";
-import { getSectorsThunk } from "../../../store/slices/sector.slice";
 import { setIsDetail } from "../../../store/slices/isDetail.slice";
-import axios from "axios";
-import getConfig from "../../../utils/getConfig";
+import { useBoxDetails } from "./useBoxDetails";
 
 const BoxDetails = ({ id, setDataUser }) => {
-  const api = "https://nav-boxes-lis.up.railway.app/api/v1";
   const dispatch = useDispatch();
-  const box = useSelector((state) => state.box);
-  const [sector, setSector] = useState("");
+  const { box, sector } = useBoxDetails(id);
 
   useEffect(() => {
-    dispatch(getBoxThunk(id));
-    dispatch(getSectorsThunk());
-    setDataUser({ sectorId: box.sectorId, boxId: box.id });
-  }, [id, box]);
-
-  useEffect(() => {
-    axios.get(`${api}/sector/${box.sectorId}`, getConfig()).then((res) => {
-      setSector(res.data);
-    });
-  }, [box]);
+    if (box.id) {
+      setDataUser({ sectorId: box.sectorId, boxId: box.id });
+    }
+  }, [box, setDataUser]);
 
   const userDetail = (id) => {
     dispatch(setOptions("userDetail"));

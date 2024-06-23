@@ -1,15 +1,16 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getTownThunk } from "../../store/slices/town.slice";
+import { getTownPaginationThunk } from "../../store/slices/town.slice";
 import CardUser from "./CardUser";
 
-const UserTable = ({ id }) => {
-  const town = useSelector((state) => state.town.users);
+const UserTable = ({ id, currentPage, itemsPerPage }) => {
+  const users = useSelector((state) => state.town.pagination.users);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getTownThunk(id));
-  }, [id, dispatch]);
+    const offset = (currentPage - 1) * itemsPerPage;
+    dispatch(getTownPaginationThunk(id, offset, itemsPerPage));
+  }, [id, currentPage, itemsPerPage, dispatch]);
 
   return (
     <div className="townInfo__content">
@@ -26,7 +27,7 @@ const UserTable = ({ id }) => {
               </tr>
             </thead>
             <tbody>
-              {town?.map((user) => (
+              {users?.map((user) => (
                 <CardUser key={user.id} user={user} />
               ))}
             </tbody>

@@ -1,4 +1,3 @@
-// PageNumbers.jsx
 import React from "react";
 
 const PageNumbers = ({ totalPages, currentPage, handlePageClick }) => {

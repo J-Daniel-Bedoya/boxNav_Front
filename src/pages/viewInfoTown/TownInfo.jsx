@@ -25,7 +25,7 @@ const TownInfo = () => {
     <div className="townInfo">
       <HeaderTown isviewMenu={isviewMenu} setIsViewMenu={setIsViewMenu} />
 
-      <Total />
+      <Total id={id} />
       {isviewMenu && (
         <MenuTown isviewMenu={isviewMenu} setIsViewMenu={setIsViewMenu} />
       )}

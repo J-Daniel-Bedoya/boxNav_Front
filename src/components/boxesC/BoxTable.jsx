@@ -1,25 +1,20 @@
 import React, { useEffect } from "react";
-import { getTownThunk } from "../../store/slices/town.slice";
 import { useDispatch, useSelector } from "react-redux";
+import { getTownPaginationThunk } from "../../store/slices/town.slice";
 import CardBox from "./CardBox";
 
-const BoxTable = ({ id }) => {
-  const town = useSelector((state) => state.town.boxes);
+const BoxTable = ({ id, currentPage, itemsPerPage }) => {
+  const boxes = useSelector((state) => state.town.pagination?.boxes);
   const dispatch = useDispatch();
 
-  const sortedTown = Array.isArray(town)
-    ? town.slice().sort((a, b) => {
-        if (a.numberBox !== undefined && b.numberBox !== undefined) {
-          return a.numberBox - b.numberBox;
-        }
-        return 0;
-      })
-    : [];
   useEffect(() => {
-    dispatch(getTownThunk(id));
-  }, [id, dispatch]);
+    const offset = (currentPage - 1) * itemsPerPage;
+    dispatch(getTownPaginationThunk(id, offset, itemsPerPage));
+  }, [id, currentPage, itemsPerPage, dispatch]);
 
-  // console.log(town);
+  const sortedBoxes = Array.isArray(boxes)
+    ? boxes.slice().sort((a, b) => a.numberBox - b.numberBox)
+    : [];
 
   return (
     <div className="townInfo__content">
@@ -36,7 +31,7 @@ const BoxTable = ({ id }) => {
               </tr>
             </thead>
             <tbody>
-              {sortedTown?.map((box) => (
+              {sortedBoxes?.map((box) => (
                 <CardBox key={box.id} box={box} />
               ))}
             </tbody>

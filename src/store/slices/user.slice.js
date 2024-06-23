@@ -30,7 +30,7 @@ export const getUserThunk = (userId) => async (dispatch) => {
 
 export const createUserThunk = (data) => async (dispatch) => {
   return await axios
-    .post(`${api}/user/`, data, getConfig())
+    .post(`${api}/user`, data, getConfig())
     .then((res) => dispatch(getUsersThunk()));
 };
 

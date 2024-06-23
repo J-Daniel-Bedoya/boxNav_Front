@@ -1,15 +1,27 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getTownThunk } from "../../store/slices/town.slice";
+import {
+  getTownPaginationThunk,
+  getTownThunk,
+} from "../../store/slices/town.slice";
 import CardSector from "./CardSector";
 
 const SectorTable = ({ id }) => {
-  const town = useSelector((state) => state.town.sectors);
+  const town = useSelector((state) => state.town.pagination.sectors);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getTownThunk(id));
+    dispatch(getTownPaginationThunk(id));
   }, [id, dispatch]);
+
+  const sortedSectors = Array.isArray(town)
+    ? town.slice().sort((a, b) => {
+        if (a.sectorName !== undefined && b.sectorName !== undefined) {
+          return a.sectorName.localeCompare(b.sectorName);
+        }
+        return 0;
+      })
+    : [];
 
   return (
     <div className="townInfo__content">
@@ -25,7 +37,7 @@ const SectorTable = ({ id }) => {
               </tr>
             </thead>
             <tbody>
-              {town?.map((sector) => (
+              {sortedSectors.map((sector) => (
                 <CardSector key={sector.id} sector={sector} />
               ))}
             </tbody>

@@ -1,9 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
-import { createUserThunk } from "../../../store/slices/user.slice";
-import Swal from "sweetalert2";
-import { getBoxThunk } from "../../../store/slices/box.slice";
+import useAddUser from "../../hooks/useAddUser"; // Importa el custom hook
 
 const AddUser = ({ id, setIsViewAdd, dataUser }) => {
   const {
@@ -12,57 +9,13 @@ const AddUser = ({ id, setIsViewAdd, dataUser }) => {
     reset,
     formState: { errors },
   } = useForm();
-  const dispatch = useDispatch();
-  const town = useSelector((state) => state.town);
-  const box = useSelector((state) => state.box);
 
-  useEffect(() => {
-    dispatch(getBoxThunk(id));
-  }, [id, dispatch]);
-
-  const occupiedPorts = box.users.map((user) => user.portNumber);
-  const maxPorts = box.numberPorts; // Número máximo de puertos (8 o 16)
-
-  const toCamelCase = (str) => {
-    return str
-      .toLowerCase()
-      .split(" ")
-      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-      .join(" ");
-  };
-
-  const submit = (data) => {
-    const camelCaseFirstName = toCamelCase(data.firstName);
-    const camelCaseLastName = toCamelCase(data.lastName);
-
-    const create = {
-      townId: parseInt(id),
-      sectorId: dataUser?.sectorId,
-      boxId: dataUser.boxId,
-      serviceId: parseInt(data.service),
-      userName: `${camelCaseFirstName} ${camelCaseLastName}`,
-      portNumber: parseInt(data.port),
-      tel: parseInt(data.tel),
-      state: data.state === "true" ? true : false,
-      coordinates: data.coordinates,
-    };
-
-    dispatch(createUserThunk(create));
-    reset();
-
-    Swal.fire({
-      title: "Usuario creado con éxito",
-      html: `El usuario <strong>${camelCaseFirstName} ${camelCaseLastName}</strong> ha sido añadido a la base de datos`,
-      icon: "success",
-      confirmButtonText: "OK",
-      timer: 5000,
-      timerProgressBar: true,
-    }).then((result) => {
-      if (result.isConfirmed || result.dismiss === Swal.DismissReason.timer) {
-        setIsViewAdd(false);
-      }
-    });
-  };
+  const { town, box, occupiedPorts, maxPorts, submit } = useAddUser(
+    id,
+    dataUser,
+    reset,
+    setIsViewAdd
+  );
 
   return (
     <div className="pagination__add--user">
@@ -202,7 +155,7 @@ const AddUser = ({ id, setIsViewAdd, dataUser }) => {
           >
             Cancelar
           </button>
-          <input type="submit" value="Create" className="submit" />
+          <input type="submit" value="Crear" className="submit" />
         </div>
       </form>
     </div>

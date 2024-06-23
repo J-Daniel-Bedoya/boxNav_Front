@@ -5,10 +5,6 @@ import { useDispatch } from "react-redux";
 
 const CardSector = ({ sector }) => {
   const dispatch = useDispatch();
-  const sectorDetail = (id) => {
-    dispatch(setOptions("sectorDetail"));
-    dispatch(setIsDetail(id));
-  };
 
   return (
     <tr className="cards__list">

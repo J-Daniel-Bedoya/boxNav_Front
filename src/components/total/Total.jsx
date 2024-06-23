@@ -1,12 +1,14 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getServicesThunk } from "../../store/slices/service.slice";
+import { getTownThunk } from "../../store/slices/town.slice";
 
-const Total = () => {
-  const town = useSelector((state) => state.town);
+const Total = ({ id }) => {
+  const town = useSelector((state) => state.town.towns);
   const dispatch = useDispatch();
 
   useEffect(() => {
+    dispatch(getTownThunk(id));
     dispatch(getServicesThunk());
   }, [dispatch]);
 

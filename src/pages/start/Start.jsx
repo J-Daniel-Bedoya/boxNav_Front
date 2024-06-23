@@ -3,12 +3,6 @@ import Header from "../../components/startC/Header";
 import Options from "../../components/startC/Options";
 
 const Start = () => {
-  // const navigate = useNavigate();
-
-  // const login = () => {
-  //   navigate("/login");
-  // };
-
   return (
     <div className="start">
       <div className="start__space">

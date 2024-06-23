@@ -3,19 +3,28 @@ import axios from "axios";
 import getConfig from "../../utils/getConfig";
 
 const api = "https://nav-boxes-lis.up.railway.app/api/v1";
-// const api = "http://localhost:8000/api/v1";
 
 const townSlice = createSlice({
   name: "town",
-  initialState: [],
+  initialState: {
+    towns: [],
+    pagination: {
+      boxes: [],
+      users: [],
+      sectors: [],
+    },
+  },
   reducers: {
-    setTown: (state, actions) => {
-      return actions.payload;
+    setTown: (state, action) => {
+      state.towns = action.payload;
+    },
+    setPagination: (state, action) => {
+      state.pagination = action.payload;
     },
   },
 });
 
-export const { setTown } = townSlice.actions;
+export const { setTown, setPagination } = townSlice.actions;
 
 export const getTownsThunk = () => async (dispatch) => {
   return await axios
@@ -25,14 +34,28 @@ export const getTownsThunk = () => async (dispatch) => {
     })
     .catch((error) => console.log(error));
 };
-export const getTownThunk = (id, currentPage) => async (dispatch) => {
+
+export const getTownThunk = (id) => async (dispatch) => {
   return await axios
-    .get(`${api}/town/${id}?offset=${currentPage}&limit=10`, getConfig())
+    .get(`${api}/town/${id}`, getConfig())
     .then((res) => {
       dispatch(setTown(res.data));
     })
     .catch((error) => console.log(error));
 };
+
+export const getTownPaginationThunk =
+  (id, offset, limit) => async (dispatch) => {
+    return await axios
+      .get(
+        `${api}/town/pagination/${id}?offset=${offset}&limit=${limit}`,
+        getConfig()
+      )
+      .then((res) => {
+        dispatch(setPagination(res.data));
+      })
+      .catch((error) => console.log(error));
+  };
 
 export const createTownThunk = (data) => async (dispatch) => {
   return await axios
