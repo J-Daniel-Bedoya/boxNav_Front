@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import useAddUser from "../../hooks/useAddUser"; // Importa el custom hook
+import useAddUser from "../../../hooks/crud/add/useAddUser"; // Importa el custom hook
 
 const AddUser = ({ id, setIsViewAdd, dataUser }) => {
   const {
