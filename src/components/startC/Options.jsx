@@ -24,7 +24,6 @@ const Options = () => {
 
     dispatch(setServiceArray(town.service));
   };
-  console.log(town);
 
   return (
     <div className="options">

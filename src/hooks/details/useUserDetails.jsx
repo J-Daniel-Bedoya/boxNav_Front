@@ -12,7 +12,7 @@ const api = "https://nav-boxes-lis.up.railway.app/api/v1";
 
 export const useUserDetails = (isDetail) => {
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.user);
+  const user = useSelector((state) => state.user.users);
   const box = useSelector((state) => state.box);
   const [service, setService] = useState("");
   const [sector, setSector] = useState("");

@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { setOptions } from "../../../store/slices/adminOptions.slice";
 import { setIsDetail } from "../../../store/slices/isDetail.slice";
 import { useBoxDetails } from "../../../hooks/details/useBoxDetails";
+import Swal from "sweetalert2";
 
 const BoxDetails = ({ id, setDataUser }) => {
   const dispatch = useDispatch();
@@ -18,6 +19,23 @@ const BoxDetails = ({ id, setDataUser }) => {
   const userDetail = (id) => {
     dispatch(setOptions("userDetail"));
     dispatch(setIsDetail(id));
+  };
+
+  const handleCoordinatesClick = (event, coordinates) => {
+    event.preventDefault();
+    Swal.fire({
+      title: "Ir a Google Maps",
+      text: "¿Quieres ver la ubicación en Google Maps?",
+      icon: "info",
+      showCancelButton: true,
+      confirmButtonText: "Ver en Google Maps",
+      cancelButtonText: "Cancelar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${coordinates}`;
+        window.open(googleMapsUrl, "_blank");
+      }
+    });
   };
 
   return (
@@ -35,6 +53,17 @@ const BoxDetails = ({ id, setDataUser }) => {
           <div className="boxDetails__sector--address">
             <i className="fa-solid fa-location-dot"></i>
             <p>{sector.sectorName}</p>
+          </div>
+          <div className="boxDetails__sector--coordinates">
+            <i className="fa-solid fa-map-marked-alt"></i>
+            <a
+              href="#"
+              onClick={(event) =>
+                handleCoordinatesClick(event, box.coordinates)
+              }
+            >
+              {box.coordinates}
+            </a>
           </div>
         </div>
         <div className="boxDetails__users">

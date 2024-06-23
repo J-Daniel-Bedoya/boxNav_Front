@@ -47,32 +47,12 @@
     }
   }
 
-  &__suggestions {
-    margin-top: 10px;
-    width: 100%;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    background-color: #fff;
-    list-style: none;
-    padding: 0;
-
-    li {
-      padding: 10px;
-      cursor: pointer;
-
-      &:hover {
-        background-color: #f0f0f0;
-      }
-    }
-  }
   &__error {
     margin-top: 5px;
     color: red;
     font-size: 14px;
     font-weight: bold;
     text-align: center;
-    // background-color: #fff5f6;
-    // border: 1px solid #f5c6cb;
     border-radius: 5px;
     padding: 5px;
     width: 100%;

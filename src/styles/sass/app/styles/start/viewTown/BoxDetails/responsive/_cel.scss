@@ -34,6 +34,7 @@
         color: #1771f9;
       }
     }
+
     &--address {
       font-size: 1.2rem;
       display: flex;
@@ -43,6 +44,28 @@
       & i {
         font-size: 1.5rem;
         color: #1771f9;
+      }
+    }
+
+    &--coordinates {
+      font-size: 1rem;
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+
+      & i {
+        font-size: 1.5rem;
+        color: #1771f9;
+      }
+
+      a {
+        color: #1771f9;
+        text-decoration: underline;
+        cursor: pointer;
+
+        &:hover {
+          color: #0d47a1;
+        }
       }
     }
   }
@@ -57,6 +80,7 @@
     & b {
       font-size: 1.5rem;
     }
+
     &--name {
       width: 100%;
       display: flex;

@@ -1,66 +1,45 @@
-import React, { useState, useEffect } from "react";
+// SearchUser.js
+import React from "react";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
-import axios from "axios";
-import { setOptions } from "../../store/slices/adminOptions.slice";
-import { setIsDetail } from "../../store/slices/isDetail.slice";
-import getConfig from "../../utils/getConfig";
+import { useSelector, useDispatch } from "react-redux";
+import SearchResults from "./SearchResults";
+import useSearchUser from "../../hooks/search/useSearchUser";
+import { setSearchResults } from "../../store/slices/user.slice";
 
 const SearchUser = () => {
-  const { register, handleSubmit, watch } = useForm();
+  const { register, watch } = useForm();
   const dispatch = useDispatch();
-  const [suggestions, setSuggestions] = useState([]);
-  const userName = watch("userName");
+  const { query, setQuery, results, loading } = useSearchUser();
 
-  useEffect(() => {
-    if (userName) {
-      axios
-        .get(
-          `https://nav-boxes-lis.up.railway.app/api/v1/user/search?query=${userName}`,
-          getConfig()
-        )
-        .then((res) => setSuggestions(res.data))
-        .catch((error) => console.error("Error al buscar usuarios:", error));
-    } else {
-      setSuggestions([]);
+  const inputValue = watch("username");
+
+  const handleChange = (e) => {
+    setQuery(e.target.value);
+    if (e.target.value.length === 0) {
+      dispatch(setSearchResults([]));
     }
-  }, [userName]);
-
-  const onSubmit = (data) => {
-    dispatch(setOptions("user"));
-    dispatch(setIsDetail(data.userName));
-  };
-
-  const handleSuggestionClick = (userName) => {
-    dispatch(setOptions("user"));
-    dispatch(setIsDetail(userName));
   };
 
   return (
     <div className="search-user">
-      <form onSubmit={handleSubmit(onSubmit)} className="search-user__form">
+      <form className="search-user__form">
         <input
           type="text"
-          {...register("userName", { required: true })}
+          {...register("username")}
           placeholder="Buscar por Usuario"
           className="search-user__input"
+          value={query}
+          onChange={handleChange}
         />
-        <button type="submit" className="search-user__button">
-          Buscar
+        <button
+          type="button"
+          className="search-user__button"
+          disabled={loading}
+        >
+          {loading ? "Buscando..." : "Buscar"}
         </button>
       </form>
-      {suggestions.length > 0 && (
-        <ul className="search-user__suggestions">
-          {suggestions.map((user) => (
-            <li
-              key={user.id}
-              onClick={() => handleSuggestionClick(user.userName)}
-            >
-              {user.userName}
-            </li>
-          ))}
-        </ul>
-      )}
+      {inputValue && results.length > 0 && <SearchResults results={results} />}
     </div>
   );
 };
