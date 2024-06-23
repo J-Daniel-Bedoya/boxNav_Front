@@ -62,7 +62,6 @@ const useAddBox = (id, currentPage, itemsPerPage, reset, setIsViewAdd) => {
   return {
     town,
     submit,
-    errors,
   };
 };
 

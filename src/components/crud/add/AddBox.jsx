@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import useAddBox from "../../../hooks/crud/add/useAddBox"; // Importa el custom hook
+import useAddBox from "../../../hooks/crud/add/useAddBox"; // Ajusta la ruta según la ubicación del hook
 
 const AddBox = ({ id, setIsViewAdd, currentPage, itemsPerPage }) => {
   const {
@@ -9,7 +9,6 @@ const AddBox = ({ id, setIsViewAdd, currentPage, itemsPerPage }) => {
     reset,
     formState: { errors },
   } = useForm();
-
   const { town, submit } = useAddBox(
     id,
     currentPage,
