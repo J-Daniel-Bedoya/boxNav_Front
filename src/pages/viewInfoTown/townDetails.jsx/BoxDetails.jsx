@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { setOptions } from "../../../store/slices/adminOptions.slice";
 import { setIsDetail } from "../../../store/slices/isDetail.slice";
-import { useBoxDetails } from "./useBoxDetails";
+import { useBoxDetails } from "../../../hooks/details/useBoxDetails";
 
 const BoxDetails = ({ id, setDataUser }) => {
   const dispatch = useDispatch();
