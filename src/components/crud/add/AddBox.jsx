@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import useAddBox from "../../../hooks/useAddBox"; // Importa el custom hook
+import useAddBox from "../../../hooks/crud/add/useAddBox"; // Importa el custom hook
 
 const AddBox = ({ id, setIsViewAdd, currentPage, itemsPerPage }) => {
   const {
