@@ -330,18 +330,6 @@
     padding: 15px;
   }
 }
-.card-boxDetail {
-  border: 1px solid rgba(148, 150, 151, 0.5333333333);
-  border-radius: 20px;
-  padding: 2rem;
-  background-color: #fff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-}
-
 .boxDetails {
   width: 100%;
   height: auto;
@@ -382,16 +370,27 @@
   align-items: center;
 }
 .boxDetails__sector--coordinates i {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   color: #1771f9;
 }
 .boxDetails__sector--coordinates a {
+  text-decoration: none;
   color: #1771f9;
-  text-decoration: underline;
   cursor: pointer;
 }
 .boxDetails__sector--coordinates a:hover {
-  color: #0d47a1;
+  text-decoration: underline;
+}
+.boxDetails__sector--ports {
+  font-size: 1.2rem;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-top: 1rem;
+}
+.boxDetails__sector--ports i {
+  font-size: 1.5rem;
+  color: #1771f9;
 }
 .boxDetails__users {
   display: flex;
@@ -1056,6 +1055,159 @@
 }
 .search-user__item--active {
   background: #d0d0d0;
+}
+
+.fail-ports {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(51, 49, 49, 0.26);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.fail-ports__form {
+  width: 100%;
+  max-width: 500px;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.fail-ports__form h3 {
+  margin-bottom: 10px;
+  text-align: center;
+}
+.fail-ports__form label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+.fail-ports__form input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  width: 100%;
+  margin-bottom: 10px;
+}
+.fail-ports__form .fail-ports__buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+.fail-ports__form .fail-ports__buttons button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: calc(50% - 5px);
+}
+.fail-ports__form .fail-ports__buttons button:first-of-type {
+  background-color: #007bff;
+  color: #fff;
+}
+.fail-ports__form .fail-ports__buttons button:first-of-type:hover {
+  background-color: #0056b3;
+}
+.fail-ports__form .fail-ports__buttons button:last-of-type {
+  background-color: #ccc;
+}
+.fail-ports__form .fail-ports__buttons button:last-of-type:hover {
+  background-color: #aaa;
+}
+.fail-ports__form span {
+  color: red;
+  font-size: 14px;
+}
+
+.view-ports {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+.view-ports__container {
+  width: 90%;
+  max-width: 600px;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.view-ports__container__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.view-ports__container__header h3 {
+  margin: 0;
+}
+.view-ports__container__header button {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+.view-ports__container__header button:hover {
+  color: red;
+}
+.view-ports__container__content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+.view-ports__container__content .port {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ddd;
+  border-radius: 5px;
+  position: relative;
+}
+.view-ports__container__content .port.occupied {
+  background-color: #4caf50;
+}
+.view-ports__container__content .port.bad {
+  background-color: #f44336;
+}
+.view-ports__container__content .port.bad button {
+  display: none;
+}
+.view-ports__container__content .port.bad:hover button {
+  display: block;
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #f44336;
+  color: #fff;
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.view-ports__container__content .port.bad:hover button:hover {
+  background: #ea1c0d;
 }
 
 /*# sourceMappingURL=index.css.map */

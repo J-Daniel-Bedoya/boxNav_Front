@@ -59,7 +59,6 @@ const useAddUser = (id, dataUser, reset, setIsViewAdd) => {
 
   return {
     town,
-    box,
     occupiedPorts,
     maxPorts,
     submit,

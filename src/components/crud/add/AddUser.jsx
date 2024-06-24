@@ -10,7 +10,7 @@ const AddUser = ({ id, setIsViewAdd, dataUser }) => {
     formState: { errors },
   } = useForm();
 
-  const { town, box, occupiedPorts, maxPorts, submit } = useAddUser(
+  const { town, occupiedPorts, maxPorts, submit } = useAddUser(
     id,
     dataUser,
     reset,

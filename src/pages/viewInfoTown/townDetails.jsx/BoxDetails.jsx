@@ -1,14 +1,18 @@
 // BoxDetails.js
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { setOptions } from "../../../store/slices/adminOptions.slice";
 import { setIsDetail } from "../../../store/slices/isDetail.slice";
 import { useBoxDetails } from "../../../hooks/details/useBoxDetails";
 import Swal from "sweetalert2";
+import FailPorts from "../../../components/failPorts/FailPorts";
+import ViewPorts from "../../../components/failPorts/ViewPorts"; // Ajusta la ruta según sea necesario
 
 const BoxDetails = ({ id, setDataUser }) => {
   const dispatch = useDispatch();
   const { box, sector } = useBoxDetails(id);
+  const [showForm, setShowForm] = useState(false);
+  const [showViewPorts, setShowViewPorts] = useState(false);
 
   useEffect(() => {
     if (box.id) {
@@ -38,6 +42,10 @@ const BoxDetails = ({ id, setDataUser }) => {
     });
   };
 
+  const usedPorts = box.users?.length || 0;
+  const badPortsCount = box.portsBad?.length || 0;
+  const availablePorts = box.numberPorts - usedPorts - badPortsCount;
+
   return (
     <div className="boxDetails">
       <div className="card-boxDetail">
@@ -65,6 +73,12 @@ const BoxDetails = ({ id, setDataUser }) => {
               {box.coordinates}
             </a>
           </div>
+          <div className="boxDetails__sector--ports">
+            <i className="fa-solid fa-plug"></i>
+            <p onClick={() => setShowViewPorts(true)}>
+              Puertos disponibles: {availablePorts}
+            </p>
+          </div>
         </div>
         <div className="boxDetails__users">
           <b>Conectados</b>
@@ -79,9 +93,15 @@ const BoxDetails = ({ id, setDataUser }) => {
         </div>
         <div className="boxDetails__options">
           <div className="boxDetails__options--button">
-            <button>Puerto Malo</button>
+            <button onClick={() => setShowForm(true)}>Puerto Malo</button>
           </div>
         </div>
+        {showForm && (
+          <FailPorts id={id} boxId={box.id} setShowForm={setShowForm} />
+        )}
+        {showViewPorts && (
+          <ViewPorts box={box} setShowViewPorts={setShowViewPorts} />
+        )}
       </div>
     </div>
   );

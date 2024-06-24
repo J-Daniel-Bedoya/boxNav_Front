@@ -30,7 +30,7 @@ export const getPortThunk = (portId) => async (dispatch) => {
 
 export const createPortThunk = (data) => async (dispatch) => {
   return await axios
-    .post(`${api}/port/`, data, getConfig())
+    .post(`${api}/port`, data, getConfig())
     .then((res) => dispatch(getPortsThunk()));
 };
 
