@@ -1,20 +1,13 @@
-import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
-import {
-  deletePortThunk,
-  getPortsThunk,
-  addBadPortThunk,
-} from "../../store/slices/port.slice";
+import { deletePortThunk, getPortsThunk } from "../../store/slices/port.slice";
 import { getUsersThunk } from "../../store/slices/user.slice";
 import { getBoxThunk } from "../../store/slices/box.slice";
+import { useEffect } from "react";
 
 const ViewPorts = ({ boxId, setShowViewPorts }) => {
   const dispatch = useDispatch();
   const box = useSelector((state) => state.box);
-  const [showAddBadPortModal, setShowAddBadPortModal] = useState(false);
-  const [selectedPort, setSelectedPort] = useState(null);
-  const [signal, setSignal] = useState("");
 
   useEffect(() => {
     dispatch(getBoxThunk(boxId));
@@ -24,7 +17,7 @@ const ViewPorts = ({ boxId, setShowViewPorts }) => {
   const handleRemoveBadPort = (portId) => {
     Swal.fire({
       title: "Eliminar Puerto Malo",
-      text: `¿Estás seguro de que quieres eliminar este puerto malo?`,
+      text: "¿Estás seguro de que quieres eliminar este puerto malo?",
       icon: "warning",
       showCancelButton: true,
       confirmButtonText: "Sí, eliminar",
@@ -34,22 +27,11 @@ const ViewPorts = ({ boxId, setShowViewPorts }) => {
         dispatch(deletePortThunk(portId));
         Swal.fire({
           title: "Eliminado",
-          text: `El puerto malo ha sido eliminado.`,
+          text: "El puerto malo ha sido eliminado.",
           icon: "success",
           confirmButtonText: "OK",
         });
       }
-    });
-  };
-
-  const handleAddBadPort = () => {
-    dispatch(addBadPortThunk({ boxId, port: selectedPort, signal }));
-    setShowAddBadPortModal(false);
-    Swal.fire({
-      title: "Añadido",
-      text: `El puerto malo número ${selectedPort} ha sido añadido.`,
-      icon: "success",
-      confirmButtonText: "OK",
     });
   };
 
@@ -70,17 +52,11 @@ const ViewPorts = ({ boxId, setShowViewPorts }) => {
           className={`port ${isOccupied ? "occupied" : ""} ${
             isBadPort ? "bad" : "available"
           }`}
-          onClick={() =>
-            !isOccupied && !isBadPort && handlePortClick(portNumber)
-          }
         >
           {isBadPort ? (
             <button
               className="port__bad"
-              onClick={(e) => {
-                e.stopPropagation();
-                handleRemoveBadPort(badPort.id);
-              }}
+              onClick={() => handleRemoveBadPort(badPort.id)}
             >
               {portNumber}
             </button>
@@ -90,11 +66,6 @@ const ViewPorts = ({ boxId, setShowViewPorts }) => {
         </div>
       );
     });
-  };
-
-  const handlePortClick = (portNumber) => {
-    setSelectedPort(portNumber);
-    setShowAddBadPortModal(true);
   };
 
   return (
@@ -108,25 +79,6 @@ const ViewPorts = ({ boxId, setShowViewPorts }) => {
         </div>
         <div className="view-ports__container--content">{renderPorts()}</div>
       </div>
-      {showAddBadPortModal && (
-        <div className="modal">
-          <div className="modal__content">
-            <h3>Añadir Puerto Malo</h3>
-            <label>
-              Señal:
-              <input
-                type="text"
-                value={signal}
-                onChange={(e) => setSignal(e.target.value)}
-              />
-            </label>
-            <button onClick={handleAddBadPort}>Añadir</button>
-            <button onClick={() => setShowAddBadPortModal(false)}>
-              Cancelar
-            </button>
-          </div>
-        </div>
-      )}
     </div>
   );
 };
