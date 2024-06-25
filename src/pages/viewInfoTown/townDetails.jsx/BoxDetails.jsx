@@ -6,7 +6,7 @@ import { setIsDetail } from "../../../store/slices/isDetail.slice";
 import { useBoxDetails } from "../../../hooks/details/useBoxDetails";
 import Swal from "sweetalert2";
 import FailPorts from "../../../components/failPorts/FailPorts";
-import ViewPorts from "../../../components/failPorts/ViewPorts"; // Ajusta la ruta según sea necesario
+import ViewPorts from "../../../components/failPorts/ViewPorts";
 
 const BoxDetails = ({ id, setDataUser }) => {
   const dispatch = useDispatch();
@@ -43,7 +43,7 @@ const BoxDetails = ({ id, setDataUser }) => {
   };
 
   const usedPorts = box.users?.length || 0;
-  const badPortsCount = box.portsBad?.length || 0;
+  const badPortsCount = box.portsBad || 0;
   const availablePorts = box.numberPorts - usedPorts - badPortsCount;
 
   return (
@@ -100,7 +100,7 @@ const BoxDetails = ({ id, setDataUser }) => {
           <FailPorts id={id} boxId={box.id} setShowForm={setShowForm} />
         )}
         {showViewPorts && (
-          <ViewPorts box={box} setShowViewPorts={setShowViewPorts} />
+          <ViewPorts boxId={box.id} setShowViewPorts={setShowViewPorts} />
         )}
       </div>
     </div>

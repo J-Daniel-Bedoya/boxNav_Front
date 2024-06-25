@@ -20,12 +20,11 @@ const FailPorts = ({ id, boxId, setShowForm }) => {
 
   const onSubmit = (data) => {
     const failPort = {
-      townId: id,
       boxId: boxId,
       port: parseInt(data.portNumber),
       signal: parseInt(data.signal),
     };
-    console.log(failPort);
+
     dispatch(createPortThunk(failPort))
       .then(() => {
         Swal.fire({
@@ -89,10 +88,10 @@ const FailPorts = ({ id, boxId, setShowForm }) => {
           {errors.signal && <span>{errors.signal.message}</span>}
         </div>
         <div className="fail-ports__buttons">
-          <button type="submit">Enviar Reporte</button>
           <button type="button" onClick={() => setShowForm(false)}>
             Cancelar
           </button>
+          <button type="submit">Enviar Reporte</button>
         </div>
       </form>
     </div>

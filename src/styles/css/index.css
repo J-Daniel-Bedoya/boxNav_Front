@@ -360,11 +360,11 @@
   align-items: center;
 }
 .boxDetails__sector--address i {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   color: #1771f9;
 }
 .boxDetails__sector--coordinates {
-  font-size: 1rem;
+  font-size: 1.1rem;
   display: flex;
   gap: 1rem;
   align-items: center;
@@ -389,8 +389,13 @@
   margin-top: 1rem;
 }
 .boxDetails__sector--ports i {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   color: #1771f9;
+}
+.boxDetails__sector--ports:hover {
+  cursor: pointer;
+  color: #0da132;
+  font-weight: bold;
 }
 .boxDetails__users {
   display: flex;
@@ -448,6 +453,7 @@
   transition: background-color 0.3s;
 }
 .boxDetails__options--button button:hover {
+  cursor: pointer;
   background-color: #0d47a1;
 }
 .boxDetails__return {
@@ -480,9 +486,6 @@
     gap: 1rem;
     margin-bottom: 3rem;
   }
-  .boxDetails__sector p {
-    font-size: 1.4rem;
-  }
   .boxDetails__users b {
     font-size: 1.5rem;
   }
@@ -498,9 +501,6 @@
   .boxDetails__sector {
     gap: 1rem;
     margin-bottom: 3rem;
-  }
-  .boxDetails__sector p {
-    font-size: 1.4rem;
   }
   .boxDetails__users b {
     font-size: 1.5rem;
@@ -1109,14 +1109,14 @@
   width: calc(50% - 5px);
 }
 .fail-ports__form .fail-ports__buttons button:first-of-type {
-  background-color: #007bff;
-  color: #fff;
+  background-color: #ccc;
 }
 .fail-ports__form .fail-ports__buttons button:first-of-type:hover {
   background-color: #0056b3;
 }
 .fail-ports__form .fail-ports__buttons button:last-of-type {
-  background-color: #ccc;
+  background-color: #007bff;
+  color: #fff;
 }
 .fail-ports__form .fail-ports__buttons button:last-of-type:hover {
   background-color: #aaa;
@@ -1149,65 +1149,65 @@
   flex-direction: column;
   align-items: center;
 }
-.view-ports__container__header {
+.view-ports__container--header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
 }
-.view-ports__container__header h3 {
+.view-ports__container--header h3 {
   margin: 0;
 }
-.view-ports__container__header button {
+.view-ports__container--header button {
   background: none;
   border: none;
   font-size: 1.5rem;
   cursor: pointer;
 }
-.view-ports__container__header button:hover {
+.view-ports__container--header button:hover {
   color: red;
 }
-.view-ports__container__content {
+.view-ports__container--content {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 10px;
   margin-top: 20px;
 }
-.view-ports__container__content .port {
+.view-ports__container--content .port {
   width: 40px;
   height: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #ddd;
+  background-color: #1891e2;
   border-radius: 5px;
   position: relative;
+  font-weight: bold;
+  font-size: 1rem;
 }
-.view-ports__container__content .port.occupied {
+.view-ports__container--content .port:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  transition: 0.3s;
+  color: #fff;
+}
+.view-ports__container--content .occupied {
   background-color: #4caf50;
 }
-.view-ports__container__content .port.bad {
+.view-ports__container--content .bad {
   background-color: #f44336;
 }
-.view-ports__container__content .port.bad button {
-  display: none;
-}
-.view-ports__container__content .port.bad:hover button {
-  display: block;
-  position: absolute;
-  bottom: -20px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #f44336;
-  color: #fff;
+.view-ports__container--content .bad button {
+  background-color: transparent;
   border: none;
-  padding: 5px;
-  border-radius: 5px;
-  cursor: pointer;
+  font-weight: bold;
+  font-size: 1rem;
 }
-.view-ports__container__content .port.bad:hover button:hover {
-  background: #ea1c0d;
+.view-ports__container--content .bad button:hover {
+  cursor: pointer;
+  color: #fff;
+  transition: 0.3s;
 }
 
 /*# sourceMappingURL=index.css.map */

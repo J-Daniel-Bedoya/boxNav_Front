@@ -39,6 +39,7 @@ const useAddBox = (id, currentPage, itemsPerPage, reset, setIsViewAdd) => {
       numberPorts: parseInt(data.numberPorts),
       coordinates: formattedCoordinates,
     };
+    console.log(create);
 
     dispatch(createBoxThunk(create)).then(() => {
       reset();

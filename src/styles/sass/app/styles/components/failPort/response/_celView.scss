@@ -21,17 +21,17 @@
     flex-direction: column;
     align-items: center;
 
-    &__header {
+    &--header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       width: 100%;
 
-      h3 {
+      & h3 {
         margin: 0;
       }
 
-      button {
+      & button {
         background: none;
         border: none;
         font-size: 1.5rem;
@@ -43,52 +43,48 @@
       }
     }
 
-    &__content {
+    &--content {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 10px;
       margin-top: 20px;
 
-      .port {
+      & .port {
         width: 40px;
         height: 40px;
         display: flex;
         justify-content: center;
         align-items: center;
-        background-color: #ddd;
+        background-color: #1891e2;
         border-radius: 5px;
         position: relative;
+        font-weight: bold;
+        font-size: 1rem;
 
-        &.occupied {
-          background-color: #4caf50;
+        &:hover {
+          cursor: pointer;
+          transform: scale(1.1);
+          transition: 0.3s;
+          color: #fff;
         }
+      }
+      & .occupied {
+        background-color: #4caf50;
+      }
 
-        &.bad {
-          background-color: #f44336;
+      & .bad {
+        background-color: #f44336;
 
-          button {
-            display: none;
-          }
-
+        & button {
+          background-color: transparent;
+          border: none;
+          font-weight: bold;
+          font-size: 1rem;
           &:hover {
-            button {
-              display: block;
-              position: absolute;
-              bottom: -20px;
-              left: 50%;
-              transform: translateX(-50%);
-              background: #f44336;
-              color: #fff;
-              border: none;
-              padding: 5px;
-              border-radius: 5px;
-              cursor: pointer;
-
-              &:hover {
-                background: darken(#f44336, 10%);
-              }
-            }
+            cursor: pointer;
+            color: #fff;
+            transition: 0.3s;
           }
         }
       }

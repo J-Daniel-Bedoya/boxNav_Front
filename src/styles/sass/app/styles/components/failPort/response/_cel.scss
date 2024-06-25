@@ -44,7 +44,7 @@
       justify-content: space-between;
       gap: 10px;
 
-      button {
+      & button {
         padding: 10px 20px;
         font-size: 16px;
         border: none;
@@ -53,8 +53,7 @@
         width: calc(50% - 5px); // Adjust width to have space between buttons
 
         &:first-of-type {
-          background-color: #007bff;
-          color: #fff;
+          background-color: #ccc;
 
           &:hover {
             background-color: #0056b3;
@@ -62,7 +61,8 @@
         }
 
         &:last-of-type {
-          background-color: #ccc;
+          background-color: #007bff;
+          color: #fff;
 
           &:hover {
             background-color: #aaa;

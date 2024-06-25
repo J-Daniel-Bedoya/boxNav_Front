@@ -29,9 +29,10 @@ export const getBoxThunk = (boxId) => async (dispatch) => {
 };
 
 export const createBoxThunk = (data) => async (dispatch) => {
-  return await axios
-    .post(`${api}/box`, data, getConfig())
-    .then((res) => dispatch(getBoxesThunk()));
+  return await axios.post(`${api}/box`, data, getConfig()).then((res) => {
+    dispatch(getBoxesThunk());
+    console.log(res);
+  });
 };
 
 export const updateboxThunk = (boxId, data) => async (dispatch) => {
