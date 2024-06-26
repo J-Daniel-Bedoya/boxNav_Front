@@ -16,8 +16,16 @@ const EditForm = ({ setIsViewEdit, userId, id }) => {
   const town = useSelector((state) => state.town.towns);
   const box = useSelector((state) => state.box);
 
-  const { serviceId, state, currentPort, setServiceId, setState, submit } =
-    useEditUser(userId, id, reset, setValue);
+  const {
+    serviceId,
+    state,
+    setServiceId,
+    setState,
+    submit,
+    occupiedPorts,
+    badPorts,
+    maxPorts,
+  } = useEditUser(userId, id, reset, setValue);
 
   const handleFormSubmit = (data) => {
     submit(data);
@@ -47,14 +55,20 @@ const EditForm = ({ setIsViewEdit, userId, id }) => {
         placeholder="1"
         validation={{
           required: "El puerto es requerido",
-          validate: (value) =>
-            (value !== 0 &&
-              (value === currentPort ||
-                !box.users
-                  .filter((user) => user.id !== userId)
-                  .map((user) => user.portNumber)
-                  .includes(parseInt(value)))) ||
-            "Este puerto ya está ocupado",
+          min: { value: 1, message: "El puerto debe ser mayor a 0" },
+          max: {
+            value: maxPorts,
+            message: `El puerto no puede exceder de ${maxPorts}`,
+          },
+          validate: (value) => {
+            if (occupiedPorts.includes(parseInt(value))) {
+              return "Este puerto ya está ocupado";
+            }
+            if (badPorts?.includes(parseInt(value))) {
+              return "Este puerto está reportado como malo";
+            }
+            return true;
+          },
         }}
       />
       <RadioGroup

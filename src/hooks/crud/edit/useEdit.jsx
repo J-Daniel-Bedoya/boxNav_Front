@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import getConfig from "../../../utils/getConfig";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { updateUserThunk } from "../../../store/slices/user.slice";
 
 const api = "https://nav-boxes-lis.up.railway.app/api/v1";
@@ -13,6 +13,7 @@ const useEditUser = (userId, id, reset, setValue) => {
   const [sectorId, setSectorId] = useState(0);
   const [boxId, setBoxId] = useState(0);
   const [currentPort, setCurrentPort] = useState(null);
+  const box = useSelector((state) => state.box);
 
   useEffect(() => {
     axios
@@ -52,17 +53,11 @@ const useEditUser = (userId, id, reset, setValue) => {
       coordinates: data.coordinates,
     };
 
-    const occupiedPorts = box.users
-      .filter((user) => user.id !== userId) // Excluir al usuario actual
-      .map((user) => user.portNumber);
-
-    if (edit.portNumber === 0 || occupiedPorts.includes(edit.portNumber)) {
-      alert("El puerto no puede ser 0 o ya está ocupado.");
-      return;
-    }
-
     dispatch(updateUserThunk(userId, edit));
   };
+  const occupiedPorts = box.users.map((user) => user.portNumber);
+  const badPorts = box.ports.map((port) => port.port);
+  const maxPorts = box.numberPorts;
 
   return {
     serviceId,
@@ -73,6 +68,9 @@ const useEditUser = (userId, id, reset, setValue) => {
     setServiceId,
     setState,
     submit,
+    occupiedPorts,
+    badPorts,
+    maxPorts,
   };
 };
 
