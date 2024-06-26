@@ -10,12 +10,14 @@ const AddUser = ({ id, setIsViewAdd, dataUser }) => {
     formState: { errors },
   } = useForm();
 
-  const { town, occupiedPorts, maxPorts, submit } = useAddUser(
+  const { town, occupiedPorts, badPorts, maxPorts, submit } = useAddUser(
     id,
     dataUser,
     reset,
     setIsViewAdd
   );
+
+  console.log(occupiedPorts);
 
   return (
     <div className="pagination__add--user">
@@ -58,9 +60,15 @@ const AddUser = ({ id, setIsViewAdd, dataUser }) => {
                 value: maxPorts,
                 message: `El puerto no puede exceder de ${maxPorts}`,
               },
-              validate: (value) =>
-                !occupiedPorts.includes(parseInt(value)) ||
-                "Este puerto ya está ocupado",
+              validate: (value) => {
+                if (occupiedPorts.includes(parseInt(value))) {
+                  return "Este puerto ya está ocupado";
+                }
+                if (badPorts?.includes(parseInt(value))) {
+                  return "Este puerto está reportado como malo";
+                }
+                return true;
+              },
             })}
             placeholder="0"
             className="add__form--text"

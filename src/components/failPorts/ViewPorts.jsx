@@ -1,17 +1,24 @@
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
-import { deletePortThunk, getPortsThunk } from "../../store/slices/port.slice";
+import {
+  deletePortThunk,
+  getPortsThunk,
+  createPortThunk,
+} from "../../store/slices/port.slice";
 import { getUsersThunk } from "../../store/slices/user.slice";
 import { getBoxThunk } from "../../store/slices/box.slice";
-import { useEffect } from "react";
+import { useForm } from "react-hook-form";
 
 const ViewPorts = ({ boxId, setShowViewPorts }) => {
   const dispatch = useDispatch();
   const box = useSelector((state) => state.box);
+  const [selectedPort, setSelectedPort] = useState(null);
 
   useEffect(() => {
     dispatch(getBoxThunk(boxId));
     dispatch(getUsersThunk());
+    dispatch(getPortsThunk());
   }, [dispatch, boxId]);
 
   const handleRemoveBadPort = (portId) => {
@@ -52,6 +59,9 @@ const ViewPorts = ({ boxId, setShowViewPorts }) => {
           className={`port ${isOccupied ? "occupied" : ""} ${
             isBadPort ? "bad" : "available"
           }`}
+          onClick={() =>
+            !isOccupied && !isBadPort && setSelectedPort(portNumber)
+          }
         >
           {isBadPort ? (
             <button
@@ -68,6 +78,22 @@ const ViewPorts = ({ boxId, setShowViewPorts }) => {
     });
   };
 
+  const handleAddBadPort = (data) => {
+    const newPort = {
+      boxId: box.id,
+      port: selectedPort,
+      signal: data.signal,
+    };
+    dispatch(createPortThunk(newPort));
+    setSelectedPort(null);
+  };
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
   return (
     <div className="view-ports">
       <div className="view-ports__container">
@@ -79,6 +105,32 @@ const ViewPorts = ({ boxId, setShowViewPorts }) => {
         </div>
         <div className="view-ports__container--content">{renderPorts()}</div>
       </div>
+
+      {selectedPort && (
+        <div className="view-ports__form">
+          <form onSubmit={handleSubmit(handleAddBadPort)}>
+            <h3>Registrar Puerto Malo</h3>
+            <div>
+              <label htmlFor="signal">Señal</label>
+              <input
+                type="number"
+                id="signal"
+                {...register("signal", {
+                  required: "La señal es requerida",
+                  min: { value: -100, message: "Debe ser un número negativo" },
+                  max: { value: -1, message: "Debe ser un número negativo" },
+                })}
+                placeholder="Señal del puerto"
+              />
+              {errors.signal && <span>{errors.signal.message}</span>}
+            </div>
+            <button type="submit">Registrar</button>
+            <button type="button" onClick={() => setSelectedPort(null)}>
+              Cancelar
+            </button>
+          </form>
+        </div>
+      )}
     </div>
   );
 };

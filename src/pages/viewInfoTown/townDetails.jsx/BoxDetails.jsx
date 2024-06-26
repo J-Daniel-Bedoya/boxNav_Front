@@ -91,14 +91,7 @@ const BoxDetails = ({ id, setDataUser }) => {
             ))}
           </div>
         </div>
-        <div className="boxDetails__options">
-          <div className="boxDetails__options--button">
-            <button onClick={() => setShowForm(true)}>Puerto Malo</button>
-          </div>
-        </div>
-        {showForm && (
-          <FailPorts id={id} boxId={box.id} setShowForm={setShowForm} />
-        )}
+
         {showViewPorts && (
           <ViewPorts boxId={box.id} setShowViewPorts={setShowViewPorts} />
         )}

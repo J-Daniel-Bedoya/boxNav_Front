@@ -11,81 +11,144 @@
   z-index: 1000;
 
   &__container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
     width: 90%;
     max-width: 600px;
-    background-color: #fff;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  &__container--header {
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
+    margin-bottom: 20px;
 
-    &--header {
+    h3 {
+      margin: 0;
+    }
+
+    button {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+  }
+
+  &__container--content {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+    gap: 10px;
+
+    .port {
+      width: 3rem;
+      height: 2.5rem;
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
-      width: 100%;
+      font-weight: bold;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      cursor: pointer;
+      text-align: center;
 
-      & h3 {
-        margin: 0;
+      &:hover {
+        transition: 0.3s;
+        transform: scale(1.1);
       }
 
-      & button {
-        background: none;
-        border: none;
-        font-size: 1.5rem;
-        cursor: pointer;
+      &.bad {
+        background-color: red;
+        color: white;
+      }
 
-        &:hover {
-          color: red;
-        }
+      &.available {
+        background-color: blue;
+        color: white;
+      }
+      &.occupied {
+        background-color: green;
+        color: white;
       }
     }
 
-    &--content {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-      margin-top: 20px;
+    .port__bad {
+      width: 100%;
+      height: 100%;
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+    }
 
-      & .port {
-        width: 40px;
-        height: 40px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: #1891e2;
+    .port__number {
+      margin: 0;
+    }
+  }
+
+  &__form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+    h3 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    div {
+      margin-bottom: 10px;
+
+      label {
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      input {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ccc;
         border-radius: 5px;
-        position: relative;
-        font-weight: bold;
-        font-size: 1rem;
+      }
+
+      span {
+        color: red;
+        font-size: 12px;
+      }
+    }
+
+    button {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+
+      &:first-of-type {
+        background-color: #007bff;
+        color: white;
+        margin-bottom: 10px;
 
         &:hover {
-          cursor: pointer;
-          transform: scale(1.1);
-          transition: 0.3s;
-          color: #fff;
+          background-color: #0056b3;
         }
       }
-      & .occupied {
-        background-color: #4caf50;
-      }
 
-      & .bad {
-        background-color: #f44336;
+      &:last-of-type {
+        background-color: #ccc;
 
-        & button {
-          background-color: transparent;
-          border: none;
-          font-weight: bold;
-          font-size: 1rem;
-          &:hover {
-            cursor: pointer;
-            color: #fff;
-            transition: 0.3s;
-          }
+        &:hover {
+          background-color: #aaa;
         }
       }
     }

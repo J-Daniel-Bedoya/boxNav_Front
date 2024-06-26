@@ -14,6 +14,7 @@ const useAddUser = (id, dataUser, reset, setIsViewAdd) => {
   }, [id, dispatch]);
 
   const occupiedPorts = box.users.map((user) => user.portNumber);
+  const badPorts = box.ports.map((port) => port.port);
   const maxPorts = box.numberPorts;
 
   const toCamelCase = (str) => {
@@ -28,6 +29,36 @@ const useAddUser = (id, dataUser, reset, setIsViewAdd) => {
     const camelCaseFirstName = toCamelCase(data.firstName);
     const camelCaseLastName = toCamelCase(data.lastName);
 
+    if (occupiedPorts.includes(parseInt(data.port))) {
+      Swal.fire({
+        title: "Error",
+        text: `El puerto ${data.port} ya está ocupado.`,
+        icon: "error",
+        confirmButtonText: "OK",
+      });
+      return;
+    }
+
+    if (badPorts.includes(parseInt(data.port))) {
+      Swal.fire({
+        title: "Error",
+        text: `El puerto ${data.port} está reportado como malo.`,
+        icon: "error",
+        confirmButtonText: "OK",
+      });
+      return;
+    }
+
+    if (parseInt(data.port) > maxPorts) {
+      Swal.fire({
+        title: "Error",
+        text: `El puerto ${data.port} excede el número máximo de puertos (${maxPorts}).`,
+        icon: "error",
+        confirmButtonText: "OK",
+      });
+      return;
+    }
+
     const create = {
       townId: parseInt(id),
       sectorId: dataUser?.sectorId,
@@ -39,7 +70,7 @@ const useAddUser = (id, dataUser, reset, setIsViewAdd) => {
       state: data.state === "true" ? true : false,
       coordinates: data.coordinates,
     };
-    // console.log(create);
+
     dispatch(createUserThunk(create));
     reset();
 
@@ -60,6 +91,7 @@ const useAddUser = (id, dataUser, reset, setIsViewAdd) => {
   return {
     town,
     occupiedPorts,
+    badPorts,
     maxPorts,
     submit,
   };

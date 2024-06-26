@@ -33,9 +33,6 @@ const useUserDetails = (isDetail) => {
     }
   }, [isDetail, dispatch]);
 
-  console.log(user);
-  // console.log(isDetail);
-
   /**
    * Obtener información de la caja del usuario cuando se proporciona un ID de caja
    */
